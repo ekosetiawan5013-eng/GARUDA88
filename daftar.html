@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAFTAR AKUN VIP - GARUDA 88</title>
+    <style>
+        body { background: #000; color: #fff; font-family: sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
+        .header { background: #111; width: 100%; padding: 15px 0; text-align: center; border-bottom: 2px solid #ff0000; }
+        .logo { color: #ff0000; font-size: 28px; font-weight: 900; letter-spacing: 2px; margin: 0; }
+        .container { width: 90%; max-width: 500px; background: #1a1a1a; padding: 25px; border-radius: 12px; border: 1px solid #333; margin-top: 20px; }
+        h2 { text-align: center; color: #ffff00; font-size: 18px; text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-size: 13px; color: #ccc; margin-bottom: 5px; }
+        input, select { width: 100%; background: #262626; border: 1px solid #444; padding: 12px; color: #fff; border-radius: 6px; box-sizing: border-box; outline: none; }
+        input:focus { border-color: #ffff00; }
+        .btn-submit { background: linear-gradient(to bottom, #ffff00, #ccaa00); color: #000; width: 100%; padding: 15px; border: none; border-radius: 6px; font-weight: 900; font-size: 16px; cursor: pointer; margin-top: 20px; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+    <div class="header"><h1 class="logo">GARUDA 88</h1></div>
+    <div class="container">
+        <h2>Formulir Pendaftaran</h2>
+        <div class="form-group"><label>Nama Pengguna</label><input type="text" placeholder="Username"></div>
+        <div class="form-group"><label>Kata Sandi</label><input type="password" placeholder="Password"></div>
+        <div class="form-group"><label>Nama Bank</label>
+            <select>
+                <option value="">-- Pilih Bank --</option>
+                <option value="bca">BCA</option>
+                <option value="bni">BNI</option>
+                <option value="bri">BRI</option>
+                <option value="mandiri">MANDIRI</option>
+                <option value="dana">DANA</option>
+                <option value="ovo">OVO</option>
+            </select>
+        </div>
+        <div class="form-group"><label>Nomor Rekening</label><input type="number" placeholder="Nomor Rekening"></div>
+        <button class="btn-submit" onclick="alert('Pendaftaran sedang diproses!')">Daftar Sekarang</button>
+    </div>
+</body>
+</html>
