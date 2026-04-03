@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PANEL BANDAR - GARUDA 88</title>
+    <style>
+        body { background: #111; color: #fff; font-family: sans-serif; padding: 20px; text-align: center; }
+        .box { background: #222; border: 2px solid #fc0; border-radius: 10px; padding: 20px; max-width: 800px; margin: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #444; padding: 10px; font-size: 13px; }
+        th { background: #800; color: #fc0; }
+        .btn-isi { background: #0f0; color: #000; font-weight: bold; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2 style="color:#fc0">PUSAT KENDALI MEMBER</h2>
+        <button onclick="ambilData()" style="padding:10px; margin-bottom:10px; cursor:pointer">REFRESH DATA</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>No. Rekening</th>
+                    <th>Nama Rek</th>
+                    <th>Saldo (IDR)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="list-member"></tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const _sb = supabase.createClient('https://sbtrcroononwihparzfk.supabase.co', 'sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn');
+
+        async function ambilData() {
+            const { data } = await _sb.from('members').select('*');
+            let rows = '';
+            data.forEach(m => {
+                rows += `<tr>
+                    <td>${m.username}</td>
+                    <td>${m.acc_number}</td>
+                    <td>${m.acc_name}</td>
+                    <td style="color:#0f0"><strong>${m.balance.toLocaleString()}</strong></td>
+                    <td><button class="btn-isi" onclick="tambahSaldo('${m.username}', ${m.balance})">ISI SALDO</button></td>
+                </tr>`;
+            });
+            document.getElementById('list-member').innerHTML = rows;
+        }
+
+        async function tambahSaldo(user, saldoSkrg) {
+            let tambah = prompt("Masukkan jumlah deposit member:", "50000");
+            if(tambah) {
+                let totalBaru = parseInt(saldoSkrg) + parseInt(tambah);
+                const { error } = await _sb.from('members').update({ balance: totalBaru }).eq('username', user);
+                if(!error) { alert("Saldo " + user + " Berhasil Diupdate!"); ambilData(); }
+            }
+        }
+        ambilData();
+    </script>
+</body>
+</html>
