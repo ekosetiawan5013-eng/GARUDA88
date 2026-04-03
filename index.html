@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GARUDA 88 - OFFICIAL SITE</title>
+    <title>GARUDA 88 - SITUS RESMI TERGACOR</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { background: #000; color: #fff; font-family: 'Arial Black', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
+        /* Header Mewah */
         .header { 
             background: linear-gradient(to bottom, #220000, #000); 
             padding: 25px 15px; 
@@ -15,71 +16,56 @@
             border-bottom: 2px solid #ff0000;
         }
         
-        /* Logo Garuda Text-Based Style (Anti-Blokir) */
+        /* Logo Garuda Text-Based (Anti-Blokir) */
         .logo-box {
-            display: inline-block;
-            padding: 10px;
-            border: 2px solid #ffff00;
-            border-radius: 50%;
-            margin-bottom: 10px;
-            background: #ff0000;
-            box-shadow: 0 0 15px #ff0000;
+            display: inline-block; padding: 10px; border: 2px solid #ffff00; border-radius: 50%;
+            margin-bottom: 10px; background: #ff0000; box-shadow: 0 0 15px #ff0000;
         }
         
         .brand-name { 
-            color: #ff0000; 
-            font-size: 36px; 
-            font-weight: 900; 
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 0px #ffff00;
-            margin: 0;
-            text-transform: uppercase;
+            color: #ff0000; font-size: 36px; font-weight: 900; letter-spacing: 2px;
+            text-shadow: 2px 2px 0px #ffff00; margin: 0; text-transform: uppercase;
         }
 
-        .marquee-box { background: #111; color: #ffff00; padding: 10px 0; font-size: 13px; border-bottom: 1px solid #333; font-weight: bold; border-top: 1px solid #333; }
+        /* Marquee / Running Text */
+        .marquee-box { background: #111; color: #ffff00; padding: 10px 0; font-size: 13px; font-weight: bold; border-top: 1px solid #333; }
 
-        /* Zeus Banner menggunakan gambar Placeholder yang lebih stabil untuk Indonesia */
+        /* Banner Zeus - Data Tanam (Anti-Blokir) */
         .zeus-banner {
             width: 100%;
-            height: 250px;
-            background: url('https://files.catbox.moe/k3c7t6.png') center/contain no-repeat, 
-                        radial-gradient(circle, #440000 0%, #000 100%);
-            border-bottom: 3px solid #ffff00;
-            position: relative;
-            box-shadow: inset 0 0 50px #000;
+            height: auto;
+            border-top: 2px solid #ffff00;
+            border-bottom: 2px solid #ffff00;
+            margin-top: 0; /* Menempel tepat di bawah marquee */
+        }
+        .zeus-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
+        /* Tombol Utama */
         .btn-section { padding: 30px 20px; display: flex; flex-direction: column; gap: 15px; }
         .btn { 
-            width: 100%; 
-            padding: 20px; 
-            border-radius: 8px; 
-            text-align: center; 
-            font-weight: 900; 
-            text-decoration: none; 
-            font-size: 22px;
-            box-sizing: border-box;
-            text-transform: uppercase;
-            display: block;
+            width: 100%; padding: 20px; border-radius: 8px; text-align: center; 
+            font-weight: 900; text-decoration: none; font-size: 22px;
+            box-sizing: border-box; text-transform: uppercase; display: block;
             transition: 0.2s;
         }
         .btn-login { 
-            background: linear-gradient(to bottom, #ff0000, #800000); 
-            color: #fff; 
-            border: 2px solid #ff4d4d;
-            box-shadow: 0 5px 20px rgba(255,0,0,0.6);
+            background: linear-gradient(to bottom, #ff0000, #800000); color: #fff; 
+            border: 2px solid #ff4d4d; box-shadow: 0 5px 20px rgba(255,0,0,0.6);
         }
         .btn-daftar { 
-            background: linear-gradient(to bottom, #ffff00, #b2b200); 
-            color: #000; 
-            border: 2px solid #fff;
-            box-shadow: 0 5px 20px rgba(255,255,0,0.5);
+            background: linear-gradient(to bottom, #ffff00, #b2b200); color: #000; 
+            border: 2px solid #fff; box-shadow: 0 5px 20px rgba(255,255,0,0.5);
         }
 
+        /* Payment Method */
         .payment-box { background: #111; margin: 0 15px 20px; padding: 20px; border-radius: 12px; border: 1px solid #333; text-align: center; }
         .payment-box h3 { color: #ffff00; font-size: 14px; margin-top: 0; margin-bottom: 20px; text-transform: uppercase; }
-        .bank-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-        .bank-grid i { font-size: 30px; color: #fff; }
+        .bank-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .bank-grid img { width: 100%; }
 
         .footer { padding: 40px 10px; text-align: center; color: #666; font-size: 11px; background: #050505; }
     </style>
@@ -97,7 +83,9 @@
         <marquee scrollamount="6">⚡ SELAMAT DATANG DI GARUDA 88 - SITUS RESMI KAKEK ZEUS GACOR - PROSES DEPO & WD TERCEPAT ⚡</marquee>
     </div>
 
-    <div class="zeus-banner"></div>
+    <div class="zeus-banner">
+        <img src="https://files.catbox.moe/k3c7t6.png" alt="Zeus Gacor">
+    </div>
 
     <div class="btn-section">
         <a href="lobby.html" class="btn btn-login">MASUK / LOGIN</a>
@@ -105,15 +93,13 @@
     </div>
 
     <div class="payment-box">
-        <h3>METODE PEMBAYARAN TERLENGKAP</h3>
+        <h3>SUPPORTED PAYMENT</h3>
         <div class="bank-grid">
-            <i class="fab fa-cc-visa"></i>
-            <i class="fab fa-cc-mastercard"></i>
-            <i class="fas fa-university"></i>
-            <i class="fas fa-money-check-alt"></i>
-            <i class="fas fa-mobile-alt"></i>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png">
+            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1200px-BNI_logo.svg.png">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/1200px-Bank_Mandiri_logo_2016.svg.png">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/1280px-BANK_BRI_logo.svg.png">
         </div>
-        <p style="font-size: 10px; color: #888; margin-top: 15px;">BCA - BNI - BRI - MANDIRI - DANA - OVO - GOPAY</p>
     </div>
 
     <div class="footer">
