@@ -7,10 +7,10 @@
     <style>
         body { background-color: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding-bottom: 90px; }
         
-        /* HEADER - Proporsional & Elegan */
+        /* HEADER LOBBY */
         .header-lobby {
             background: #000;
-            padding: 15px 10px; 
+            padding: 12px 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -20,9 +20,24 @@
             z-index: 100;
         }
         .logo-box { display: flex; align-items: center; gap: 8px; }
-        .logo-box img { width: 45px; height: auto; filter: drop-shadow(0 0 5px #f00); } 
-        /* Ukuran Font disesuaikan agar tidak pecah baris */
-        .logo-box span { color: #fc0; font-weight: 900; font-size: 22px; letter-spacing: 0.5px; text-shadow: 1px 1px #f00; white-space: nowrap; } 
+        .logo-box img { width: 45px; height: auto; filter: drop-shadow(0 0 5px #f00); }
+        
+        /* EFEK MENYALA PADA GARUDA 88 */
+        .logo-box span {
+            color: #fc0;
+            font-weight: 900;
+            font-size: 22px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 5px #f00, 0 0 10px #f00;
+            white-space: nowrap;
+            animation: glow-text 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow-text {
+            from { text-shadow: 0 0 5px #f00, 0 0 10px #f00, 0 0 15px #ff0000; }
+            to { text-shadow: 0 0 10px #f00, 0 0 20px #ff0000, 0 0 30px #ff0000; }
+        }
+
         .btn-deposit { background: linear-gradient(to bottom, #fc0, #970); color: #000; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 14px; }
 
         /* KATEGORI SLOT */
@@ -38,7 +53,7 @@
             font-weight: bold;
         }
 
-        /* GRID PERMAINAN - 10 PROVIDER */
+        /* GRID PERMAINAN */
         .game-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -66,11 +81,7 @@
             padding: 8px;
             box-sizing: border-box;
         }
-        .provider-img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-        }
+        .provider-img { max-width: 90%; max-height: 90%; object-fit: contain; }
 
         .provider-details {
             padding: 10px 6px;
@@ -83,6 +94,7 @@
         }
         .provider-label { font-size: 10px; font-weight: bold; color: #fc0; text-transform: uppercase; margin-bottom: 8px; }
         
+        /* EFEK BERKEDIP PADA TOMBOL PLAY NOW */
         .btn-play {
             background: linear-gradient(to bottom, #fc0, #970);
             color: #000;
@@ -92,9 +104,16 @@
             padding: 8px 0;
             border-radius: 5px;
             display: block;
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            animation: blink-button 1s step-end infinite;
         }
 
-        /* NAVIGASI BAWAH */
+        @keyframes blink-button {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; transform: scale(0.98); }
+        }
+
+        /* BOTTOM NAV */
         .bottom-nav {
             position: fixed;
             bottom: 0;
