@@ -3,276 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOBBY - GARUDA 88</title>
+    <title>LOBBY VIP - GARUDA 88</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding-bottom: 90px; overflow-x: hidden; }
+        body { background: #1a0000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
         
         /* HEADER LOBBY */
-        .header-lobby {
-            background: #000;
-            padding: 15px 10px; 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 3px solid #f00;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .logo-box { display: flex; align-items: center; gap: 8px; }
-        .logo-box img { width: 45px; height: auto; filter: drop-shadow(0 0 5px #f00); }
-        
-        /* EFEK MENYALA & ANIMASI HIDUP PADA GARUDA 88 */
-        .logo-box span { 
-            color: #fc0; 
-            font-weight: 900; 
-            font-size: 22px; 
-            letter-spacing: 0.5px; 
-            text-shadow: 0 0 10px #f00, 0 0 20px #f00; 
-            white-space: nowrap;
-            min-width: 150px; /* Menjaga ruang agar tidak goyang saat mengetik */
-            display: inline-block;
-        }
+        .header { background: linear-gradient(180deg, #700000 0%, #000 100%); padding: 15px; border-bottom: 2px solid #fc0; text-align: center; }
+        .brand-name { color: #ff0000; font-size: 24px; font-weight: 900; text-shadow: 2px 2px #000; margin: 0; }
 
-        .btn-deposit { 
-            background: linear-gradient(to bottom, #fc0, #970); 
-            color: #000; 
-            padding: 8px 12px; 
-            border-radius: 6px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            font-size: 14px; 
+        /* KARTU MEMBER (SALDO & USER ID) */
+        .member-card { 
+            background: linear-gradient(135deg, #330000 0%, #000 100%); 
+            margin: 20px; border-radius: 15px; padding: 20px; border: 1px solid #fc0;
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
         }
+        .user-info { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .user-info i { font-size: 40px; color: #fc0; }
+        .user-name { font-size: 18px; font-weight: bold; color: #fff; text-transform: uppercase; }
+        .user-status { color: #0f0; font-size: 11px; font-weight: bold; }
 
-        /* KATEGORI SLOT */
-        .category-bar {
-            background: linear-gradient(to right, #fc0, #970);
-            padding: 12px 15px;
-            margin: 15px 10px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #000;
-            font-weight: bold;
-        }
+        .balance-box { background: #222; border-radius: 10px; padding: 15px; text-align: center; border: 1px dashed #fc0; }
+        .balance-label { font-size: 12px; color: #ccc; margin-bottom: 5px; }
+        .balance-amount { font-size: 28px; font-weight: 900; color: #fc0; }
 
-        /* GRID PERMAINAN - 10 PROVIDER */
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            padding: 0 10px;
+        /* MENU BUTTONS */
+        .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 20px; }
+        .menu-item { 
+            background: #000; border: 1px solid #700000; border-radius: 10px; padding: 20px;
+            text-align: center; color: #fff; text-decoration: none; transition: 0.3s;
         }
-        
-        .game-card {
-            background: #1a1a1a;
-            border: 1px solid #fc0; 
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.8);
-        }
+        .menu-item:active { transform: scale(0.95); background: #4a0000; }
+        .menu-item i { font-size: 30px; color: #fc0; margin-bottom: 10px; display: block; }
+        .menu-item span { font-weight: bold; font-size: 14px; }
 
-        .logo-container {
-            width: 100%;
-            height: 100px;
-            background-color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px;
-            box-sizing: border-box;
+        .logout-btn { 
+            margin: 20px; padding: 12px; background: linear-gradient(to bottom, #ff0000, #800000); 
+            color: #fff; text-align: center; border-radius: 8px; font-weight: bold; cursor: pointer; border: 1px solid #fff;
         }
-        .provider-img { max-width: 90%; max-height: 90%; object-fit: contain; }
-
-        .provider-details {
-            padding: 10px 6px;
-            text-align: center;
-            background: #111;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .provider-label { font-size: 10px; font-weight: bold; color: #fc0; text-transform: uppercase; margin-bottom: 8px; }
-        
-        /* EFEK BERKEDIP PADA TOMBOL PLAY NOW */
-        .btn-play {
-            background: linear-gradient(to bottom, #fc0, #970);
-            color: #000;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 900;
-            padding: 8px 0;
-            border-radius: 5px;
-            display: block;
-            animation: blink-button 1s step-end infinite;
-        }
-
-        @keyframes blink-button {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* BOTTOM NAV */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: #080808;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            border-top: 2px solid #f00;
-            z-index: 1000;
-        }
-        .nav-item { text-decoration: none; color: #666; font-size: 11px; text-align: center; }
-        .nav-item.active { color: #fc0; }
-        .nav-icon { display: block; font-size: 20px; margin-bottom: 3px; }
     </style>
 </head>
 <body>
 
-    <div class="header-lobby">
-        <div class="logo-box">
-            <img src="logogaruda.png" alt="Logo">
-            <span id="typing-text"></span>
-        </div>
-        <a href="#" class="btn-deposit">Deposit</a>
+    <div class="header">
+        <h1 class="brand-name">GARUDA 88 VIP</h1>
     </div>
 
-    <div class="category-bar">
-        <span>⚡ SLOT GAMES GACOR</span>
-        <span style="font-size: 10px; background: #000; color: #fff; padding: 3px 8px; border-radius: 4px;">LOBBY</span>
-    </div>
-
-    <div class="game-grid">
-        <div class="game-card">
-            <div class="logo-container"><img src="pragmatic.webp" class="provider-img"></div>
-            <div class="provider-details">
-                <div class="provider-label">PRAGMATIC PLAY</div>
-                <a href="pragmatic.html" class="btn-play">PLAY NOW</a>
+    <div class="member-card">
+        <div class="user-info">
+            <i class="fas fa-user-circle"></i>
+            <div>
+                <div class="user-name" id="display-username">USER: LOADING...</div>
+                <div class="user-status"><i class="fas fa-gem"></i> MEMBER VIP</div>
             </div>
         </div>
-
-        <div class="game-card">
-            <div class="logo-container"><img src="pgsoft.webp" class="provider-img"></div>
-            <div class="provider-details">
-                <div class="provider-label">PG SOFT</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-        </div>
-
-        <div class="game-card">
-            <div class="logo-container"><img src="fastspin.webp" class="provider-img"></div>
-            <div class="provider-details">
-                <div class="provider-label">FASTSPIN</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-        </div>
-
-        <div class="game-card">
-            <div class="logo-container"><img src="habanero.webp" class="provider-img"></div>
-            <div class="provider-details">
-                <div class="provider-label">HABANERO</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-        </div>
-
-        <div class="game-card">
-            <div class="logo-container"><img src="idnslot.webp" class="provider-img"></div>
-            <div class="provider-details">
-                <div class="provider-label">IDN SLOT</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-        </div>
-
-        <div class="game-card">
-            <div class="logo-container"><img src="microgaming.webp" class="provider-img"></div>
-            <div class="provider-details">
-                <div class="provider-label">MICROGAMING</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-        </div>
-
-        <div class="game-card">
-            <div class="logo-container"><img src="nolimit.webp" class="provider-img"></div>
-            <div class="provider-details">
-                <div class="provider-label">NOLIMIT CITY</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-        </div>
-
-        <div class="game-card">
-            <div class="logo-container"><img src="playtech.webp" class="provider-img"></div>
-            <div class="provider-details">
-                <div class="provider-label">PLAYTECH</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-        </div>
-
-        <div class="game-card">
-            <div class="logo-container"><img src="redtiger.webp" class="provider-img"></div>
-            <div class="provider-details">
-                <div class="provider-label">RED TIGER</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-        </div>
-
-        <div class="game-card">
-            <div class="logo-container"><img src="gmw.webp" class="provider-img"></div>
-            <div class="provider-details">
-                <div class="provider-label">GMW</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
+        <div class="balance-box">
+            <div class="balance-label">TOTAL SALDO ANDA</div>
+            <div class="balance-amount">IDR <span id="display-balance">0</span></div>
         </div>
     </div>
 
-    <div class="bottom-nav">
-        <a href="lobby.html" class="nav-item active"><span class="nav-icon">🏠</span>Lobby</a>
-        <a href="#" class="nav-item"><span class="nav-icon">💰</span>Deposit</a>
-        <a href="#" class="nav-item"><span class="nav-icon">🎁</span>Promo</a>
-        <a href="#" class="nav-item"><span class="nav-icon">👤</span>Akun</a>
-        <a href="index.html" class="nav-item"><span class="nav-icon">🚪</span>Keluar</a>
+    <div class="menu-grid">
+        <a href="deposit.html" class="menu-item">
+            <i class="fas fa-university"></i>
+            <span>DEPOSIT</span>
+        </a>
+        <a href="withdraw.html" class="menu-item">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>WITHDRAW</span>
+        </a>
+        <div class="menu-item" onclick="alert('Game sedang maintenance, Bos!')">
+            <i class="fas fa-gamepad"></i>
+            <span>MULAI MAIN</span>
+        </div>
+        <div class="menu-item" onclick="window.open('https://wa.me/NOMOR_BOS_DISINI')">
+            <i class="fas fa-headset"></i>
+            <span>SUPPORT</span>
+        </div>
     </div>
+
+    <div class="logout-btn" onclick="logout()">LOGOUT (KELUAR)</div>
 
     <script>
-        const textElement = document.getElementById("typing-text");
-        const textToDisplay = "GARUDA 88";
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 200;
+        // Ambil data sesi login
+        const session = JSON.parse(localStorage.getItem('userSession'));
 
-        function handleTyping() {
-            if (!isDeleting && charIndex < textToDisplay.length) {
-                // Mengetik
-                textElement.innerHTML = textToDisplay.substring(0, charIndex + 1);
-                charIndex++;
-                typingSpeed = 200;
-            } else if (isDeleting && charIndex > 0) {
-                // Menghapus
-                textElement.innerHTML = textToDisplay.substring(0, charIndex - 1);
-                charIndex--;
-                typingSpeed = 100;
-            }
-
-            // Atur kapan mulai menghapus atau mengetik ulang
-            if (!isDeleting && charIndex === textToDisplay.length) {
-                isDeleting = true;
-                typingSpeed = 2000; // Diam sejenak saat teks lengkap
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                typingSpeed = 500; // Jeda sebelum mulai lagi
-            }
-
-            setTimeout(handleTyping, typingSpeed);
+        if (!session) {
+            // Jika belum login, tendang ke index.html
+            window.location.href = "index.html";
+        } else {
+            // 1. Tampilkan Username (Bukan Nama Asli)
+            document.getElementById('display-username').innerText = "USER: " + session.username;
+            
+            // 2. Tampilkan Saldo dengan format ribuan
+            const formattedBalance = new Intl.NumberFormat('id-ID').format(session.balance || 0);
+            document.getElementById('display-balance').innerText = formattedBalance;
         }
 
-        // Jalankan saat halaman siap
-        window.onload = handleTyping;
+        function logout() {
+            localStorage.removeItem('userSession');
+            window.location.href = "index.html";
+        }
     </script>
-
 </body>
 </html>
