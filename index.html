@@ -7,101 +7,103 @@
     <style>
         body { background-color: #000; color: #fff; font-family: 'Arial Black', sans-serif; margin: 0; padding: 0; text-align: center; overflow-x: hidden; }
         
-        /* HEADER - Dibuat Rapat & Mewah */
+        /* HEADER - Rapat, Logo Besar, Jarak Pas */
         .header { 
             background: linear-gradient(to bottom, #500, #000); 
-            padding: 10px 5px; 
+            padding: 20px 10px 10px; /* Padding atas-bawah disesuaikan */
             border-bottom: 2px solid #f00;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         .logo-img {
-            width: 85px; /* Ukuran Logo Diperbesar agar Gagah */
+            width: 95px; /* Logo diperbesar agar dominan */
             height: auto;
             filter: drop-shadow(0 0 10px #f00);
-            margin-bottom: -8px; /* Merapatkan dengan teks di bawahnya */
+            margin-bottom: 5px; /* Memberi jarak aman dengan teks */
         }
         .logo-text {
-            font-size: 34px;
+            font-size: 36px; /* Teks tegas dan gagah */
             font-weight: 900;
             color: #fc0;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin: 0;
-            text-shadow: 2px 2px 0 #f00, 0 0 15px #fc0;
+            text-shadow: 2px 2px 0 #f00, 0 0 20px #fc0;
         }
 
-        /* Running Text Ringkas */
+        /* Marquee Ringkas */
         .marquee-box { 
             background: #111; 
             color: #ff0; 
-            padding: 6px 0; 
+            padding: 8px 0; 
             border-bottom: 2px solid #333; 
             font-weight: bold; 
-            font-size: 12px; 
+            font-size: 13px; 
         }
 
-        /* Banner Zeus - Dibatasi agar Tombol Naik */
+        /* Banner Zeus - DIPANGKAS SEPARUH BADAN agar Tombol Naik */
         .zeus-container {
             width: 100%;
             background: #000;
             border-bottom: 2px solid #fc0;
-            line-height: 0;
+            overflow: hidden; /* Memotong konten yang keluar */
+            height: 40vh; /* Memangkas tinggi Zeus menjadi hanya 40% layar HP */
         }
         .zeus-container img {
             width: 100%;
-            max-width: 480px;
             height: auto;
+            max-width: 550px;
             display: inline-block;
+            margin-top: 0; /* Menampilkan wajah Zeus, pangkas badan bawah */
         }
 
-        /* Tombol Utama - HARUS TERLIHAT DI LAYAR ATAS */
-        .btn-section { padding: 15px 20px; display: flex; flex-direction: column; gap: 10px; }
+        /* Tombol Utama - LANGSUNG TERLIHAT Tanpa Scroll */
+        .btn-section { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
         .btn { 
-            padding: 16px; 
-            border-radius: 8px; 
+            padding: 20px; 
+            border-radius: 10px; 
             text-decoration: none; 
             font-weight: 900; 
-            font-size: 20px; 
+            font-size: 22px; 
             text-transform: uppercase; 
         }
         .btn-login { 
             background: linear-gradient(to bottom, #f00, #800); 
             color: #fff; 
             border: 2px solid #f66; 
-            box-shadow: 0 4px 15px rgba(255,0,0,0.5); 
+            box-shadow: 0 5px 20px rgba(255,0,0,0.6); 
         }
         .btn-daftar { 
             background: linear-gradient(to bottom, #fc0, #970); 
             color: #000; 
             border: 2px solid #fff; 
-            box-shadow: 0 4px 15px rgba(255,255,0,0.4); 
+            box-shadow: 0 5px 20px rgba(255,255,0,0.5); 
         }
 
-        /* Payment Section - VERSI SUPER KOMPLIT */
+        /* Payment Section - VERSI SUPER KOMPLIT (Cerah & Jelas) */
         .payment-section {
             background: #111;
             margin: 10px 15px 30px;
-            padding: 15px;
-            border-radius: 12px;
+            padding: 20px;
+            border-radius: 15px;
             border: 1px solid #444;
             text-align: left;
         }
         .payment-title { 
-            color: #fc0; font-size: 13px; margin-bottom: 12px; font-weight: bold; 
-            text-transform: uppercase; text-align: center; border-bottom: 1px solid #333; padding-bottom: 8px;
+            color: #fc0; font-size: 14px; margin-bottom: 15px; font-weight: bold; 
+            text-transform: uppercase; text-align: center; border-bottom: 1px solid #333; padding-bottom: 10px;
         }
-        .payment-group-label { color: #f00; font-size: 10px; font-weight: bold; margin: 12px 0 6px; display: block; letter-spacing: 1px; }
-        .bank-list-text { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+        .payment-group-label { color: #f00; font-size: 11px; font-weight: bold; margin: 15px 0 8px; display: block; letter-spacing: 1px; }
+        .bank-list-text { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .bank-item {
-            background: #222; padding: 10px 8px; border-radius: 5px; font-size: 10px;
+            background: #222; padding: 12px 10px; border-radius: 6px; font-size: 11px;
             font-weight: bold; color: #fff; border-left: 3px solid #0f0;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .status-on { color: #0f0; font-size: 8px; font-weight: bold; }
+        .status-on { color: #0f0; font-size: 10px; font-weight: bold; }
 
-        .footer { padding: 35px 10px; color: #555; font-size: 10px; background: #080808; border-top: 1px solid #222; line-height: 1.6; }
+        .footer { padding: 40px 10px; color: #555; font-size: 11px; background: #080808; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
@@ -112,7 +114,7 @@
     </div>
 
     <div class="marquee-box">
-        <marquee scrollamount="6">⚡ SELAMAT DATANG DI GARUDA 88 - SITUS SLOT GACOR RESMI & TERPERCAYA 2026 - SALAM JP PAUS ⚡</marquee>
+        <marquee scrollamount="6">⚡ SELAMAT DATANG DI GARUDA 88 - SITUS RESMI TERGACOR - KAKEK ZEUS DENGAN RTP 99.98% ⚡</marquee>
     </div>
 
     <div class="zeus-container">
@@ -137,12 +139,12 @@
             <div class="bank-item">BANK DANAMON <span class="status-on">● ON</span></div>
             <div class="bank-item">BANK PERMATA <span class="status-on">● ON</span></div>
             <div class="bank-item">BANK PANIN <span class="status-on">● ON</span></div>
-            <div class="bank-item">BANK SYARIAH (BSI) <span class="status-on">● ON</span></div>
-            <div class="bank-item">BANK MAYBANK <span class="status-on">● ON</span></div>
+            <div class="bank-item">BSI (SYARIAH) <span class="status-on">● ON</span></div>
             <div class="bank-item">BANK BTN <span class="status-on">● ON</span></div>
+            <div class="bank-item">SEMUA BANK DAERAH <span class="status-on">● ON</span></div>
         </div>
 
-        <span class="payment-group-label">E-WALLET & QRIS 24 JAM</span>
+        <span class="payment-group-label">E-WALLET & QRIS</span>
         <div class="bank-list-text">
             <div class="bank-item">DANA <span class="status-on">● ON</span></div>
             <div class="bank-item">OVO <span class="status-on">● ON</span></div>
@@ -155,7 +157,7 @@
 
     <div class="footer">
         © 2026 GARUDA 88. ALL RIGHTS RESERVED.<br>
-        LISENSI RESMI: PAGCOR, BMM TESTLABS, MGA, ITCH LABS.
+        LISENSI RESMI: PAGCOR, BMM TESTLABS.
     </div>
 
 </body>
