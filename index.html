@@ -3,115 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GARUDA 88 - SITUS RESMI TERGACOR</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>GARUDA 88 - OFFICIAL</title>
     <style>
-        body { background: #000; color: #fff; font-family: 'Arial Black', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        body { background-color: #000; color: #fff; font-family: sans-serif; margin: 0; padding: 0; text-align: center; }
         
-        /* Header Mewah dengan Logo Garuda Api Baru */
+        /* Header Logo Garuda Api */
         .header { 
-            background: linear-gradient(to bottom, #1a0000, #000); 
-            padding: 30px 15px; 
-            text-align: center; 
-            border-bottom: 2px solid #ff0000;
+            background: linear-gradient(to bottom, #400, #000); 
+            padding: 20px 10px; 
+            border-bottom: 3px solid #f00;
         }
-        
-        /* Gambar Garuda Api (Anti-Blokir, Ditanam) */
-        .garuda-logo-img {
-            width: 150px; /* Ukuran Logo Garuda Api */
-            filter: drop-shadow(0 0 10px #ff0000);
-            margin-bottom: 15px;
-            animation: burn 1.5s infinite alternate;
+        .logo-img {
+            width: 130px; /* Ukuran logo garuda api */
+            height: auto;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 10px #f00);
         }
-
-        @keyframes burn {
-            from { filter: drop-shadow(0 0 8px #ff0000); transform: scale(1); }
-            to { filter: drop-shadow(0 0 15px #ff4500); transform: scale(1.02); }
-        }
-        
-        .brand-name { 
-            color: #ff0000; 
-            font-size: 38px; 
-            font-weight: 900; 
-            letter-spacing: 3px;
-            text-shadow: 3px 3px 0px #ffff00;
-            margin: 0;
+        .logo-text {
+            font-size: 35px;
+            font-weight: 900;
+            color: #fc0;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            text-shadow: 2px 2px 0 #f00, 0 0 20px #fc0;
         }
 
-        /* Marquee / Running Text */
-        .marquee-box { background: #111; color: #ffff00; padding: 10px 0; font-size: 13px; font-weight: bold; border-top: 1px solid #333; }
+        /* Running Text */
+        .marquee-box { background: #111; color: #ff0; padding: 10px 0; border-bottom: 2px solid #333; font-weight: bold; font-size: 14px; }
 
-        /* Banner Zeus - Data Tanam (Anti-Blokir, Pasti Muncul) */
-        .zeus-banner {
+        /* Banner Zeus */
+        .zeus-container {
             width: 100%;
-            height: auto;
-            border-top: 2px solid #ffff00;
-            border-bottom: 2px solid #ffff00;
-            margin-top: 0;
-            background: radial-gradient(circle, #ff0000 0%, #000 70%);
-            box-shadow: 0 0 15px rgba(255,255,0,0.3);
+            background: #000;
+            border-bottom: 2px solid #ff0;
+            line-height: 0;
         }
-        .zeus-banner img {
+        .zeus-container img {
             width: 100%;
+            max-width: 600px;
             height: auto;
-            display: block;
+            display: inline-block;
         }
 
-        /* Tombol Aksi Mewah */
+        /* Tombol Utama */
         .btn-section { padding: 30px 20px; display: flex; flex-direction: column; gap: 15px; }
         .btn { 
-            width: 100%; 
-            padding: 20px; 
-            border-radius: 8px; 
-            text-align: center; 
-            font-weight: 900; 
-            text-decoration: none; 
-            font-size: 22px;
-            box-sizing: border-box;
-            text-transform: uppercase;
-            display: block;
-            transition: 0.3s ease;
+            padding: 18px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 20px; text-transform: uppercase; 
         }
-        .btn-login { 
-            background: linear-gradient(to bottom, #ff0000, #800000); 
-            color: #fff; 
-            border: 2px solid #ff4d4d;
-            box-shadow: 0 5px 20px rgba(255,0,0,0.6);
+        .btn-login { background: linear-gradient(to bottom, #f00, #800); color: #fff; border: 2px solid #f66; box-shadow: 0 4px 15px rgba(255,0,0,0.5); }
+        .btn-daftar { background: linear-gradient(to bottom, #fc0, #970); color: #000; border: 2px solid #fff; box-shadow: 0 4px 15px rgba(255,255,0,0.4); }
+
+        /* Payment Section (Bank & E-wallet) */
+        .payment-section {
+            background: #111;
+            margin: 10px 15px 20px;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #333;
         }
-        .btn-login:hover { background: linear-gradient(to top, #ff0000, #800000); transform: scale(1.02); }
-
-        .btn-daftar { 
-            background: linear-gradient(to bottom, #ffff00, #b2b200); 
-            color: #000; 
-            border: 2px solid #fff;
-            box-shadow: 0 5px 20px rgba(255,255,0,0.5);
+        .payment-title { color: #fc0; font-size: 12px; margin-bottom: 15px; font-weight: bold; }
+        .bank-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            align-items: center;
         }
-        .btn-daftar:hover { background: linear-gradient(to top, #ffff00, #b2b200); transform: scale(1.02); }
+        .bank-grid img {
+            width: 100%;
+            height: auto;
+            filter: brightness(0.9);
+        }
 
-        /* Payment Method Mewah */
-        .payment-box { background: #111; margin: 0 15px 20px; padding: 25px; border-radius: 15px; border: 1px solid #333; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
-        .payment-box h3 { color: #ffff00; font-size: 14px; margin-top: 0; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-        .bank-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; align-items: center; justify-items: center; }
-        .bank-grid img { width: 100%; height: auto; max-height: 20px; filter: grayscale(1); transition: 0.3s; }
-        .bank-grid img:hover { filter: grayscale(0); }
-
-        .footer { padding: 40px 10px; text-align: center; color: #666; font-size: 11px; background: #050505; border-top: 1px solid #1a1a1a; }
+        .footer { padding: 30px 10px; color: #666; font-size: 11px; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <img src="https://files.catbox.moe/k3c7t6.png" class="garuda-logo-img" alt="GARUDA API">
-        <h1 class="brand-name">GARUDA 88</h1>
+        <img src="logogaruda.png" alt="Garuda Logo" class="logo-img">
+        <p class="logo-text">GARUDA 88</p>
     </div>
 
     <div class="marquee-box">
-        <marquee scrollamount="6">⚡ SELAMAT DATANG DI GARUDA 88 - SITUS RESMI DENGAN LOGO GARUDA API BARU - KAKEK ZEUS LAGI GACOR DENGAN RTP 99.98% ⚡</marquee>
+        <marquee>⚡ SELAMAT DATANG DI GARUDA 88 - SITUS RESMI KAKEK ZEUS GACOR - DEPOSIT PULSA & E-WALLET TANPA POTONGAN ⚡</marquee>
     </div>
 
-    <div class="zeus-banner">
-        <img src="https://idnsite.com/img/games/character/garuda.png" alt="Zeus Gacor">
+    <div class="zeus-container">
+        <img src="zeus.webp" alt="Zeus Gacor">
     </div>
 
     <div class="btn-section">
@@ -119,13 +98,17 @@
         <a href="daftar.html" class="btn btn-daftar">DAFTAR AKUN VIP</a>
     </div>
 
-    <div class="payment-box">
-        <h3>SUPPORTED PAYMENT TERLENGKAP</h3>
+    <div class="payment-section">
+        <div class="payment-title">SUPPORTED PAYMENT</div>
         <div class="bank-grid">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png">
-            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1200px-BNI_logo.svg.png">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/1200px-Bank_Mandiri_logo_2016.svg.png">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/1280px-BANK_BRI_logo.svg.png">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png" alt="BCA">
+            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1200px-BNI_logo.svg.png" alt="BNI">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/1200px-Bank_Mandiri_logo_2016.svg.png" alt="MANDIRI">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/1280px-BANK_BRI_logo.svg.png" alt="BRI">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_dana_blue.svg/1200px-Logo_dana_blue.svg.png" alt="DANA">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Logo_OVO.svg/1200px-Logo_OVO.svg.png" alt="OVO">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1200px-Gopay_logo.svg.png" alt="GOPAY">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/1200px-Logo_QRIS.svg.png" alt="QRIS">
         </div>
     </div>
 
