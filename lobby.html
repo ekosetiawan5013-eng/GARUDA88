@@ -37,7 +37,7 @@
             font-weight: bold;
         }
 
-        /* GRID PERMAINAN - 2 KOLOM */
+        /* GRID PERMAINAN - 2 KOLOM RAPI */
         .game-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -49,12 +49,44 @@
             border: 1px solid #333;
             border-radius: 12px;
             overflow: hidden;
-            text-align: center;
-            padding-bottom: 12px;
+            display: flex;
+            flex-direction: column; /* Menyusun konten secara vertikal */
             transition: 0.3s;
         }
-        .game-card img { width: 100%; height: auto; display: block; border-bottom: 1px solid #222; }
-        .provider-label { font-size: 11px; font-weight: bold; color: #aaa; padding: 10px 0; text-transform: uppercase; }
+        .game-card:hover { border-color: #f00; }
+
+        /* KONTAINER LOGO - Kunci Tinggi agar Sejajar */
+        .logo-container {
+            width: 100%;
+            height: 120px; /* TINGGI DIKUNCI DI SINI */
+            background-color: #fff; /* Latar belakang putih agar logo terlihat jelas */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #222;
+        }
+
+        /* GAMBAR LOGO - Menyesuaikan Tanpa Distorsi */
+        .provider-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* KUNCI KERAPIAN: Gambar muat di kotak tanpa terpotong atau gepeng */
+        }
+
+        /* DETAIL PROVIDER */
+        .provider-details {
+            padding: 10px;
+            text-align: center;
+            flex-grow: 1; /* Mengisi ruang yang tersisa */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .provider-label { font-size: 11px; font-weight: bold; color: #aaa; text-transform: uppercase; margin-bottom: 10px; }
+        
+        /* TOMBOL PLAY - Sama Rata */
         .btn-play {
             background: linear-gradient(to bottom, #fc0, #970);
             color: #000;
@@ -62,7 +94,6 @@
             font-size: 13px;
             font-weight: 900;
             padding: 10px 0;
-            margin: 0 10px;
             border-radius: 6px;
             display: block;
         }
@@ -100,63 +131,103 @@
 
     <div class="game-grid">
         <div class="game-card">
-            <img src="pragmatic.webp" alt="Pragmatic">
-            <div class="provider-label">PRAGMATIC PLAY</div>
-            <a href="#" class="btn-play">PLAY NOW</a>
+            <div class="logo-container">
+                <img src="pragmatic.webp" alt="Pragmatic" class="provider-img">
+            </div>
+            <div class="provider-details">
+                <div class="provider-label">PRAGMATIC PLAY</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
         </div>
 
         <div class="game-card">
-            <img src="pgsoft.webp" alt="PG Soft">
-            <div class="provider-label">PG SOFT</div>
-            <a href="#" class="btn-play">PLAY NOW</a>
+            <div class="logo-container">
+                <img src="pgsoft.webp" alt="PG Soft" class="provider-img">
+            </div>
+            <div class="provider-details">
+                <div class="provider-label">PG SOFT</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
         </div>
 
         <div class="game-card">
-            <img src="fastspin.webp" alt="Fastspin">
-            <div class="provider-label">FASTSPIN</div>
-            <a href="#" class="btn-play">PLAY NOW</a>
+            <div class="logo-container">
+                <img src="fastspin.webp" alt="Fastspin" class="provider-img">
+            </div>
+            <div class="provider-details">
+                <div class="provider-label">FASTSPIN</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
         </div>
 
         <div class="game-card">
-            <img src="habanero.webp" alt="Habanero">
-            <div class="provider-label">HABANERO</div>
-            <a href="#" class="btn-play">PLAY NOW</a>
+            <div class="logo-container">
+                <img src="habanero.webp" alt="Habanero" class="provider-img">
+            </div>
+            <div class="provider-details">
+                <div class="provider-label">HABANERO</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
         </div>
 
         <div class="game-card">
-            <img src="idnslot.webp" alt="IDN Slot">
-            <div class="provider-label">IDN SLOT</div>
-            <a href="#" class="btn-play">PLAY NOW</a>
+            <div class="logo-container">
+                <img src="idnslot.webp" alt="IDN Slot" class="provider-img">
+            </div>
+            <div class="provider-details">
+                <div class="provider-label">IDN SLOT</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
         </div>
 
         <div class="game-card">
-            <img src="microgaming.webp" alt="Microgaming">
-            <div class="provider-label">MICROGAMING</div>
-            <a href="#" class="btn-play">PLAY NOW</a>
+            <div class="logo-container">
+                <img src="microgaming.webp" alt="Microgaming" class="provider-img">
+            </div>
+            <div class="provider-details">
+                <div class="provider-label">MICROGAMING</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
         </div>
 
         <div class="game-card">
-            <img src="nolimit.webp" alt="NoLimit">
-            <div class="provider-label">NOLIMIT CITY</div>
-            <a href="#" class="btn-play">PLAY NOW</a>
+            <div class="logo-container">
+                <img src="nolimit.webp" alt="NoLimit" class="provider-img">
+            </div>
+            <div class="provider-details">
+                <div class="provider-label">NOLIMIT CITY</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
         </div>
 
         <div class="game-card">
-            <img src="playtech.webp" alt="Playtech">
-            <div class="provider-label">PLAYTECH</div>
-            <a href="#" class="btn-play">PLAY NOW</a>
+            <div class="logo-container">
+                <img src="playtech.webp" alt="Playtech" class="provider-img">
+            </div>
+            <div class="provider-details">
+                <div class="provider-label">PLAYTECH</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
         </div>
 
         <div class="game-card">
-            <img src="redtiger.webp" alt="Red Tiger">
-            <div class="provider-label">RED TIGER</div>
-            <a href="#" class="btn-play">PLAY NOW</a>
+            <div class="logo-container">
+                <img src="redtiger.webp" alt="Red Tiger" class="provider-img">
+            </div>
+            <div class="provider-details">
+                <div class="provider-label">RED TIGER</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
         </div>
 
         <div class="game-card">
-            <img src="gmw.webp" alt="GMW">
-            <div class="provider-label">GMW</div>
-            <a href="#" class="btn-play">PLAY NOW</a>
+            <div class="logo-container">
+                <img src="gmw.webp" alt="GMW" class="provider-img">
+            </div>
+            <div class="provider-details">
+                <div class="provider-label">GMW</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
         </div>
     </div>
 
