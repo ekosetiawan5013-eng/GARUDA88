@@ -8,35 +8,31 @@
     <style>
         body { background: #000; color: #fff; font-family: 'Arial Black', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* Header Mewah */
+        /* Header Logo */
         .header { 
             background: linear-gradient(to bottom, #220000, #000); 
-            padding: 25px 15px; 
+            padding: 20px 15px; 
             text-align: center; 
             border-bottom: 2px solid #ff0000;
         }
-        
-        /* Logo Garuda Text-Based (Anti-Blokir) */
         .logo-box {
             display: inline-block; padding: 10px; border: 2px solid #ffff00; border-radius: 50%;
-            margin-bottom: 10px; background: #ff0000; box-shadow: 0 0 15px #ff0000;
+            margin-bottom: 5px; background: #ff0000; box-shadow: 0 0 15px #ff0000;
         }
-        
         .brand-name { 
             color: #ff0000; font-size: 36px; font-weight: 900; letter-spacing: 2px;
             text-shadow: 2px 2px 0px #ffff00; margin: 0; text-transform: uppercase;
         }
 
-        /* Marquee / Running Text */
+        /* Marquee */
         .marquee-box { background: #111; color: #ffff00; padding: 10px 0; font-size: 13px; font-weight: bold; border-top: 1px solid #333; }
 
-        /* Banner Zeus - Data Tanam (Anti-Blokir) */
+        /* Banner Zeus Lokal */
         .zeus-banner {
             width: 100%;
-            height: auto;
             border-top: 2px solid #ffff00;
             border-bottom: 2px solid #ffff00;
-            margin-top: 0; /* Menempel tepat di bawah marquee */
+            background: #000;
         }
         .zeus-banner img {
             width: 100%;
@@ -44,13 +40,12 @@
             display: block;
         }
 
-        /* Tombol Utama */
-        .btn-section { padding: 30px 20px; display: flex; flex-direction: column; gap: 15px; }
+        /* Tombol Aksi */
+        .btn-section { padding: 25px 20px; display: flex; flex-direction: column; gap: 15px; }
         .btn { 
             width: 100%; padding: 20px; border-radius: 8px; text-align: center; 
             font-weight: 900; text-decoration: none; font-size: 22px;
             box-sizing: border-box; text-transform: uppercase; display: block;
-            transition: 0.2s;
         }
         .btn-login { 
             background: linear-gradient(to bottom, #ff0000, #800000); color: #fff; 
@@ -61,13 +56,12 @@
             border: 2px solid #fff; box-shadow: 0 5px 20px rgba(255,255,0,0.5);
         }
 
-        /* Payment Method */
+        /* Bank Status Style */
         .payment-box { background: #111; margin: 0 15px 20px; padding: 20px; border-radius: 12px; border: 1px solid #333; text-align: center; }
-        .payment-box h3 { color: #ffff00; font-size: 14px; margin-top: 0; margin-bottom: 20px; text-transform: uppercase; }
-        .bank-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        .bank-grid img { width: 100%; }
+        .payment-box h3 { color: #ffff00; font-size: 14px; margin-bottom: 15px; text-transform: uppercase; }
+        .bank-list { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; color: #00ff00; font-size: 12px; }
 
-        .footer { padding: 40px 10px; text-align: center; color: #666; font-size: 11px; background: #050505; }
+        .footer { padding: 30px 10px; text-align: center; color: #666; font-size: 11px; }
     </style>
 </head>
 <body>
@@ -84,7 +78,7 @@
     </div>
 
     <div class="zeus-banner">
-        <img src="https://files.catbox.moe/k3c7t6.png" alt="Zeus Gacor">
+        <img src="zeus.webp" alt="Zeus Gacor">
     </div>
 
     <div class="btn-section">
@@ -93,12 +87,10 @@
     </div>
 
     <div class="payment-box">
-        <h3>SUPPORTED PAYMENT</h3>
-        <div class="bank-grid">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1200px-Bank_Central_Asia.svg.png">
-            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1200px-BNI_logo.svg.png">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/1200px-Bank_Mandiri_logo_2016.svg.png">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/1280px-BANK_BRI_logo.svg.png">
+        <h3>STATUS BANK ONLINE</h3>
+        <div class="bank-list">
+            <span>● BCA</span> <span>● BNI</span> <span>● BRI</span> <span>● MANDIRI</span>
+            <span>● DANA</span> <span>● OVO</span> <span>● GOPAY</span> <span>● QRIS</span>
         </div>
     </div>
 
