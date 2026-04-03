@@ -12,105 +12,63 @@
         
         .marquee-box { background: #111; color: #ffcc00; padding: 6px 0; font-size: 13px; font-weight: bold; border-bottom: 2px solid #fc0; }
         
-        /* PERBAIKAN PANGKASAN ZEUS: Benar-benar Hilangkan Tulisan */
-        .hero { width: 100%; border-bottom: 2px solid #fc0; background: #000; position: relative; height: 220px; overflow: hidden; }
-        .hero img { width: 100%; position: absolute; top: -20px; left: 0; display: block; object-fit: cover; }
-
-        /* FORM CONTAINER */
-        .form-box { padding: 20px 0; background: #000; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-        
-        /* INPUT ITEMS */
-        .input-item { 
-            width: 85%; 
-            max-width: 350px; 
-            height: 50px; 
-            border-radius: 8px; 
-            font-size: 16px; 
-            font-weight: bold; 
-            box-sizing: border-box; 
-            border: 2px solid #fc0;
-            background: #222; 
-            color: #fff; 
-            text-align: center; 
-            outline: none;
+        /* AREA HERO: Pangkasan Zeus Ekstra Rapi untuk Menghapus Tulisan */
+        .hero { 
+            width: 100%; 
+            border-bottom: 2px solid #fc0; 
+            background: #000; 
+            position: relative; 
+            height: 200px; /* Tinggi dikurangi agar tulisan di bawah gambar terpotong bersih */
+            overflow: hidden; 
+        }
+        .hero img { 
+            width: 100%; 
+            position: absolute; 
+            top: -15px; /* Digeser ke atas agar tulisan banner bawah tidak terlihat */
+            left: 0; 
+            display: block; 
+            object-fit: cover; 
         }
 
-        /* BUTTONS WITH ROTATING BORDER EFFECT */
+        .form-box { padding: 20px 0; background: #000; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        
+        .input-item { 
+            width: 85%; max-width: 350px; height: 50px; border-radius: 8px; font-size: 16px; 
+            font-weight: bold; box-sizing: border-box; border: 2px solid #fc0;
+            background: #222; color: #fff; text-align: center; outline: none;
+        }
+
         .btn-wrapper {
-            width: 85%;
-            max-width: 350px;
-            height: 50px;
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            width: 85%; max-width: 350px; height: 50px; position: relative;
+            border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center;
         }
 
         .btn {
-            width: calc(100% - 4px);
-            height: calc(100% - 4px);
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: bold;
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-transform: uppercase;
-            text-decoration: none;
-            position: relative;
-            z-index: 1;
-            border: none;
+            width: calc(100% - 4px); height: calc(100% - 4px); border-radius: 6px; font-size: 16px; 
+            font-weight: bold; box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+            text-transform: uppercase; text-decoration: none; position: relative; z-index: 1; border: none; cursor: pointer;
         }
 
         .btn-masuk { background: linear-gradient(to bottom, #f00, #800); color: #fff; }
         .btn-daftar { background: linear-gradient(to bottom, #fc0, #b8860b); color: #000; }
 
         .btn-wrapper::before {
-            content: '';
-            position: absolute;
-            width: 150%;
-            height: 150%;
+            content: ''; position: absolute; width: 150%; height: 150%;
             background-image: conic-gradient(transparent, #fff, transparent 30%);
             animation: rotate-border 2s linear infinite;
         }
-
         .btn-wrapper.masuk-border::before { background-image: conic-gradient(transparent, #f00, transparent 30%); }
         .btn-wrapper.daftar-border::before { background-image: conic-gradient(transparent, #fc0, transparent 30%); }
 
-        @keyframes rotate-border {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes rotate-border { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* BANK SECTION DENGAN TITIK HIJAU */
-        .bank-section { width: 90%; max-width: 380px; background: rgba(0,0,0,0.9); border: 2px solid #fc0; padding: 15px; margin: 15px auto; border-radius: 10px; text-align: center; }
-        .bank-title { color: #ffcc00; font-size: 13px; font-weight: bold; border-bottom: 1px solid #444; padding-bottom: 5px; margin-bottom: 15px; text-transform: uppercase; }
+        .bank-section { width: 90%; max-width: 380px; background: rgba(0,0,0,0.9); border: 2px solid #fc0; padding: 15px; margin: 15px auto; border-radius: 10px; }
+        .bank-title { color: #ffcc00; font-size: 13px; font-weight: bold; border-bottom: 1px solid #444; padding-bottom: 5px; margin-bottom: 15px; }
         .bank-label { color: #f00; font-size: 12px; font-weight: bold; margin-bottom: 10px; text-align: left; }
         
-        .bank-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 15px; }
-        
-        /* GAYA MODEL TITIK HIJAU MENYALA */
-        .bank-item {
-            color: #fff;
-            font-size: 12px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            white-space: nowrap;
-        }
-        .dot {
-            width: 6px;
-            height: 6px;
-            background-color: #0f0;
-            border-radius: 50%;
-            box-shadow: 0 0 5px #0f0; /* Efek menyala */
-            display: inline-block;
-        }
+        .bank-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; }
+        .bank-item { color: #fff; font-size: 11px; font-weight: bold; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+        .dot { width: 6px; height: 6px; background-color: #0f0; border-radius: 50%; box-shadow: 0 0 5px #0f0; display: inline-block; }
         
         .status-box { margin-top: 15px; border-top: 1px solid #333; padding-top: 10px; display: flex; justify-content: center; align-items: center; gap: 5px; }
         .status-text { color: #0f0; font-size: 11px; font-weight: bold; }
@@ -152,6 +110,9 @@
             <div class="bank-item"><span class="dot"></span>BNI</div>
             <div class="bank-item"><span class="dot"></span>BRI</div>
             <div class="bank-item"><span class="dot"></span>CIMB</div>
+            <div class="bank-item"><span class="dot"></span>PERMATA</div>
+            <div class="bank-item"><span class="dot"></span>PANIN</div>
+            <div class="bank-item"><span class="dot"></span>BTN</div>
             <div class="bank-item"><span class="dot"></span>DANAMON</div>
         </div>
         
