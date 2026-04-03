@@ -3,131 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GARUDA 88 - LOGIN GACOR</title>
+    <title>GARUDA 88 - LOGIN</title>
     <style>
-        body { background: #600000; color: #fff; font-family: Arial, sans-serif; margin: 0; text-align: center; overflow-x: hidden; }
-        .header { background: linear-gradient(to bottom, #8b0000, #000); padding: 15px 0; border-bottom: 2px solid #fc0; }
-        .logo-garuda { width: 100px; margin-bottom: 5px; }
-        
-        /* MODIFIKASI: GARUDA 88 GLOWING BERDENYUT (SEPERTI TOMBOL) */
-        .brand-name { 
-            color: #ffcc00; 
-            font-size: 32px; 
-            font-weight: 900; 
-            margin: 0; 
-            text-transform: uppercase;
-            animation: glow-pulse 1.5s ease-in-out infinite alternate;
+        body { background: #4a0000; color: #fff; font-family: Arial, sans-serif; margin: 0; text-align: center; overflow-x: hidden; }
+        .header { background: linear-gradient(to bottom, #700000, #000); padding: 20px 0; border-bottom: 2px solid #fc0; }
+        .logo-garuda { width: 90px; margin-bottom: 10px; }
+
+        /* MODIFIKASI: GARUDA 88 DARK CHROME DENGAN NEON BERPUTAR */
+        .brand-container {
+            position: relative;
+            display: inline-block;
+            padding: 5px 25px;
+            background: #000; /* Latar belakang gelap agar neon kontras */
+            border-radius: 10px;
+            overflow: hidden;
         }
 
-        @keyframes glow-pulse {
-            from {
-                text-shadow: 0 0 5px #fff, 0 0 10px #fc0, 0 0 15px #fc0, 0 0 20px #fc0;
-            }
-            to {
-                text-shadow: 0 0 10px #fff, 0 0 20px #fc0, 0 0 30px #fc0, 0 0 40px #fc0;
-            }
+        .brand-name {
+            font-size: 36px;
+            font-weight: 900;
+            color: #1a1a1a; /* Warna gelap chrome */
+            position: relative;
+            z-index: 2;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            /* Shadow agar teks gelap tetap terbaca */
+            text-shadow: 1px 1px 0px #333;
         }
-        
+
+        /* Garis menyala berputar di sekeliling teks */
+        .brand-container::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 300%;
+            background: conic-gradient(transparent, #ffcc00, #fff, #ffcc00, transparent 40%);
+            animation: rotate-neon 3s linear infinite;
+            top: -100%;
+            left: -25%;
+        }
+
+        .brand-container::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: #000; /* Menutup bagian tengah agar hanya pinggiran yang menyala */
+            border-radius: 8px;
+            z-index: 1;
+        }
+
+        @keyframes rotate-neon {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .marquee-box { background: #111; color: #ffcc00; padding: 6px 0; font-size: 13px; font-weight: bold; border-bottom: 2px solid #fc0; }
         
-        .hero { 
-            width: 100%; border-bottom: 2px solid #fc0; background: #000; 
-            position: relative; height: 200px; overflow: hidden; 
-        }
-        .hero img { 
-            width: 100%; position: absolute; top: -15px; left: 0; 
-            display: block; object-fit: cover; 
-        }
+        /* CROP BANNER ZEUS BERSIH */
+        .hero { width: 100%; border-bottom: 2px solid #fc0; background: #000; position: relative; height: 180px; overflow: hidden; }
+        .hero img { width: 100%; position: absolute; top: -25px; left: 0; object-fit: cover; }
 
-        .form-box { padding: 20px 0; background: #000; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-        
+        .form-box { padding: 25px 0; background: #000; display: flex; flex-direction: column; align-items: center; gap: 15px; }
         .input-group { position: relative; width: 85%; max-width: 350px; }
-        
         .input-item { 
-            width: 100%; height: 50px; border-radius: 8px; font-size: 16px; 
-            font-weight: bold; box-sizing: border-box; border: 2px solid #fc0;
-            background: #222; color: #fff; text-align: center; outline: none;
+            width: 100%; height: 50px; border-radius: 8px; font-size: 16px; font-weight: bold; 
+            box-sizing: border-box; border: 2px solid #fc0; background: #222; color: #fff; 
+            text-align: center; outline: none;
         }
 
-        /* MODIFIKASI: IKON MATA GACOR ANTI-TYPO */
-        .pass-toggle { 
-            position: absolute; right: 15px; top: 50%; transform: translateY(-50%); 
-            cursor: pointer; color: #fc0; font-size: 20px; z-index: 10; 
-        }
+        .pass-toggle { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #fc0; font-size: 18px; z-index: 10; }
 
-        .btn-wrapper {
-            width: 85%; max-width: 350px; height: 50px; position: relative;
-            border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center;
-        }
-
-        .btn {
-            width: calc(100% - 4px); height: calc(100% - 4px); border-radius: 6px; font-size: 16px; 
-            font-weight: bold; box-sizing: border-box; display: flex; align-items: center; justify-content: center;
-            text-transform: uppercase; text-decoration: none; position: relative; z-index: 1; border: none; cursor: pointer;
-        }
-
+        .btn-wrapper { width: 85%; max-width: 350px; height: 55px; position: relative; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .btn { width: calc(100% - 4px); height: calc(100% - 4px); border-radius: 6px; font-size: 18px; font-weight: bold; z-index: 1; border: none; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; text-transform: uppercase; }
+        
         .btn-masuk { background: linear-gradient(to bottom, #f00, #800); color: #fff; }
         .btn-daftar { background: linear-gradient(to bottom, #fc0, #b8860b); color: #000; }
 
-        .btn-wrapper::before {
-            content: ''; position: absolute; width: 150%; height: 150%;
-            background-image: conic-gradient(transparent, #fff, transparent 30%);
-            animation: rotate-border 2s linear infinite;
-        }
+        .btn-wrapper::before { content: ''; position: absolute; width: 150%; height: 150%; background-image: conic-gradient(transparent, #fff, transparent 30%); animation: rotate-neon 2s linear infinite; }
         .btn-wrapper.masuk-border::before { background-image: conic-gradient(transparent, #f00, transparent 30%); }
         .btn-wrapper.daftar-border::before { background-image: conic-gradient(transparent, #fc0, transparent 30%); }
 
-        @keyframes rotate-border { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        .bank-section { width: 90%; max-width: 380px; background: rgba(0,0,0,0.9); border: 2px solid #fc0; padding: 15px; margin: 15px auto; border-radius: 10px; }
-        .bank-title { color: #ffcc00; font-size: 13px; font-weight: bold; border-bottom: 1px solid #444; padding-bottom: 5px; margin-bottom: 15px; }
-        .bank-label { color: #f00; font-size: 12px; font-weight: bold; margin-bottom: 10px; text-align: left; }
-        
-        .bank-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; }
-        .bank-item { color: #fff; font-size: 11px; font-weight: bold; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
-        .dot { width: 6px; height: 6px; background-color: #0f0; border-radius: 50%; box-shadow: 0 0 5px #0f0; display: inline-block; }
-        
-        .status-box { margin-top: 15px; border-top: 1px solid #333; padding-top: 10px; display: flex; justify-content: center; align-items: center; gap: 5px; }
-        .status-text { color: #0f0; font-size: 11px; font-weight: bold; }
+        /* BANK SECTION */
+        .bank-section { width: 90%; max-width: 380px; background: rgba(0,0,0,0.9); border: 2px solid #fc0; padding: 15px; margin: 20px auto; border-radius: 10px; }
+        .bank-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 15px; }
+        .bank-item { color: #fff; font-size: 11px; font-weight: bold; display: flex; align-items: center; gap: 5px; }
+        .dot { width: 7px; height: 7px; background-color: #0f0; border-radius: 50%; box-shadow: 0 0 8px #0f0; }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <div class="header">
-        <img src="logogaruda.png" class="logo-garuda" alt="Garuda Emas">
-        <h1 class="brand-name">GARUDA 88</h1>
+        <img src="logogaruda.png" class="logo-garuda" alt="Logo">
+        <br>
+        <div class="brand-container">
+            <h1 class="brand-name">GARUDA 88</h1>
+        </div>
     </div>
 
-    <marquee class="marquee-box">SELAMAT DATANG DI GARUDA 88 - SITUS RESMI TERPERCAYA - DEPO/WD CEPAT 24 JAM</marquee>
+    <marquee class="marquee-box">SELAMAT DATANG DI GARUDA 88 - SITUS GACOR RESMI TERPERCAYA 2026 - SALAM JP PAUS</marquee>
 
     <div class="hero">
-        <img src="zeus.webp" alt="Zeus">
+        <img src="zeus.webp" alt="Banner">
     </div>
 
     <div class="form-box">
         <div class="input-group">
             <input type="text" id="u" class="input-item" placeholder="USERNAME">
         </div>
-        
         <div class="input-group">
             <input type="password" id="p" class="input-item" placeholder="PASSWORD">
             <i class="fas fa-eye pass-toggle" onclick="togglePassword()"></i>
         </div>
-        
         <div class="btn-wrapper masuk-border">
             <button onclick="login()" class="btn btn-masuk">MASUK SEKARANG</button>
         </div>
-        
         <div class="btn-wrapper daftar-border">
             <a href="daftar.html" class="btn btn-daftar">DAFTAR AKUN VIP</a>
         </div>
     </div>
 
     <div class="bank-section">
-        <div class="bank-title">METODE PEMBAYARAN RESMI</div>
-        
-        <div class="bank-label">BANK LOKAL:</div>
         <div class="bank-grid">
             <div class="bank-item"><span class="dot"></span>BCA</div>
             <div class="bank-item"><span class="dot"></span>MANDIRI</div>
@@ -138,48 +135,24 @@
             <div class="bank-item"><span class="dot"></span>PANIN</div>
             <div class="bank-item"><span class="dot"></span>BTN</div>
             <div class="bank-item"><span class="dot"></span>DANAMON</div>
-        </div>
-        
-        <div class="bank-label" style="margin-top: 15px;">E-WALLET:</div>
-        <div class="bank-grid">
             <div class="bank-item"><span class="dot"></span>DANA</div>
             <div class="bank-item"><span class="dot"></span>OVO</div>
             <div class="bank-item"><span class="dot"></span>GOPAY</div>
-            <div class="bank-item"><span class="dot"></span>LINKAJA</div>
-            <div class="bank-item"><span class="dot"></span>SHOPEEPAY</div>
-        </div>
-        
-        <div class="status-box">
-            <span class="dot"></span><span class="status-text">SEMUA ONLINE 24 JAM</span>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        const _sb = supabase.createClient('https://sbtrcroononwihparzfk.supabase.co', 'sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn');
-        
-        // FUNGSI ANTI-TYPO MATA GACOR
         function togglePassword() {
             const p = document.getElementById('p');
             const icon = document.querySelector('.pass-toggle');
             if (p.type === "password") {
                 p.type = "text";
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
             } else {
                 p.type = "password";
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
             }
-        }
-
-        async function login() {
-            const user = document.getElementById('u').value;
-            const pass = document.getElementById('p').value;
-            if(!user || !pass) return alert("Isi Data!");
-            const { data } = await _sb.from('members').select('*').eq('username', user).eq('password', pass).single();
-            if (data) { localStorage.setItem("user", data.username); window.location.href = "lobby.html"; }
-            else { alert("Login Gagal!"); }
         }
     </script>
 </body>
