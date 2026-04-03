@@ -7,53 +7,54 @@
     <style>
         body { background-color: #000; color: #fff; font-family: sans-serif; margin: 0; padding: 0; text-align: center; overflow-x: hidden; }
         
-        /* Header Ringkas: Logo & Nama dalam SATU BARIS */
+        /* HEADER RINGKAS (LOGO & TEKS SEJAJAR) */
         .header { 
             background: linear-gradient(to bottom, #400, #000); 
-            padding: 10px 15px; 
+            padding: 8px 15px; 
             border-bottom: 2px solid #f00;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px; /* Jarak antara logo dan teks */
+            gap: 12px;
         }
-        .logo-img {
-            width: 60px; /* Ukuran logo dibuat pas untuk satu baris */
-            height: auto;
-            filter: drop-shadow(0 0 5px #f00);
-        }
+        .logo-img { width: 55px; height: auto; filter: drop-shadow(0 0 5px #f00); }
         .logo-text {
-            font-size: 28px; /* Ukuran teks yang pas untuk satu baris */
-            font-weight: 900;
-            color: #fc0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0;
-            text-shadow: 2px 2px 0 #f00;
+            font-size: 26px; font-weight: 900; color: #fc0;
+            text-transform: uppercase; margin: 0; text-shadow: 2px 2px 0 #f00;
         }
 
-        /* Marquee Ringkas */
-        .marquee-box { background: #111; color: #ff0; padding: 5px 0; border-bottom: 2px solid #333; font-weight: bold; font-size: 12px; }
+        /* Running Text */
+        .marquee-box { background: #111; color: #ff0; padding: 6px 0; border-bottom: 2px solid #333; font-weight: bold; font-size: 12px; }
 
-        /* Banner Zeus - Dibuat Proporsional */
+        /* Banner Zeus */
         .zeus-container { width: 100%; background: #000; line-height: 0; border-bottom: 2px solid #fc0; }
         .zeus-container img { width: 100%; max-width: 500px; height: auto; display: inline-block; }
 
-        /* Tombol Utama - Langsung Terlihat di Layar Atas */
+        /* Tombol Utama (Naik ke Atas) */
         .btn-section { padding: 15px 20px; display: flex; flex-direction: column; gap: 10px; }
-        .btn { padding: 16px; border-radius: 8px; text-decoration: none; font-weight: 900; font-size: 20px; text-transform: uppercase; }
+        .btn { padding: 18px; border-radius: 8px; text-decoration: none; font-weight: 900; font-size: 20px; text-transform: uppercase; }
         .btn-login { background: linear-gradient(to bottom, #f00, #800); color: #fff; border: 2px solid #f66; box-shadow: 0 4px 12px rgba(255,0,0,0.5); }
         .btn-daftar { background: linear-gradient(to bottom, #fc0, #970); color: #000; border: 2px solid #fff; box-shadow: 0 4px 12px rgba(255,255,0,0.4); }
 
-        /* Payment Section - Teks Komplit di Bawah */
-        .payment-section { background: #111; margin: 10px 15px 20px; padding: 15px; border-radius: 10px; border: 1px solid #444; text-align: left; }
-        .payment-title { color: #fc0; font-size: 12px; margin-bottom: 12px; font-weight: bold; text-transform: uppercase; text-align: center; border-bottom: 1px solid #333; padding-bottom: 8px; }
-        .payment-group-label { color: #f00; font-size: 10px; font-weight: bold; margin: 10px 0 5px; display: block; }
+        /* PAYMENT SECTION - VERSI SUPER KOMPLIT */
+        .payment-section {
+            background: #111; margin: 10px 15px 30px; padding: 15px; 
+            border-radius: 12px; border: 1px solid #444; text-align: left;
+        }
+        .payment-title { 
+            color: #fc0; font-size: 13px; margin-bottom: 12px; font-weight: bold; 
+            text-transform: uppercase; text-align: center; border-bottom: 1px solid #333; padding-bottom: 8px;
+        }
+        .payment-group-label { color: #f00; font-size: 10px; font-weight: bold; margin: 12px 0 6px; display: block; letter-spacing: 1px; }
         .bank-list-text { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-        .bank-item { background: #222; padding: 8px; border-radius: 5px; font-size: 10px; font-weight: bold; color: #fff; border-left: 3px solid #0f0; display: flex; justify-content: space-between; align-items: center; }
-        .status-on { color: #0f0; font-size: 8px; }
+        .bank-item {
+            background: #222; padding: 10px 8px; border-radius: 5px; font-size: 10px;
+            font-weight: bold; color: #fff; border-left: 3px solid #0f0;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .status-on { color: #0f0; font-size: 8px; font-weight: bold; }
 
-        .footer { padding: 30px 10px; color: #555; font-size: 10px; background: #080808; }
+        .footer { padding: 30px 10px; color: #555; font-size: 10px; background: #080808; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
@@ -64,7 +65,7 @@
     </div>
 
     <div class="marquee-box">
-        <marquee scrollamount="5">⚡ GARUDA 88: SITUS TERGACOR - PROSES DEPO & WD 24 JAM ONLINE ⚡</marquee>
+        <marquee scrollamount="6">⚡ SELAMAT DATANG DI GARUDA 88 - SITUS SLOT GACOR & TERPERCAYA 2026 - SALAM JP PAUS ⚡</marquee>
     </div>
 
     <div class="zeus-container">
@@ -73,32 +74,41 @@
 
     <div class="btn-section">
         <a href="lobby.html" class="btn btn-login">MASUK / LOGIN</a>
-        <a href="daftar.html" class="btn btn-daftar">DAFTAR SEKARANG</a>
+        <a href="daftar.html" class="btn btn-daftar">DAFTAR AKUN VIP</a>
     </div>
 
     <div class="payment-section">
         <div class="payment-title">METODE PEMBAYARAN (ONLINE)</div>
-        <span class="payment-group-label">BANK LOKAL</span>
+        
+        <span class="payment-group-label">BANK LOKAL TERLENGKAP</span>
         <div class="bank-list-text">
-            <div class="bank-item">BCA <span class="status-on">● ON</span></div>
-            <div class="bank-item">MANDIRI <span class="status-on">● ON</span></div>
-            <div class="bank-item">BNI <span class="status-on">● ON</span></div>
-            <div class="bank-item">BRI <span class="status-on">● ON</span></div>
-            <div class="bank-item">CIMB <span class="status-on">● ON</span></div>
-            <div class="bank-item">BSI <span class="status-on">● ON</span></div>
+            <div class="bank-item">BANK BCA <span class="status-on">● ON</span></div>
+            <div class="bank-item">BANK MANDIRI <span class="status-on">● ON</span></div>
+            <div class="bank-item">BANK BNI <span class="status-on">● ON</span></div>
+            <div class="bank-item">BANK BRI <span class="status-on">● ON</span></div>
+            <div class="bank-item">BANK DANAMON <span class="status-on">● ON</span></div>
+            <div class="bank-item">BANK CIMB <span class="status-on">● ON</span></div>
+            <div class="bank-item">BANK PERMATA <span class="status-on">● ON</span></div>
+            <div class="bank-item">BANK PANIN <span class="status-on">● ON</span></div>
+            <div class="bank-item">BSI (SYARIAH) <span class="status-on">● ON</span></div>
+            <div class="bank-item">BANK MAYBANK <span class="status-on">● ON</span></div>
+            <div class="bank-item">BANK BTN <span class="status-on">● ON</span></div>
         </div>
 
-        <span class="payment-group-label">E-WALLET</span>
+        <span class="payment-group-label">E-WALLET & QRIS</span>
         <div class="bank-list-text">
             <div class="bank-item">DANA <span class="status-on">● ON</span></div>
             <div class="bank-item">OVO <span class="status-on">● ON</span></div>
             <div class="bank-item">GOPAY <span class="status-on">● ON</span></div>
+            <div class="bank-item">LINKAJA <span class="status-on">● ON</span></div>
+            <div class="bank-item">SHOPEEPAY <span class="status-on">● ON</span></div>
             <div class="bank-item">QRIS <span class="status-on">● ON</span></div>
         </div>
     </div>
 
     <div class="footer">
-        © 2026 GARUDA 88. ALL RIGHTS RESERVED.
+        © 2026 GARUDA 88. ALL RIGHTS RESERVED.<br>
+        LISENSI: PAGCOR, BMM TESTLABS.
     </div>
 
 </body>
