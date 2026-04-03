@@ -30,7 +30,7 @@
         }
         .sub-logo { font-size: 14px; color: #fff; letter-spacing: 4px; font-weight: bold; margin-top: -5px; }
 
-        /* Running Text / Marquee */
+        /* Running Text */
         .marquee-box { 
             background: #111; 
             color: #ff0; 
@@ -38,7 +38,6 @@
             border-bottom: 2px solid #333; 
             font-weight: bold; 
             font-size: 14px; 
-            text-shadow: 1px 1px 2px #000;
         }
 
         /* Banner Zeus */
@@ -64,7 +63,6 @@
             font-weight: 900; 
             font-size: 22px; 
             text-transform: uppercase; 
-            transition: 0.3s;
         }
         .btn-login { 
             background: linear-gradient(to bottom, #f00, #800); 
@@ -79,7 +77,7 @@
             box-shadow: 0 5px 20px rgba(255,255,0,0.5); 
         }
 
-        /* Payment Section (Bank & E-wallet) */
+        /* Payment Section (Bank & E-wallet) - DIPERBAIKI */
         .payment-section {
             background: #111;
             margin: 10px 15px 30px;
@@ -93,23 +91,34 @@
             margin-bottom: 20px; 
             font-weight: bold; 
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
         .bank-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
+            gap: 15px;
             align-items: center;
+        }
+        .bank-grid div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
         }
         .bank-grid img {
             width: 100%;
             height: auto;
-            filter: brightness(1.2); /* Membuat logo lebih terang */
-            transition: 0.3s;
+            max-height: 25px;
+            object-fit: contain;
+            filter: brightness(1.5); /* Membuat logo jauh lebih terang */
         }
-        .bank-grid img:hover { transform: scale(1.1); }
+        .bank-name {
+            font-size: 9px;
+            color: #aaa;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
-        .footer { padding: 40px 10px; color: #666; font-size: 11px; background: #080808; border-top: 1px solid #222; }
+        .footer { padding: 40px 10px; color: #666; font-size: 11px; background: #080808; }
     </style>
 </head>
 <body>
@@ -121,7 +130,7 @@
     </div>
 
     <div class="marquee-box">
-        <marquee scrollamount="6">⚡ SELAMAT DATANG DI GARUDA 88 - SITUS RESMI SLOT GACOR TERPERCAYA 2026 - MENANG BERAPAPUN PASTI DI BAYAR ⚡</marquee>
+        <marquee scrollamount="6">⚡ SELAMAT DATANG DI GARUDA 88 - SITUS RESMI KAKEK ZEUS GACOR - PROSES DEPO & WD TERCEPAT ⚡</marquee>
     </div>
 
     <div class="zeus-container">
@@ -136,14 +145,38 @@
     <div class="payment-section">
         <div class="payment-title">Metode Pembayaran Terlengkap</div>
         <div class="bank-grid">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/512px-Bank_Central_Asia.svg.png" alt="BCA">
-            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/512px-BNI_logo.svg.png" alt="BNI">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/512px-Bank_Mandiri_logo_2016.svg.png" alt="MANDIRI">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/512px-BANK_BRI_logo.svg.png" alt="BRI">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_dana_blue.svg/512px-Logo_dana_blue.svg.png" alt="DANA">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Logo_OVO.svg/512px-Logo_OVO.svg.png" alt="OVO">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/512px-Gopay_logo.svg.png" alt="GOPAY">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/512px-Logo_QRIS.svg.png" alt="QRIS" style="filter: brightness(1.2) invert(1);">
+            <div>
+                <img src="https://luna-3.github.io/pembayaran/bca.png" alt="BCA">
+                <span class="bank-name">BCA</span>
+            </div>
+            <div>
+                <img src="https://luna-3.github.io/pembayaran/bni.png" alt="BNI">
+                <span class="bank-name">BNI</span>
+            </div>
+            <div>
+                <img src="https://luna-3.github.io/pembayaran/mandiri.png" alt="MANDIRI">
+                <span class="bank-name">MANDIRI</span>
+            </div>
+            <div>
+                <img src="https://luna-3.github.io/pembayaran/bri.png" alt="BRI">
+                <span class="bank-name">BRI</span>
+            </div>
+            <div>
+                <img src="https://luna-3.github.io/pembayaran/dana.png" alt="DANA">
+                <span class="bank-name">DANA</span>
+            </div>
+            <div>
+                <img src="https://luna-3.github.io/pembayaran/ovo.png" alt="OVO">
+                <span class="bank-name">OVO</span>
+            </div>
+            <div>
+                <img src="https://luna-3.github.io/pembayaran/gopay.png" alt="GOPAY">
+                <span class="bank-name">GOPAY</span>
+            </div>
+            <div>
+                <img src="https://luna-3.github.io/pembayaran/qris.png" alt="QRIS" style="filter: brightness(2) invert(1);">
+                <span class="bank-name">QRIS</span>
+            </div>
         </div>
     </div>
 
