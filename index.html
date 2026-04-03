@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GARUDA 88 - LOGIN</title>
     <style>
-        body { background: #600000; color: #fff; font-family: Arial, sans-serif; margin: 0; text-align: center; }
+        body { background: #600000; color: #fff; font-family: Arial, sans-serif; margin: 0; text-align: center; overflow-x: hidden; }
         .header { background: linear-gradient(to bottom, #8b0000, #000); padding: 15px 0; border-bottom: 2px solid #fc0; }
         .logo-garuda { width: 100px; margin-bottom: 5px; }
         .brand-name { color: #ffcc00; font-size: 28px; font-weight: 900; text-shadow: 2px 2px #000; margin: 0; }
         
         .marquee-box { background: #111; color: #ffcc00; padding: 6px 0; font-size: 13px; font-weight: bold; border-bottom: 2px solid #fc0; }
         
-        .hero { width: 100%; border-bottom: 2px solid #fc0; overflow: hidden; }
-        .hero img { width: 100%; display: block; object-fit: cover; object-position: center top; height: 250px; } /* Crop gambar zeus */
+        /* PERBAIKAN PANGKASAN ZEUS: Benar-benar Hilangkan Tulisan */
+        .hero { width: 100%; border-bottom: 2px solid #fc0; background: #000; position: relative; height: 220px; overflow: hidden; }
+        .hero img { width: 100%; position: absolute; top: -20px; left: 0; display: block; object-fit: cover; }
 
         /* FORM CONTAINER */
         .form-box { padding: 20px 0; background: #000; display: flex; flex-direction: column; align-items: center; gap: 12px; }
@@ -68,7 +69,6 @@
         .btn-masuk { background: linear-gradient(to bottom, #f00, #800); color: #fff; }
         .btn-daftar { background: linear-gradient(to bottom, #fc0, #b8860b); color: #000; }
 
-        /* Rotating border element */
         .btn-wrapper::before {
             content: '';
             position: absolute;
@@ -78,26 +78,42 @@
             animation: rotate-border 2s linear infinite;
         }
 
-        /* Color variations for border */
-        .btn-wrapper.masuk-border::before {
-            background-image: conic-gradient(transparent, #f00, transparent 30%);
-        }
-
-        .btn-wrapper.daftar-border::before {
-            background-image: conic-gradient(transparent, #fc0, transparent 30%);
-        }
+        .btn-wrapper.masuk-border::before { background-image: conic-gradient(transparent, #f00, transparent 30%); }
+        .btn-wrapper.daftar-border::before { background-image: conic-gradient(transparent, #fc0, transparent 30%); }
 
         @keyframes rotate-border {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        /* BANK SECTION */
-        .bank-section { width: 90%; max-width: 380px; background: rgba(0,0,0,0.9); border: 1px solid #fc0; padding: 15px; margin: 15px auto; border-radius: 10px; text-align: left; }
-        .bank-title { color: #ffcc00; font-size: 13px; font-weight: bold; border-bottom: 1px solid #444; padding-bottom: 5px; margin-bottom: 10px; text-align: center; }
-        .bank-label { color: #f00; font-size: 12px; font-weight: bold; margin: 10px 0 5px; }
-        .bank-names { color: #fff; font-size: 13px; font-weight: bold; line-height: 1.5; }
-        .status { color: #0f0; font-size: 11px; font-weight: bold; display: block; margin-top: 15px; text-align: center; }
+        /* BANK SECTION DENGAN TITIK HIJAU */
+        .bank-section { width: 90%; max-width: 380px; background: rgba(0,0,0,0.9); border: 2px solid #fc0; padding: 15px; margin: 15px auto; border-radius: 10px; text-align: center; }
+        .bank-title { color: #ffcc00; font-size: 13px; font-weight: bold; border-bottom: 1px solid #444; padding-bottom: 5px; margin-bottom: 15px; text-transform: uppercase; }
+        .bank-label { color: #f00; font-size: 12px; font-weight: bold; margin-bottom: 10px; text-align: left; }
+        
+        .bank-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 15px; }
+        
+        /* GAYA MODEL TITIK HIJAU MENYALA */
+        .bank-item {
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: #0f0;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #0f0; /* Efek menyala */
+            display: inline-block;
+        }
+        
+        .status-box { margin-top: 15px; border-top: 1px solid #333; padding-top: 10px; display: flex; justify-content: center; align-items: center; gap: 5px; }
+        .status-text { color: #0f0; font-size: 11px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -107,7 +123,7 @@
         <h1 class="brand-name">GARUDA 88</h1>
     </div>
 
-    <marquee class="marquee-box">SELAMAT DATANG DI GARUDA 88 - SITUS TERPERCAYA - DEPO WD ANTI RIBET</marquee>
+    <marquee class="marquee-box">SELAMAT DATANG DI GARUDA 88 - PROSES DEPO/WD CEPAT - SITUS TERPERCAYA - LAYANAN 24 JAM</marquee>
 
     <div class="hero">
         <img src="zeus.webp" alt="Zeus">
@@ -128,11 +144,29 @@
 
     <div class="bank-section">
         <div class="bank-title">METODE PEMBAYARAN RESMI</div>
+        
         <div class="bank-label">BANK LOKAL:</div>
-        <div class="bank-names">BCA | MANDIRI | BNI | BRI | CIMB | DANAMON</div>
-        <div class="bank-label">E-WALLET:</div>
-        <div class="bank-names">DANA | OVO | GOPAY | LINKAJA | SHOPEEPAY</div>
-        <span class="status">● SEMUA ONLINE 24 JAM ●</span>
+        <div class="bank-grid">
+            <div class="bank-item"><span class="dot"></span>BCA</div>
+            <div class="bank-item"><span class="dot"></span>MANDIRI</div>
+            <div class="bank-item"><span class="dot"></span>BNI</div>
+            <div class="bank-item"><span class="dot"></span>BRI</div>
+            <div class="bank-item"><span class="dot"></span>CIMB</div>
+            <div class="bank-item"><span class="dot"></span>DANAMON</div>
+        </div>
+        
+        <div class="bank-label" style="margin-top: 15px;">E-WALLET:</div>
+        <div class="bank-grid">
+            <div class="bank-item"><span class="dot"></span>DANA</div>
+            <div class="bank-item"><span class="dot"></span>OVO</div>
+            <div class="bank-item"><span class="dot"></span>GOPAY</div>
+            <div class="bank-item"><span class="dot"></span>LINKAJA</div>
+            <div class="bank-item"><span class="dot"></span>SHOPEEPAY</div>
+        </div>
+        
+        <div class="status-box">
+            <span class="dot"></span><span class="status-text">SEMUA ONLINE 24 JAM</span>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
