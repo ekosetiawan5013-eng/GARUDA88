@@ -7,23 +7,23 @@
     <style>
         body { background-color: #000; color: #fff; font-family: 'Arial Black', sans-serif; margin: 0; padding: 0; text-align: center; overflow-x: hidden; }
         
-        /* HEADER - Rapat, Logo Besar, Jarak Pas */
+        /* HEADER - Pertahankan Ukuran yang Disukai User */
         .header { 
             background: linear-gradient(to bottom, #500, #000); 
-            padding: 20px 10px 10px; /* Padding atas-bawah disesuaikan */
+            padding: 20px 10px 10px;
             border-bottom: 2px solid #f00;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         .logo-img {
-            width: 95px; /* Logo diperbesar agar dominan */
+            width: 95px; /* Pertahankan ukuran yang disukai */
             height: auto;
             filter: drop-shadow(0 0 10px #f00);
-            margin-bottom: 5px; /* Memberi jarak aman dengan teks */
+            margin-bottom: 5px;
         }
         .logo-text {
-            font-size: 36px; /* Teks tegas dan gagah */
+            font-size: 36px; /* Pertahankan ukuran yang disukai */
             font-weight: 900;
             color: #fc0;
             text-transform: uppercase;
@@ -42,23 +42,27 @@
             font-size: 13px; 
         }
 
-        /* Banner Zeus - DIPANGKAS SEPARUH BADAN agar Tombol Naik */
-        .zeus-container {
+        /* BANNER ZEUS - PEMANGKASAN EKSTREM (HANYA SLOT GACOR) */
+        .zeus-mask {
             width: 100%;
             background: #000;
             border-bottom: 2px solid #fc0;
             overflow: hidden; /* Memotong konten yang keluar */
-            height: 40vh; /* Memangkas tinggi Zeus menjadi hanya 40% layar HP */
+            height: 28vh; /* TINGGI DIPOTONG EXTREM, hanya menampilkan Slot Gacor */
+            position: relative;
         }
-        .zeus-container img {
+        .zeus-mask img {
             width: 100%;
             height: auto;
             max-width: 550px;
             display: inline-block;
-            margin-top: 0; /* Menampilkan wajah Zeus, pangkas badan bawah */
+            position: absolute;
+            top: -20px; /* GESER KE ATAS untuk menampilkan wajah Zeus dan Slot Gacor */
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        /* Tombol Utama - LANGSUNG TERLIHAT Tanpa Scroll */
+        /* Tombol Utama - LANGSUNG TERLIHAT Tanpa Scroll (NaiK SANGAT TINGGI) */
         .btn-section { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
         .btn { 
             padding: 20px; 
@@ -81,7 +85,7 @@
             box-shadow: 0 5px 20px rgba(255,255,0,0.5); 
         }
 
-        /* Payment Section - VERSI SUPER KOMPLIT (Cerah & Jelas) */
+        /* Payment Section - VERSI SUPER KOMPLIT */
         .payment-section {
             background: #111;
             margin: 10px 15px 30px;
@@ -117,7 +121,7 @@
         <marquee scrollamount="6">⚡ SELAMAT DATANG DI GARUDA 88 - SITUS RESMI TERGACOR - KAKEK ZEUS DENGAN RTP 99.98% ⚡</marquee>
     </div>
 
-    <div class="zeus-container">
+    <div class="zeus-mask">
         <img src="zeus.webp" alt="Zeus Gacor">
     </div>
 
