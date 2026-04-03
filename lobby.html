@@ -6,48 +6,45 @@
     <title>SLOT GAMES - GARUDA 88</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        body { background: #000; color: #fff; font-family: 'Arial Black', sans-serif; margin: 0; padding: 0; background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); }
         
-        /* Header Logo & Deposit */
-        .header { background: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ff0000; }
-        .logo { color: #ffff00; font-size: 20px; font-weight: 900; }
-        .btn-depo-top { background: linear-gradient(to bottom, #ffff00, #ffcc00); color: #000; padding: 8px 20px; border-radius: 5px; font-weight: bold; text-decoration: none; font-size: 14px; box-shadow: 0 0 10px rgba(255,255,0,0.5); }
+        /* Header & Banner */
+        .header { background: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ff0000; position: sticky; top: 0; z-index: 1000; }
+        .logo { color: #ffff00; font-size: 22px; font-weight: 900; letter-spacing: 1px; }
+        .btn-depo { background: linear-gradient(to bottom, #ffff00, #ccaa00); color: #000; padding: 8px 20px; border-radius: 5px; font-weight: bold; text-decoration: none; box-shadow: 0 0 10px #ffff00; font-size: 14px; }
 
-        /* Sub-Header Slot Games */
-        .sub-header { background: linear-gradient(to right, #660000, #000); padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ffff00; margin-top: 5px; }
-        .sub-header span { color: #ffff00; font-weight: bold; font-size: 16px; display: flex; align-items: center; gap: 10px; }
-        .btn-lobby { background: #222; color: #fff; padding: 5px 15px; border-radius: 5px; border: 1px solid #fff; font-size: 12px; text-decoration: none; }
+        .slot-title-bar { background: linear-gradient(to bottom, #ffff00, #ccaa00); margin: 10px; border-radius: 8px; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; color: #000; box-shadow: 0 0 15px rgba(255,255,0,0.3); }
+        .btn-lobby { background: #000; color: #fff; padding: 5px 15px; border-radius: 5px; text-decoration: none; font-size: 12px; border: 1px solid #fff; }
 
         /* Grid Provider */
-        .provider-container { padding: 10px; display: grid; grid-template-columns: repeat(1, 1fr); gap: 15px; margin-bottom: 80px; }
-        
-        /* Card Provider Style */
+        .provider-list { padding: 10px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 80px; }
+
+        /* Card Style - Identik OLXTOTO */
         .card { 
-            background: #111; border: 2px solid #ffff00; border-radius: 10px; 
-            display: flex; height: 160px; overflow: hidden; position: relative;
-            background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            background: #000; border: 1px solid #ffff00; border-radius: 5px; 
+            display: flex; flex-direction: column; height: 190px; position: relative; overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(255,255,0,0.1);
         }
         
-        .card-left { flex: 1.2; padding: 10px; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid #333; }
-        .card-right { flex: 1; position: relative; background: #000; }
-        
-        .provider-logo { width: 80%; filter: drop-shadow(0 0 5px #fff); }
-        .mini-games { display: flex; gap: 5px; margin-top: 10px; }
-        .mini-games img { width: 30px; height: 30px; border-radius: 3px; border: 1px solid #444; }
-        
-        .btn-play { 
-            background: linear-gradient(to bottom, #ffff00, #ccaa00); 
-            color: #000; padding: 5px 0; width: 100%; border-radius: 20px; 
-            text-align: center; font-weight: 900; text-decoration: none; 
-            font-size: 12px; display: block; margin-top: 10px;
-        }
+        /* Aksen Kuning di Pojok */
+        .card::before { content: ""; position: absolute; top: 0; left: 0; width: 15px; height: 15px; border-left: 3px solid #ffff00; border-top: 3px solid #ffff00; z-index: 5; }
+        .card::after { content: ""; position: absolute; top: 0; right: 0; width: 15px; height: 15px; border-right: 3px solid #ffff00; border-top: 3px solid #ffff00; z-index: 5; }
 
-        .char-img { position: absolute; bottom: 0; right: 0; height: 140px; z-index: 2; }
-        .bg-glow { position: absolute; top: 0; right: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, transparent 70%); }
+        .card-top { flex: 1; display: flex; padding: 5px; position: relative; }
+        .info-side { flex: 1; z-index: 2; display: flex; flex-direction: column; justify-content: space-around; }
+        .char-side { flex: 0.8; position: relative; }
 
-        /* Navigasi Bawah */
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #111; display: flex; justify-content: space-around; padding: 10px 0; border-top: 2px solid #ff0000; z-index: 100; }
-        .nav-item { text-align: center; color: #888; text-decoration: none; font-size: 11px; }
+        .p-logo { max-width: 90%; height: 25px; object-fit: contain; filter: drop-shadow(0 0 3px #fff); }
+        .mini-icons { display: flex; gap: 3px; }
+        .mini-icons img { width: 22px; height: 22px; border-radius: 3px; border: 1px solid #ffff00; }
+
+        .btn-play { background: #ffff00; color: #000; text-align: center; padding: 4px; border-radius: 3px; font-weight: 900; font-size: 10px; text-decoration: none; box-shadow: 0 0 5px #ffff00; text-transform: uppercase; }
+
+        .char-img { position: absolute; right: -5px; bottom: 0; height: 95%; z-index: 1; filter: drop-shadow(-5px 0 5px rgba(0,0,0,0.8)); }
+
+        /* Bottom Navigation */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #111; display: flex; justify-content: space-around; padding: 10px 0; border-top: 2px solid #ff0000; z-index: 1000; }
+        .nav-item { text-align: center; color: #888; text-decoration: none; font-size: 10px; }
         .nav-item i { font-size: 20px; display: block; margin-bottom: 3px; }
         .nav-item.active { color: #ffff00; }
     </style>
@@ -56,68 +53,104 @@
 
     <div class="header">
         <div class="logo">GARUDA 88</div>
-        <a href="#" class="btn-depo-top">Deposit</a>
+        <a href="#" class="btn-depo">Deposit</a>
     </div>
 
-    <div class="sub-header">
-        <span><i class="fas fa-slot-machine">🎰</i> SLOT GAMES</span>
-        <a href="lobby.html" class="btn-lobby">LOBBY</a>
+    <div class="slot-title-bar">
+        <span><i class="fas fa-bolt"></i> SLOT GAMES</span>
+        <a href="index.html" class="btn-lobby">LOBBY</a>
     </div>
 
-    <div class="provider-container">
+    <div class="provider-list">
         
         <div class="card">
-            <div class="card-left">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Pragmatic_Play_logo.svg/1200px-Pragmatic_Play_logo.svg.png" class="provider-logo">
-                <div class="mini-games">
-                    <img src="https://img.imageboss.me/smb/width/200/26279.png">
-                    <img src="https://img.imageboss.me/smb/width/200/26280.png">
-                    <img src="https://img.imageboss.me/smb/width/200/26281.png">
+            <div class="card-top">
+                <div class="info-side">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0Nn_KndI7X7y3vUjW7R0o_3W0hGzS-l_S_A&s" class="p-logo">
+                    <div class="mini-icons">
+                        <img src="https://img.imageboss.me/smb/width/60/26279.png">
+                        <img src="https://img.imageboss.me/smb/width/60/26280.png">
+                    </div>
+                    <a href="#" class="btn-play">PLAY NOW</a>
                 </div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-            <div class="card-right">
-                <div class="bg-glow"></div>
-                <img src="https://static.wixstatic.com/media/7608f5_f87e5967969b4e699268d80c05a1e7b1~mv2.png/v1/fill/w_440,h_534,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Sweet_Bonanza_Character.png" class="char-img">
+                <div class="char-side">
+                    <img src="https://static.wixstatic.com/media/7608f5_f87e5967969b4e699268d80c05a1e7b1~mv2.png/v1/fill/w_200,h_240/Sweet_Bonanza.png" class="char-img">
+                </div>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-left">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/PG_Soft_logo.png" class="provider-logo" style="width: 60%;">
-                <div class="mini-games">
-                    <img src="https://img.imageboss.me/smb/width/200/26285.png">
-                    <img src="https://img.imageboss.me/smb/width/200/26286.png">
-                    <img src="https://img.imageboss.me/smb/width/200/26287.png">
+            <div class="card-top">
+                <div class="info-side">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/PG_Soft_logo.png" class="p-logo">
+                    <div class="mini-icons">
+                        <img src="https://img.imageboss.me/smb/width/60/26285.png">
+                        <img src="https://img.imageboss.me/smb/width/60/26286.png">
+                    </div>
+                    <a href="#" class="btn-play">PLAY NOW</a>
                 </div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-            <div class="card-right">
-                <div class="bg-glow"></div>
-                <img src="https://www.pgsoft.com/uploads/Games/Images/f02e5b87-0b1a-4c8d-8a8b-1b0a1b0a1b0a.png" class="char-img">
+                <div class="char-side">
+                    <img src="https://www.pgsoft.com/uploads/Games/Images/f02e5b87-0b1a-4c8d-8a8b-1b0a1b0a1b0a.png" class="char-img">
+                </div>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-left">
-                <h2 style="margin:0; font-style: italic;">IDN SLOT</h2>
-                <div class="mini-games">
-                    <img src="https://img.imageboss.me/smb/width/200/26290.png">
-                    <img src="https://img.imageboss.me/smb/width/200/26291.png">
-                    <img src="https://img.imageboss.me/smb/width/200/26292.png">
+            <div class="card-top">
+                <div class="info-side">
+                    <img src="https://www.habanerogaming.com/images/habanero-logo.png" class="p-logo">
+                    <div class="mini-icons"><img src="https://img.imageboss.me/smb/width/60/26290.png"><img src="https://img.imageboss.me/smb/width/60/26291.png"></div>
+                    <a href="#" class="btn-play">PLAY NOW</a>
                 </div>
-                <a href="#" class="btn-play">PLAY NOW</a>
+                <div class="char-side">
+                    <img src="https://idnsite.com/img/games/character/habanero.png" class="char-img">
+                </div>
             </div>
-            <div class="card-right">
-                <div class="bg-glow"></div>
-                <img src="https://idnsite.com/img/games/character/idnslot.png" class="char-img">
+        </div>
+
+        <div class="card">
+            <div class="card-top">
+                <div class="info-side">
+                    <h3 style="margin:0; font-size: 12px; color: #ffff00;">IDN SLOT</h3>
+                    <div class="mini-icons"><img src="https://img.imageboss.me/smb/width/60/26292.png"><img src="https://img.imageboss.me/smb/width/60/26293.png"></div>
+                    <a href="#" class="btn-play">PLAY NOW</a>
+                </div>
+                <div class="char-side">
+                    <img src="https://idnsite.com/img/games/character/idnslot.png" class="char-img">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-top">
+                <div class="info-side">
+                    <img src="https://www.joker123.net/theme/images/logo.png" class="p-logo">
+                    <div class="mini-icons"><img src="https://img.imageboss.me/smb/width/60/26300.png"><img src="https://img.imageboss.me/smb/width/60/26301.png"></div>
+                    <a href="#" class="btn-play">PLAY NOW</a>
+                </div>
+                <div class="char-side">
+                    <img src="https://idnsite.com/img/games/character/joker.png" class="char-img">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-top">
+                <div class="info-side">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/Microgaming_logo.svg/1200px-Microgaming_logo.svg.png" class="p-logo">
+                    <div class="mini-icons"><img src="https://img.imageboss.me/smb/width/60/26305.png"><img src="https://img.imageboss.me/smb/width/60/26306.png"></div>
+                    <a href="#" class="btn-play">PLAY NOW</a>
+                </div>
+                <div class="char-side">
+                    <img src="https://idnsite.com/img/games/character/microgaming.png" class="char-img">
+                </div>
             </div>
         </div>
 
     </div>
 
     <div class="bottom-nav">
-        <a href="lobby.html" class="nav-item active"><i class="fas fa-home"></i>Lobby</a>
+        <a href="index.html" class="nav-item active"><i class="fas fa-home"></i>Lobby</a>
         <a href="#" class="nav-item"><i class="fas fa-wallet"></i>Deposit</a>
         <a href="#" class="nav-item"><i class="fas fa-history"></i>Riwayat</a>
         <a href="#" class="nav-item"><i class="fas fa-user"></i>Akun</a>
