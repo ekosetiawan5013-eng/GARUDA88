@@ -3,71 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN - GARUDA 88</title>
+    <title>GARUDA 88 - LOGIN</title>
     <style>
-        body { background: #000; color: #fff; font-family: 'Arial Black', Gadget, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow-x: hidden; }
-        .container { width: 90%; max-width: 400px; text-align: center; }
+        body { background: #600000; color: #fff; font-family: Arial, sans-serif; margin: 0; text-align: center; }
+        .header { background: linear-gradient(to bottom, #8b0000, #000); padding: 20px 0; border-bottom: 2px solid #fc0; }
+        .logo-garuda { width: 120px; margin-bottom: 10px; }
+        .brand-name { color: #ffcc00; font-size: 32px; font-weight: 900; text-shadow: 2px 2px #000; margin: 0; }
         
-        /* Area Logo */
-        .header-images { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px; }
-        .logo-img { width: 120px; height: auto; filter: drop-shadow(0 0 10px #fc0); }
+        .running-text { background: #111; color: #ffcc00; padding: 8px 0; font-size: 13px; font-weight: bold; overflow: hidden; border-bottom: 2px solid #fc0; }
         
-        .login-card { background: linear-gradient(180deg, #111 0%, #000 100%); padding: 25px; border-radius: 15px; border: 2px solid #fc0; box-shadow: 0 0 20px rgba(255, 204, 0, 0.3); }
-        .brand-name { color: #fc0; font-size: 30px; font-weight: 900; text-shadow: 2px 2px #000; margin-bottom: 20px; }
+        .hero-section { width: 100%; }
+        .zeus-img { width: 100%; display: block; border-bottom: 2px solid #fc0; }
+
+        .form-container { padding: 20px; display: flex; flex-direction: column; gap: 10px; align-items: center; background: #000; }
+        input { width: 85%; padding: 12px; border-radius: 5px; border: 1px solid #fc0; background: #222; color: #fff; font-weight: bold; }
         
-        input { width: 100%; padding: 12px; background: #222; border: 1px solid #fc0; border-radius: 5px; color: #fff; margin-bottom: 15px; box-sizing: border-box; outline: none; }
-        .btn-login { background: linear-gradient(180deg, #fc0 0%, #b8860b 100%); color: #000; width: 100%; padding: 12px; border: none; border-radius: 5px; font-weight: bold; font-size: 16px; cursor: pointer; text-transform: uppercase; }
+        .btn { width: 90%; max-width: 350px; padding: 15px; border-radius: 10px; font-weight: bold; font-size: 18px; border: 2px solid #fff; cursor: pointer; text-transform: uppercase; margin-top: 5px; }
+        .btn-login { background: linear-gradient(to bottom, #ff0000, #8b0000); color: #fff; }
+        .btn-register { background: linear-gradient(to bottom, #ffcc00, #b8860b); color: #000; text-decoration: none; display: block; line-height: 20px; }
+
+        /* MENU BANK & EWALLET */
+        .bank-container { width: 90%; max-width: 380px; background: rgba(0,0,0,0.9); border: 1px solid #fc0; padding: 15px; margin: 20px auto; border-radius: 10px; }
+        .bank-title { color: #ffcc00; font-size: 14px; font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #444; padding-bottom: 5px; text-transform: uppercase; }
         
-        .links { margin-top: 20px; font-size: 14px; }
-        .links a { color: #fc0; text-decoration: none; font-weight: bold; }
+        .bank-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items: center; margin-top: 10px; }
+        .bank-grid img { width: 100%; height: auto; background: #fff; border-radius: 4px; padding: 2px; }
+        
+        .status-online { color: #00ff00; font-size: 11px; font-weight: bold; display: block; margin-top: 5px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header-images">
-        <img src="zeus.png" alt="Zeus" class="logo-img">
-        <img src="garuda.png" alt="Garuda" class="logo-img">
+    <div class="header">
+        <img src="garuda.webp" class="logo-garuda" alt="Garuda">
+        <h1 class="brand-name">GARUDA 88</h1>
     </div>
 
-    <div class="login-card">
-        <div class="brand-name">GARUDA 88</div>
-        <form id="loginForm">
-            <input type="text" id="userInp" placeholder="USERNAME" required>
-            <input type="password" id="passInp" placeholder="PASSWORD" required>
-            <button type="submit" class="btn-login">LOGIN SEKARANG</button>
-        </form>
-        <div class="links">
-            BELUM PUNYA AKUN? <br>
-            <a href="daftar.html">KLIK DAFTAR DI SINI</a>
+    <marquee class="running-text">
+        SELAMAT DATANG DI GARUDA 88 - PROSES DEPOSIT DAN WITHDRAW TERCEPAT DI INDONESIA - SITUS SLOT GACOR TERPERCAYA 2026
+    </marquee>
+
+    <div class="hero-section">
+        <img src="zeus.webp" class="zeus-img" alt="Zeus King">
+    </div>
+
+    <div class="form-container">
+        <input type="text" id="u" placeholder="USERNAME">
+        <input type="password" id="p" placeholder="PASSWORD">
+        <button onclick="prosesLogin()" class="btn btn-login">MASUK / LOGIN</button>
+        <a href="daftar.html" class="btn btn-register">DAFTAR AKUN VIP</a>
+    </div>
+
+    <div class="bank-container">
+        <div class="bank-title">METODE PEMBAYARAN ONLINE</div>
+        
+        <div style="text-align: left; color: #ff0000; font-size: 12px; font-weight: bold; margin-bottom: 5px;">BANK LOKAL:</div>
+        <div class="bank-grid">
+            <img src="https://i.ibb.co/Vv9X7vF/bca.png" alt="BCA">
+            <img src="https://i.ibb.co/L5pYmZt/mandiri.png" alt="MANDIRI">
+            <img src="https://i.ibb.co/pP9P6vV/bni.png" alt="BNI">
+            <img src="https://i.ibb.co/mS6HnKq/bri.png" alt="BRI">
         </div>
+        
+        <div style="text-align: left; color: #ff0000; font-size: 12px; font-weight: bold; margin-top: 15px; margin-bottom: 5px;">E-WALLET:</div>
+        <div class="bank-grid">
+            <img src="https://i.ibb.co/4M0X5v9/dana.png" alt="DANA">
+            <img src="https://i.ibb.co/0Y1f9rF/ovo.png" alt="OVO">
+            <img src="https://i.ibb.co/G9p0X9P/gopay.png" alt="GOPAY">
+            <img src="https://i.ibb.co/vX5f5pP/linkaja.png" alt="LINKAJA">
+        </div>
+        <span class="status-online">● SEMUA ONLINE 24 JAM</span>
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-    const _supabase = supabase.createClient('https://sbtrcroononwihparzfk.supabase.co', 'sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn');
-    
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const u = document.getElementById('userInp').value;
-        const p = document.getElementById('passInp').value;
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const _sb = supabase.createClient('https://sbtrcroononwihparzfk.supabase.co', 'sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn');
+        
+        async function prosesLogin() {
+            const user = document.getElementById('u').value;
+            const pass = document.getElementById('p').value;
+            if(!user || !pass) return alert("Isi Data!");
 
-        const { data, error } = await _supabase
-            .from('members')
-            .select('*')
-            .eq('username', u)
-            .eq('password', p)
-            .single();
-
-        if (data) {
-            localStorage.setItem("loggedInUser", data.username);
-            window.location.href = "lobby.html";
-        } else {
-            alert("Username atau Password Salah!");
+            const { data } = await _sb.from('members').select('*').eq('username', user).eq('password', pass).single();
+            if (data) {
+                localStorage.setItem("loggedInUser", data.username);
+                window.location.href = "lobby.html";
+            } else {
+                alert("Login Gagal!");
+            }
         }
-    });
-</script>
-
+    </script>
 </body>
 </html>
