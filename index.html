@@ -3,164 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GARUDA 88 - OFFICIAL SITE</title>
+    <title>LOGIN - GARUDA 88</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Arial Black', sans-serif; margin: 0; padding: 0; text-align: center; overflow-x: hidden; }
+        body { background: #000; color: #fff; font-family: Arial; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-card { width: 90%; max-width: 350px; background: #111; padding: 25px; border-radius: 15px; border: 1px solid #fc0; box-shadow: 0 0 20px rgba(255, 204, 0, 0.2); }
+        .logo { text-align: center; margin-bottom: 20px; }
+        .logo span { color: #fc0; font-weight: 900; font-size: 24px; text-shadow: 0 0 10px #f00; }
         
-        /* HEADER - Pertahankan Ukuran yang Disukai User */
-        .header { 
-            background: linear-gradient(to bottom, #500, #000); 
-            padding: 20px 10px 10px;
-            border-bottom: 2px solid #f00;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .logo-img {
-            width: 95px; /* Pertahankan ukuran yang disukai */
-            height: auto;
-            filter: drop-shadow(0 0 10px #f00);
-            margin-bottom: 5px;
-        }
-        .logo-text {
-            font-size: 36px; /* Pertahankan ukuran yang disukai */
-            font-weight: 900;
-            color: #fc0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0;
-            text-shadow: 2px 2px 0 #f00, 0 0 20px #fc0;
-        }
-
-        /* Marquee Ringkas */
-        .marquee-box { 
-            background: #111; 
-            color: #ff0; 
-            padding: 8px 0; 
-            border-bottom: 2px solid #333; 
-            font-weight: bold; 
-            font-size: 13px; 
-        }
-
-        /* BANNER ZEUS - PEMANGKASAN EKSTREM (HANYA SLOT GACOR) */
-        .zeus-mask {
-            width: 100%;
-            background: #000;
-            border-bottom: 2px solid #fc0;
-            overflow: hidden; /* Memotong konten yang keluar */
-            height: 28vh; /* TINGGI DIPOTONG EXTREM, hanya menampilkan Slot Gacor */
-            position: relative;
-        }
-        .zeus-mask img {
-            width: 100%;
-            height: auto;
-            max-width: 550px;
-            display: inline-block;
-            position: absolute;
-            top: -20px; /* GESER KE ATAS untuk menampilkan wajah Zeus dan Slot Gacor */
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* Tombol Utama - LANGSUNG TERLIHAT Tanpa Scroll (NaiK SANGAT TINGGI) */
-        .btn-section { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
-        .btn { 
-            padding: 20px; 
-            border-radius: 10px; 
-            text-decoration: none; 
-            font-weight: 900; 
-            font-size: 22px; 
-            text-transform: uppercase; 
-        }
-        .btn-login { 
-            background: linear-gradient(to bottom, #f00, #800); 
-            color: #fff; 
-            border: 2px solid #f66; 
-            box-shadow: 0 5px 20px rgba(255,0,0,0.6); 
-        }
-        .btn-daftar { 
-            background: linear-gradient(to bottom, #fc0, #970); 
-            color: #000; 
-            border: 2px solid #fff; 
-            box-shadow: 0 5px 20px rgba(255,255,0,0.5); 
-        }
-
-        /* Payment Section - VERSI SUPER KOMPLIT */
-        .payment-section {
-            background: #111;
-            margin: 10px 15px 30px;
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid #444;
-            text-align: left;
-        }
-        .payment-title { 
-            color: #fc0; font-size: 14px; margin-bottom: 15px; font-weight: bold; 
-            text-transform: uppercase; text-align: center; border-bottom: 1px solid #333; padding-bottom: 10px;
-        }
-        .payment-group-label { color: #f00; font-size: 11px; font-weight: bold; margin: 15px 0 8px; display: block; letter-spacing: 1px; }
-        .bank-list-text { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .bank-item {
-            background: #222; padding: 12px 10px; border-radius: 6px; font-size: 11px;
-            font-weight: bold; color: #fff; border-left: 3px solid #0f0;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .status-on { color: #0f0; font-size: 10px; font-weight: bold; }
-
-        .footer { padding: 40px 10px; color: #555; font-size: 11px; background: #080808; border-top: 1px solid #222; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-size: 12px; color: #aaa; margin-bottom: 5px; }
+        input { width: 100%; padding: 12px; background: #222; border: 1px solid #444; border-radius: 5px; color: #fff; box-sizing: border-box; }
+        
+        .btn-login { background: linear-gradient(to bottom, #fc0, #970); width: 100%; padding: 12px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .links { text-align: center; margin-top: 15px; font-size: 13px; }
+        .links a { color: #fc0; text-decoration: none; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <img src="logogaruda.png" alt="Logo" class="logo-img">
-        <h1 class="logo-text">GARUDA 88</h1>
+<div class="login-card">
+    <div class="logo">
+        <span>GARUDA 88</span>
     </div>
-
-    <div class="marquee-box">
-        <marquee scrollamount="6">⚡ SELAMAT DATANG DI GARUDA 88 - SITUS SLOT GACOR RESMI & TERPERCAYA 2026 - SALAM JP PAUS ⚡</marquee>
-    </div>
-
-    <div class="zeus-mask">
-        <img src="zeus.webp" alt="Zeus Gacor">
-    </div>
-
-    <div class="btn-section">
-        <a href="lobby.html" class="btn btn-login">MASUK / LOGIN</a>
-        <a href="daftar.html" class="btn btn-daftar">DAFTAR AKUN VIP</a>
-    </div>
-
-    <div class="payment-section">
-        <div class="payment-title">METODE PEMBAYARAN (ONLINE)</div>
-        
-        <span class="payment-group-label">BANK LOKAL</span>
-        <div class="bank-list-text">
-            <div class="bank-item">BANK BCA <span class="status-on">● ON</span></div>
-            <div class="bank-item">BANK MANDIRI <span class="status-on">● ON</span></div>
-            <div class="bank-item">BANK BNI <span class="status-on">● ON</span></div>
-            <div class="bank-item">BANK BRI <span class="status-on">● ON</span></div>
-            <div class="bank-item">BANK CIMB <span class="status-on">● ON</span></div>
-            <div class="bank-item">BANK DANAMON <span class="status-on">● ON</span></div>
-            <div class="bank-item">BANK PERMATA <span class="status-on">● ON</span></div>
-            <div class="bank-item">BANK PANIN <span class="status-on">● ON</span></div>
-            <div class="bank-item">BSI (SYARIAH) <span class="status-on">● ON</span></div>
-            <div class="bank-item">BANK BTN <span class="status-on">● ON</span></div>
+    <form action="lobby.html"> <div class="form-group">
+            <label>USERNAME</label>
+            <input type="text" placeholder="Masukkan Username" required>
         </div>
-
-        <span class="payment-group-label">E-WALLET & QRIS</span>
-        <div class="bank-list-text">
-            <div class="bank-item">DANA <span class="status-on">● ON</span></div>
-            <div class="bank-item">OVO <span class="status-on">● ON</span></div>
-            <div class="bank-item">GOPAY <span class="status-on">● ON</span></div>
-            <div class="bank-item">LINKAJA <span class="status-on">● ON</span></div>
-            <div class="bank-item">SHOPEEPAY <span class="status-on">● ON</span></div>
-            <div class="bank-item">QRIS ALL PAYMENT <span class="status-on">● ON</span></div>
+        <div class="form-group">
+            <label>PASSWORD</label>
+            <input type="password" placeholder="Masukkan Password" required>
         </div>
+        <button type="submit" class="btn-login">MASUK SEKARANG</button>
+    </form>
+    <div class="links">
+        Belum punya akun? <a href="daftar.html">DAFTAR DISINI</a>
     </div>
-
-    <div class="footer">
-        © COPYRIGHT 2026 GARUDA 88 | ALL RIGHTS RESERVED.<br>
-    </div>
+</div>
 
 </body>
 </html>
