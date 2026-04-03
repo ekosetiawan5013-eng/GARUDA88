@@ -3,39 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GARUDA 88 - LOGIN</title>
+    <title>GARUDA 88 - LOGIN GACOR</title>
     <style>
         body { background: #600000; color: #fff; font-family: Arial, sans-serif; margin: 0; text-align: center; overflow-x: hidden; }
         .header { background: linear-gradient(to bottom, #8b0000, #000); padding: 15px 0; border-bottom: 2px solid #fc0; }
         .logo-garuda { width: 100px; margin-bottom: 5px; }
-        .brand-name { color: #ffcc00; font-size: 28px; font-weight: 900; text-shadow: 2px 2px #000; margin: 0; }
+        
+        /* MODIFIKASI: GARUDA 88 GLOWING BERDENYUT (SEPERTI TOMBOL) */
+        .brand-name { 
+            color: #ffcc00; 
+            font-size: 32px; 
+            font-weight: 900; 
+            margin: 0; 
+            text-transform: uppercase;
+            animation: glow-pulse 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow-pulse {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fc0, 0 0 15px #fc0, 0 0 20px #fc0;
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fc0, 0 0 30px #fc0, 0 0 40px #fc0;
+            }
+        }
         
         .marquee-box { background: #111; color: #ffcc00; padding: 6px 0; font-size: 13px; font-weight: bold; border-bottom: 2px solid #fc0; }
         
-        /* AREA HERO: Pangkasan Zeus Ekstra Rapi untuk Menghapus Tulisan */
         .hero { 
-            width: 100%; 
-            border-bottom: 2px solid #fc0; 
-            background: #000; 
-            position: relative; 
-            height: 200px; /* Tinggi dikurangi agar tulisan di bawah gambar terpotong bersih */
-            overflow: hidden; 
+            width: 100%; border-bottom: 2px solid #fc0; background: #000; 
+            position: relative; height: 200px; overflow: hidden; 
         }
         .hero img { 
-            width: 100%; 
-            position: absolute; 
-            top: -15px; /* Digeser ke atas agar tulisan banner bawah tidak terlihat */
-            left: 0; 
-            display: block; 
-            object-fit: cover; 
+            width: 100%; position: absolute; top: -15px; left: 0; 
+            display: block; object-fit: cover; 
         }
 
         .form-box { padding: 20px 0; background: #000; display: flex; flex-direction: column; align-items: center; gap: 12px; }
         
+        .input-group { position: relative; width: 85%; max-width: 350px; }
+        
         .input-item { 
-            width: 85%; max-width: 350px; height: 50px; border-radius: 8px; font-size: 16px; 
+            width: 100%; height: 50px; border-radius: 8px; font-size: 16px; 
             font-weight: bold; box-sizing: border-box; border: 2px solid #fc0;
             background: #222; color: #fff; text-align: center; outline: none;
+        }
+
+        /* MODIFIKASI: IKON MATA GACOR ANTI-TYPO */
+        .pass-toggle { 
+            position: absolute; right: 15px; top: 50%; transform: translateY(-50%); 
+            cursor: pointer; color: #fc0; font-size: 20px; z-index: 10; 
         }
 
         .btn-wrapper {
@@ -73,6 +90,7 @@
         .status-box { margin-top: 15px; border-top: 1px solid #333; padding-top: 10px; display: flex; justify-content: center; align-items: center; gap: 5px; }
         .status-text { color: #0f0; font-size: 11px; font-weight: bold; }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -81,15 +99,21 @@
         <h1 class="brand-name">GARUDA 88</h1>
     </div>
 
-    <marquee class="marquee-box">SELAMAT DATANG DI GARUDA 88 - PROSES DEPO/WD CEPAT - SITUS TERPERCAYA - LAYANAN 24 JAM</marquee>
+    <marquee class="marquee-box">SELAMAT DATANG DI GARUDA 88 - SITUS RESMI TERPERCAYA - DEPO/WD CEPAT 24 JAM</marquee>
 
     <div class="hero">
         <img src="zeus.webp" alt="Zeus">
     </div>
 
     <div class="form-box">
-        <input type="text" id="u" class="input-item" placeholder="USERNAME">
-        <input type="password" id="p" class="input-item" placeholder="PASSWORD">
+        <div class="input-group">
+            <input type="text" id="u" class="input-item" placeholder="USERNAME">
+        </div>
+        
+        <div class="input-group">
+            <input type="password" id="p" class="input-item" placeholder="PASSWORD">
+            <i class="fas fa-eye pass-toggle" onclick="togglePassword()"></i>
+        </div>
         
         <div class="btn-wrapper masuk-border">
             <button onclick="login()" class="btn btn-masuk">MASUK SEKARANG</button>
@@ -133,6 +157,22 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         const _sb = supabase.createClient('https://sbtrcroononwihparzfk.supabase.co', 'sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn');
+        
+        // FUNGSI ANTI-TYPO MATA GACOR
+        function togglePassword() {
+            const p = document.getElementById('p');
+            const icon = document.querySelector('.pass-toggle');
+            if (p.type === "password") {
+                p.type = "text";
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                p.type = "password";
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
         async function login() {
             const user = document.getElementById('u').value;
             const pass = document.getElementById('p').value;
