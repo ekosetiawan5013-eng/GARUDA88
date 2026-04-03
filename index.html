@@ -125,10 +125,10 @@
 
         <div class="form-box">
             <div class="input-group">
-                <input type="text" id="u" class="input-item" placeholder="USERNAME">
+                <input type="text" id="u" class="input-item" placeholder="USERNAME" autocomplete="off">
             </div>
             <div class="input-group">
-                <input type="password" id="p" class="input-item" placeholder="PASSWORD">
+                <input type="password" id="p" class="input-item" placeholder="PASSWORD" autocomplete="current-password">
                 <i class="fas fa-eye pass-toggle" onclick="togglePassword()"></i>
             </div>
             
@@ -162,11 +162,15 @@
         </div>
     </div>
 
-    <a href="https://direct.lc.chat/YOUR_ID_HERE/" class="live-chat" target="_blank">
+    <a href="https://wa.me/NOMOR_BOS_DISINI" class="live-chat" target="_blank">
         <i class="fas fa-comments"></i> LIVE CHAT
     </a>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        // INISIALISASI SUPABASE
+        const _sb = supabase.createClient('https://sbtrcroononwihparzfk.supabase.co', 'sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn');
+
         function togglePassword() {
             const p = document.getElementById('p');
             const icon = document.querySelector('.pass-toggle');
@@ -176,6 +180,36 @@
             } else {
                 p.type = "password";
                 icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        async function login() {
+            const u = document.getElementById('u').value;
+            const p = document.getElementById('p').value;
+
+            if(!u || !p) return alert("Woi! Isi Username & Password-nya, Bos!");
+
+            try {
+                // Mencari user di database
+                const { data, error } = await _sb
+                    .from('members')
+                    .select('*')
+                    .eq('username', u)
+                    .eq('password', p)
+                    .maybeSingle();
+
+                if (error) throw error;
+
+                if (!data) {
+                    alert("Username atau Password Salah, Cek Lagi!");
+                } else {
+                    // Simpan data login di browser (biar Lobby bisa baca)
+                    localStorage.setItem('userSession', JSON.stringify(data));
+                    alert("LOGIN BERHASIL! Selamat Datang " + data.username);
+                    window.location.href = "lobby.html"; 
+                }
+            } catch (err) {
+                alert("Gagal Login: " + err.message);
             }
         }
     </script>
