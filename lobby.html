@@ -7,22 +7,22 @@
     <style>
         body { background-color: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding-bottom: 80px; }
         
-        /* HEADER LOBBY */
+        /* HEADER LOBBY - Diperbesar agar Gagah */
         .header-lobby {
             background: #000;
-            padding: 15px;
+            padding: 20px 15px; /* Padding ditambah */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #f00;
+            border-bottom: 3px solid #f00; /* Border lebih tebal */
             position: sticky;
             top: 0;
             z-index: 100;
         }
-        .logo-box { display: flex; align-items: center; gap: 10px; }
-        .logo-box img { width: 40px; height: auto; filter: drop-shadow(0 0 5px #f00); }
-        .logo-box span { color: #fc0; font-weight: 900; font-size: 22px; }
-        .btn-deposit { background: #fc0; color: #000; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; }
+        .logo-box { display: flex; align-items: center; gap: 12px; }
+        .logo-box img { width: 55px; height: auto; filter: drop-shadow(0 0 8px #f00); } /* Logo diperbesar */
+        .logo-box span { color: #fc0; font-weight: 900; font-size: 28px; letter-spacing: 1px; text-shadow: 2px 2px #f00; } /* Font diperbesar */
+        .btn-deposit { background: linear-gradient(to bottom, #fc0, #970); color: #000; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 15px; box-shadow: 0 0 10px rgba(255,204,0,0.5); }
 
         /* KATEGORI SLOT */
         .category-bar {
@@ -35,58 +35,60 @@
             align-items: center;
             color: #000;
             font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        /* GRID PERMAINAN - 2 KOLOM RAPI */
+        /* GRID PERMAINAN */
         .game-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 12px;
             padding: 0 10px;
         }
+        
+        /* KARTU PROVIDER - Dibuat Kontras */
         .game-card {
-            background: #111;
-            border: 1px solid #333;
+            background: #1a1a1a; /* Background kartu lebih terang dari body agar kontras */
+            border: 1px solid #fc0; /* Border Emas tipis */
             border-radius: 12px;
             overflow: hidden;
             display: flex;
-            flex-direction: column; /* Menyusun konten secara vertikal */
+            flex-direction: column;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.8);
             transition: 0.3s;
         }
-        .game-card:hover { border-color: #f00; }
+        .game-card:hover { transform: translateY(-5px); border-color: #f00; }
 
-        /* KONTAINER LOGO - Kunci Tinggi agar Sejajar */
+        /* KONTAINER LOGO - Putih Bersih */
         .logo-container {
             width: 100%;
-            height: 120px; /* TINGGI DIKUNCI DI SINI */
-            background-color: #fff; /* Latar belakang putih agar logo terlihat jelas */
+            height: 110px;
+            background-color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px;
+            padding: 8px;
             box-sizing: border-box;
-            border-bottom: 1px solid #222;
         }
-
-        /* GAMBAR LOGO - Menyesuaikan Tanpa Distorsi */
         .provider-img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain; /* KUNCI KERAPIAN: Gambar muat di kotak tanpa terpotong atau gepeng */
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
         }
 
-        /* DETAIL PROVIDER */
+        /* DETAIL PROVIDER - Gelap Kontras */
         .provider-details {
-            padding: 10px;
+            padding: 12px 8px;
             text-align: center;
-            flex-grow: 1; /* Mengisi ruang yang tersisa */
+            background: #111; /* Bagian bawah lebih gelap */
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
-        .provider-label { font-size: 11px; font-weight: bold; color: #aaa; text-transform: uppercase; margin-bottom: 10px; }
+        .provider-label { font-size: 10px; font-weight: bold; color: #fc0; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
         
-        /* TOMBOL PLAY - Sama Rata */
+        /* TOMBOL PLAY */
         .btn-play {
             background: linear-gradient(to bottom, #fc0, #970);
             color: #000;
@@ -96,9 +98,10 @@
             padding: 10px 0;
             border-radius: 6px;
             display: block;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
         }
 
-        /* NAVIGASI BAWAH */
+        /* BOTTOM NAV */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -108,6 +111,7 @@
             justify-content: space-around;
             padding: 12px 0;
             border-top: 2px solid #f00;
+            z-index: 1000;
         }
         .nav-item { text-decoration: none; color: #666; font-size: 11px; text-align: center; }
         .nav-item.active { color: #fc0; }
@@ -121,7 +125,7 @@
             <img src="logogaruda.png" alt="Logo">
             <span>GARUDA 88</span>
         </div>
-        <a href="deposit.html" class="btn-deposit">Deposit</a>
+        <a href="#" class="btn-deposit">Deposit</a>
     </div>
 
     <div class="category-bar">
@@ -169,67 +173,8 @@
                 <a href="#" class="btn-play">PLAY NOW</a>
             </div>
         </div>
-
-        <div class="game-card">
-            <div class="logo-container">
-                <img src="idnslot.webp" alt="IDN Slot" class="provider-img">
-            </div>
-            <div class="provider-details">
-                <div class="provider-label">IDN SLOT</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
+        
         </div>
-
-        <div class="game-card">
-            <div class="logo-container">
-                <img src="microgaming.webp" alt="Microgaming" class="provider-img">
-            </div>
-            <div class="provider-details">
-                <div class="provider-label">MICROGAMING</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-        </div>
-
-        <div class="game-card">
-            <div class="logo-container">
-                <img src="nolimit.webp" alt="NoLimit" class="provider-img">
-            </div>
-            <div class="provider-details">
-                <div class="provider-label">NOLIMIT CITY</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-        </div>
-
-        <div class="game-card">
-            <div class="logo-container">
-                <img src="playtech.webp" alt="Playtech" class="provider-img">
-            </div>
-            <div class="provider-details">
-                <div class="provider-label">PLAYTECH</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-        </div>
-
-        <div class="game-card">
-            <div class="logo-container">
-                <img src="redtiger.webp" alt="Red Tiger" class="provider-img">
-            </div>
-            <div class="provider-details">
-                <div class="provider-label">RED TIGER</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-        </div>
-
-        <div class="game-card">
-            <div class="logo-container">
-                <img src="gmw.webp" alt="GMW" class="provider-img">
-            </div>
-            <div class="provider-details">
-                <div class="provider-label">GMW</div>
-                <a href="#" class="btn-play">PLAY NOW</a>
-            </div>
-        </div>
-    </div>
 
     <div class="bottom-nav">
         <a href="lobby.html" class="nav-item active"><span class="nav-icon">🏠</span>Lobby</a>
