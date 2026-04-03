@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRAGMATIC PLAY - GARUDA 88</title>
+    <style>
+        body { background-color: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding-bottom: 20px; }
+        
+        /* HEADER */
+        .header-provider {
+            background: #111;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid #fc0;
+        }
+        .btn-back { color: #fc0; text-decoration: none; font-size: 20px; font-weight: bold; }
+        .provider-title { font-size: 18px; font-weight: bold; color: #fff; }
+
+        /* GRID GAME */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 kolom agar muat banyak game */
+            gap: 10px;
+            padding: 15px;
+        }
+        .game-item {
+            text-align: center;
+        }
+        .game-item img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #333;
+            transition: 0.3s;
+        }
+        .game-item img:hover { border-color: #fc0; transform: scale(1.05); }
+        .game-name {
+            font-size: 10px;
+            margin-top: 5px;
+            color: #ccc;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-provider">
+        <a href="lobby.html" class="btn-back">❮</a>
+        <div class="provider-title">PRAGMATIC PLAY</div>
+    </div>
+
+    <div class="game-grid">
+        <div class="game-item">
+            <img src="https://tm.t-icdn.com/p/v4/6/642/64210.png" alt="Gates of Olympus">
+            <div class="game-name">Gates of Olympus</div>
+        </div>
+        <div class="game-item">
+            <img src="https://tm.t-icdn.com/p/v4/6/642/64211.png" alt="Starlight Princess">
+            <div class="game-name">Starlight Princess</div>
+        </div>
+        <div class="game-item">
+            <img src="https://tm.t-icdn.com/p/v4/6/642/64212.png" alt="Sweet Bonanza">
+            <div class="game-name">Sweet Bonanza</div>
+        </div>
+        <div class="game-item">
+            <img src="https://tm.t-icdn.com/p/v4/6/642/64213.png" alt="Wild West Gold">
+            <div class="game-name">Wild West Gold</div>
+        </div>
+        <div class="game-item">
+            <img src="https://tm.t-icdn.com/p/v4/6/642/64214.png" alt="Aztec Gems">
+            <div class="game-name">Aztec Gems</div>
+        </div>
+        <div class="game-item">
+            <img src="https://tm.t-icdn.com/p/v4/6/642/64215.png" alt="Sugar Rush">
+            <div class="game-name">Sugar Rush</div>
+        </div>
+    </div>
+
+</body>
+</html>
