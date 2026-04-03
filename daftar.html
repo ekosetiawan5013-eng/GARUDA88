@@ -70,21 +70,21 @@
             <div class="form-title">FORM PENDAFTARAN VIP</div>
 
             <div class="input-group">
-                <input type="text" id="reg-u" class="input-item" placeholder="USERNAME">
+                <input type="text" id="reg-u" class="input-item" placeholder="USERNAME" autocomplete="off">
             </div>
 
             <div class="input-group">
-                <input type="password" id="reg-p" class="input-item" placeholder="PASSWORD">
+                <input type="password" id="reg-p" class="input-item" placeholder="PASSWORD" autocomplete="new-password">
                 <i class="fas fa-eye pass-toggle" onclick="togglePass('reg-p', this)"></i>
             </div>
 
             <div class="input-group">
-                <input type="password" id="reg-cp" class="input-item" placeholder="KONFIRMASI PASSWORD">
+                <input type="password" id="reg-cp" class="input-item" placeholder="KONFIRMASI PASSWORD" autocomplete="new-password">
                 <i class="fas fa-eye pass-toggle" onclick="togglePass('reg-cp', this)"></i>
             </div>
 
             <div class="input-group">
-                <input type="text" id="reg-wa" class="input-item" placeholder="NOMOR WHATSAPP">
+                <input type="text" id="reg-wa" class="input-item" placeholder="NOMOR WHATSAPP" autocomplete="off">
             </div>
 
             <div class="input-group">
@@ -107,11 +107,11 @@
             </div>
 
             <div class="input-group">
-                <input type="text" id="reg-norek" class="input-item" placeholder="NOMOR REKENING">
+                <input type="text" id="reg-norek" class="input-item" placeholder="NOMOR REKENING" autocomplete="off">
             </div>
 
             <div class="input-group">
-                <input type="text" id="reg-nama" class="input-item" placeholder="NAMA SESUAI REKENING">
+                <input type="text" id="reg-nama" class="input-item" placeholder="NAMA SESUAI REKENING" autocomplete="off">
             </div>
 
             <div class="btn-wrapper">
@@ -167,6 +167,9 @@
                 ]);
 
                 if (error) throw error;
+
+                // Trik kecil agar Google tidak anggap ini submit form standar untuk simpan password
+                window.history.replaceState({}, '', window.location.href);
 
                 alert("DAFTAR BERHASIL! Silakan Login.");
                 window.location.href = "index.html";
