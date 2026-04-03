@@ -42,3 +42,74 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN - GARUDA 88</title>
+    <style>
+        body { background: #000; color: #fff; font-family: Arial; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-card { width: 90%; max-width: 350px; background: #111; padding: 25px; border-radius: 15px; border: 1px solid #fc0; box-shadow: 0 0 20px rgba(255, 204, 0, 0.3); }
+        .logo { text-align: center; margin-bottom: 25px; }
+        .logo span { color: #fc0; font-weight: 900; font-size: 28px; text-shadow: 0 0 10px #f00; letter-spacing: 2px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-size: 12px; color: #aaa; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 12px; background: #222; border: 1px solid #444; border-radius: 5px; color: #fff; box-sizing: border-box; outline: none; }
+        input:focus { border-color: #fc0; }
+        .btn-login { background: linear-gradient(to bottom, #fc0, #970); width: 100%; padding: 12px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 16px; transition: 0.3s; }
+        .btn-login:active { transform: scale(0.98); }
+        .links { text-align: center; margin-top: 20px; font-size: 13px; color: #ccc; }
+        .links a { color: #fc0; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <div class="logo"><span>GARUDA 88</span></div>
+    <form id="loginForm">
+        <div class="form-group">
+            <label>USERNAME</label>
+            <input type="text" id="userInp" placeholder="Masukkan Username" required>
+        </div>
+        <div class="form-group">
+            <label>PASSWORD</label>
+            <input type="password" id="passInp" placeholder="Masukkan Password" required>
+        </div>
+        <button type="submit" class="btn-login">MASUK SEKARANG</button>
+    </form>
+    <div class="links">
+        Belum punya akun? <a href="daftar.html">DAFTAR DISINI</a>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    const SUPABASE_URL = 'https://sbtrcroononwihparzfk.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn';
+    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const user = document.getElementById('userInp').value;
+        const pass = document.getElementById('passInp').value;
+
+        // Cek ke Database
+        let { data, error } = await _supabase
+            .from('members')
+            .select('*')
+            .eq('username', user)
+            .eq('password', pass)
+            .single();
+
+        if (data) {
+            localStorage.setItem("loggedInUser", user);
+            window.location.href = "lobby.html";
+        } else {
+            alert("Username atau Password Salah!");
+        }
+    });
+</script>
+
+</body>
+</html>
