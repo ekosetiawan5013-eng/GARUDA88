@@ -3,79 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOBBY PERMAINAN - GARUDA 88</title>
+    <title>LOBBY - GARUDA 88</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        .header { background: #111; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ff0000; position: sticky; top: 0; z-index: 100; }
-        .logo { color: #ff0000; font-size: 20px; font-weight: 900; }
-        .user-info { font-size: 12px; text-align: right; }
-        .balance { color: #ffff00; font-weight: bold; }
+        body { background: #000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
+        
+        /* Header Tipis & Elegan */
+        .header { background: #111; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ff0000; position: sticky; top: 0; z-index: 1000; }
+        .logo { color: #ff0000; font-size: 18px; font-weight: 900; letter-spacing: 1px; }
+        .user-panel { font-size: 11px; text-align: right; line-height: 1.4; }
+        .user-panel span { color: #ffff00; font-weight: bold; }
 
-        .banner { width: 100%; height: 150px; background: linear-gradient(45deg, #440000, #000); display: flex; align-items: center; justify-content: center; text-align: center; border-bottom: 1px solid #333; }
-        .banner h2 { color: #ffff00; text-shadow: 2px 2px #000; font-size: 22px; }
+        /* Banner Promosi */
+        .promo-banner { width: 100%; background: linear-gradient(to right, #222, #440000, #222); padding: 25px 0; text-align: center; border-bottom: 1px solid #333; }
+        .promo-banner h2 { margin: 0; font-size: 20px; color: #ffff00; text-transform: uppercase; text-shadow: 2px 2px #000; }
+        .promo-banner p { margin: 5px 0 0; font-size: 12px; color: #fff; }
 
-        .game-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 20px; }
-        .game-card { background: #1a1a1a; border: 1px solid #333; border-radius: 10px; overflow: hidden; text-align: center; transition: 0.3s; cursor: pointer; text-decoration: none; color: #fff; }
-        .game-card:hover { border-color: #ff0000; transform: translateY(-5px); }
-        .game-card i { font-size: 40px; margin: 20px 0 10px; color: #ffff00; }
-        .game-card span { display: block; padding-bottom: 15px; font-weight: bold; font-size: 14px; text-transform: uppercase; }
+        /* Grid Game 2 Kolom */
+        .game-section { padding: 15px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 80px; }
+        .game-box { 
+            background: #1a1a1a; border: 1px solid #333; border-radius: 8px; 
+            text-decoration: none; color: #fff; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; padding: 20px 10px; 
+            transition: 0.2s; position: relative; overflow: hidden;
+        }
+        .game-box:active { background: #222; transform: scale(0.95); border-color: #ff0000; }
+        
+        /* Ikon Game Besar & Kuning */
+        .game-box i { font-size: 45px; color: #ffff00; margin-bottom: 12px; text-shadow: 0 0 10px rgba(255, 255, 0, 0.3); }
+        .game-box span { font-size: 13px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        /* Label 'HOT' atau 'NEW' kecil di pojok */
+        .badge { position: absolute; top: 5px; right: 5px; background: red; color: #fff; font-size: 9px; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
 
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #111; display: flex; justify-content: space-around; padding: 10px 0; border-top: 2px solid #ff0000; }
-        .nav-item { text-align: center; color: #888; text-decoration: none; font-size: 10px; }
-        .nav-item i { font-size: 20px; display: block; margin-bottom: 3px; }
+        /* Bottom Navigation Bar */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #111; display: flex; justify-content: space-around; padding: 10px 0; border-top: 2px solid #ff0000; box-shadow: 0 -5px 15px rgba(0,0,0,0.5); }
+        .nav-item { text-align: center; color: #888; text-decoration: none; font-size: 11px; flex: 1; transition: 0.3s; }
+        .nav-item i { font-size: 20px; display: block; margin-bottom: 4px; }
         .nav-item.active { color: #ffff00; }
+        .nav-item:active { color: #fff; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <div class="logo">GARUDA 88</div>
-        <div class="user-info">
-            ID: <span id="username-display">MEMBER VIP</span><br>
-            Saldo: <span class="balance">Rp 0.00</span>
+        <div class="user-panel">
+            ID: <span>MEMBER VIP</span><br>
+            Saldo: <span>Rp 0.00</span>
         </div>
     </div>
 
-    <div class="banner">
-        <h2>SELAMAT DATANG<br><small style="font-size: 14px; color: #fff;">Situs Gacor Anti Rungkad</small></h2>
+    <div class="promo-banner">
+        <h2>Selamat Datang</h2>
+        <p>Situs Gacor Anti Rungkad Terpercaya</p>
     </div>
 
-    <div class="game-grid">
-        <a href="#" class="game-card">
+    <div class="game-section">
+        <a href="#" class="game-box">
+            <div class="badge">HOT</div>
             <i class="fas fa-slot-machine">🎰</i>
             <span>SLOT GACOR</span>
         </a>
-        <a href="#" class="game-card">
+        <a href="#" class="game-box">
             <i class="fas fa-dice">🎲</i>
             <span>LIVE CASINO</span>
         </a>
-        <a href="#" class="game-card">
+        <a href="#" class="game-box">
+            <div class="badge">NEW</div>
             <i class="fas fa-ticket-alt">🎫</i>
             <span>TOGEL ONLINE</span>
         </a>
-        <a href="#" class="game-card">
+        <a href="#" class="game-box">
             <i class="fas fa-futbol">⚽</i>
             <span>SPORTSBOOK</span>
         </a>
-        <a href="#" class="game-card">
+        <a href="#" class="game-box">
             <i class="fas fa-fish">🐟</i>
             <span>TEMBAK IKAN</span>
         </a>
-        <a href="#" class="game-card">
-            <i class="fas fa-clover">🃏</i>
-            <span>POKER</span>
+        <a href="#" class="game-box">
+            <i class="fas fa-spade">🃏</i>
+            <span>POKER GAME</span>
         </a>
     </div>
 
-    <div style="height: 80px;"></div>
-
     <div class="bottom-nav">
-        <a href="lobby.html" class="nav-item active"><i class="fas fa-home"></i>Lobby</a>
-        <a href="#" class="nav-item"><i class="fas fa-wallet"></i>Deposit</a>
-        <a href="#" class="nav-item"><i class="fas fa-exchange-alt"></i>Withdraw</a>
-        <a href="#" class="nav-item"><i class="fas fa-headset"></i>LiveChat</a>
-        <a href="index.html" class="nav-item"><i class="fas fa-sign-out-alt"></i>Keluar</a>
+        <a href="lobby.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            Lobby
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-wallet"></i>
+            Deposit
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-hand-holding-usd"></i>
+            Withdraw
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-headset"></i>
+            LiveChat
+        </a>
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-sign-out-alt"></i>
+            Keluar
+        </a>
     </div>
 
 </body>
