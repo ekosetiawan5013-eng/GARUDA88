@@ -5,24 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOBBY - GARUDA 88</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding-bottom: 80px; }
+        body { background-color: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding-bottom: 90px; }
         
-        /* HEADER LOBBY - Diperbesar agar Gagah */
+        /* HEADER SUPER BESAR & GAGAH */
         .header-lobby {
             background: #000;
-            padding: 20px 15px; /* Padding ditambah */
+            padding: 25px 15px; /* Padding ditingkatkan */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid #f00; /* Border lebih tebal */
+            border-bottom: 4px solid #f00;
             position: sticky;
             top: 0;
             z-index: 100;
         }
-        .logo-box { display: flex; align-items: center; gap: 12px; }
-        .logo-box img { width: 55px; height: auto; filter: drop-shadow(0 0 8px #f00); } /* Logo diperbesar */
-        .logo-box span { color: #fc0; font-weight: 900; font-size: 28px; letter-spacing: 1px; text-shadow: 2px 2px #f00; } /* Font diperbesar */
-        .btn-deposit { background: linear-gradient(to bottom, #fc0, #970); color: #000; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 15px; box-shadow: 0 0 10px rgba(255,204,0,0.5); }
+        .logo-box { display: flex; align-items: center; gap: 15px; }
+        .logo-box img { width: 65px; height: auto; filter: drop-shadow(0 0 10px #f00); } /* Logo diperbesar */
+        .logo-box span { color: #fc0; font-weight: 900; font-size: 32px; letter-spacing: 1.5px; text-shadow: 2px 2px #f00; } /* Font diperbesar */
+        .btn-deposit { background: linear-gradient(to bottom, #fc0, #970); color: #000; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; box-shadow: 0 0 15px rgba(255,204,0,0.4); }
 
         /* KATEGORI SLOT */
         .category-bar {
@@ -38,28 +38,26 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        /* GRID PERMAINAN */
+        /* GRID PERMAINAN - 10 PROVIDER */
         .game-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 15px;
             padding: 0 10px;
         }
         
-        /* KARTU PROVIDER - Dibuat Kontras */
+        /* KARTU PROVIDER KONTRAS */
         .game-card {
-            background: #1a1a1a; /* Background kartu lebih terang dari body agar kontras */
-            border: 1px solid #fc0; /* Border Emas tipis */
+            background: #1a1a1a;
+            border: 1.5px solid #fc0; /* Border Emas lebih tegas */
             border-radius: 12px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             box-shadow: 0 5px 15px rgba(0,0,0,0.8);
-            transition: 0.3s;
         }
-        .game-card:hover { transform: translateY(-5px); border-color: #f00; }
 
-        /* KONTAINER LOGO - Putih Bersih */
+        /* LOGO BOX - PUTIH BERSIH */
         .logo-container {
             width: 100%;
             height: 110px;
@@ -67,28 +65,28 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 8px;
+            padding: 10px;
             box-sizing: border-box;
         }
         .provider-img {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 95%;
+            max-height: 95%;
             object-fit: contain;
         }
 
-        /* DETAIL PROVIDER - Gelap Kontras */
+        /* DETAIL PROVIDER */
         .provider-details {
             padding: 12px 8px;
             text-align: center;
-            background: #111; /* Bagian bawah lebih gelap */
+            background: #111;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
-        .provider-label { font-size: 10px; font-weight: bold; color: #fc0; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .provider-label { font-size: 10px; font-weight: bold; color: #fc0; text-transform: uppercase; margin-bottom: 8px; }
         
-        /* TOMBOL PLAY */
+        /* TOMBOL PLAY SEJAJAR */
         .btn-play {
             background: linear-gradient(to bottom, #fc0, #970);
             color: #000;
@@ -98,10 +96,9 @@
             padding: 10px 0;
             border-radius: 6px;
             display: block;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
         }
 
-        /* BOTTOM NAV */
+        /* NAVIGASI BAWAH */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -135,9 +132,7 @@
 
     <div class="game-grid">
         <div class="game-card">
-            <div class="logo-container">
-                <img src="pragmatic.webp" alt="Pragmatic" class="provider-img">
-            </div>
+            <div class="logo-container"><img src="pragmatic.webp" class="provider-img"></div>
             <div class="provider-details">
                 <div class="provider-label">PRAGMATIC PLAY</div>
                 <a href="#" class="btn-play">PLAY NOW</a>
@@ -145,9 +140,7 @@
         </div>
 
         <div class="game-card">
-            <div class="logo-container">
-                <img src="pgsoft.webp" alt="PG Soft" class="provider-img">
-            </div>
+            <div class="logo-container"><img src="pgsoft.webp" class="provider-img"></div>
             <div class="provider-details">
                 <div class="provider-label">PG SOFT</div>
                 <a href="#" class="btn-play">PLAY NOW</a>
@@ -155,9 +148,7 @@
         </div>
 
         <div class="game-card">
-            <div class="logo-container">
-                <img src="fastspin.webp" alt="Fastspin" class="provider-img">
-            </div>
+            <div class="logo-container"><img src="fastspin.webp" class="provider-img"></div>
             <div class="provider-details">
                 <div class="provider-label">FASTSPIN</div>
                 <a href="#" class="btn-play">PLAY NOW</a>
@@ -165,16 +156,61 @@
         </div>
 
         <div class="game-card">
-            <div class="logo-container">
-                <img src="habanero.webp" alt="Habanero" class="provider-img">
-            </div>
+            <div class="logo-container"><img src="habanero.webp" class="provider-img"></div>
             <div class="provider-details">
                 <div class="provider-label">HABANERO</div>
                 <a href="#" class="btn-play">PLAY NOW</a>
             </div>
         </div>
-        
+
+        <div class="game-card">
+            <div class="logo-container"><img src="idnslot.webp" class="provider-img"></div>
+            <div class="provider-details">
+                <div class="provider-label">IDN SLOT</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
         </div>
+
+        <div class="game-card">
+            <div class="logo-container"><img src="microgaming.webp" class="provider-img"></div>
+            <div class="provider-details">
+                <div class="provider-label">MICROGAMING</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="logo-container"><img src="nolimit.webp" class="provider-img"></div>
+            <div class="provider-details">
+                <div class="provider-label">NOLIMIT CITY</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="logo-container"><img src="playtech.webp" class="provider-img"></div>
+            <div class="provider-details">
+                <div class="provider-label">PLAYTECH</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="logo-container"><img src="redtiger.webp" class="provider-img"></div>
+            <div class="provider-details">
+                <div class="provider-label">RED TIGER</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="logo-container"><img src="gmw.webp" class="provider-img"></div>
+            <div class="provider-details">
+                <div class="provider-label">GMW</div>
+                <a href="#" class="btn-play">PLAY NOW</a>
+            </div>
+        </div>
+    </div>
 
     <div class="bottom-nav">
         <a href="lobby.html" class="nav-item active"><span class="nav-icon">🏠</span>Lobby</a>
