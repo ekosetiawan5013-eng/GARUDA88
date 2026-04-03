@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GARUDA 88 - DAFTAR AKUN VIP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { background: #4a0000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; padding-bottom: 50px; }
         .main-container { display: flex; flex-direction: column; align-items: center; width: 100%; }
 
         .header { background: linear-gradient(to bottom, #700000, #000); padding: 20px 0; border-bottom: 2px solid #fc0; width: 100%; text-align: center; }
         
-        /* BRANDING SIMETRIS */
+        /* BRANDING GARUDA 88 MERAH TERANG + BLOK HITAM + NEON PUTAR */
         .brand-container {
             position: relative; display: inline-block; padding: 10px 40px; background: #000; 
             border-radius: 12px; overflow: hidden; margin: 0 auto;
@@ -31,25 +32,30 @@
         .form-box { width: 100%; padding: 25px 0; background: #000; display: flex; flex-direction: column; align-items: center; gap: 12px; }
         .form-title { color: #fc0; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
 
+        /* INPUT GROUP & ITEM */
         .input-group { position: relative; width: 85%; max-width: 350px; }
         .input-item, select { 
             width: 100%; height: 45px; border-radius: 8px; font-size: 14px; font-weight: bold; 
             box-sizing: border-box; border: 2px solid #fc0; background: #222; color: #fff; 
             text-align: center; outline: none; appearance: none;
         }
+        select { text-align-last: center; cursor: pointer; }
 
         .pass-toggle { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #fc0; font-size: 18px; z-index: 10; }
 
         /* TOMBOL DAFTAR NEON */
         .btn-wrapper { width: 85%; max-width: 350px; height: 55px; position: relative; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-top: 10px; }
-        .btn { width: calc(100% - 4px); height: calc(100% - 4px); border-radius: 6px; font-size: 18px; font-weight: bold; z-index: 1; border: none; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; text-transform: uppercase; background: linear-gradient(to bottom, #fc0, #b8860b); color: #000; }
-        
+        .btn { 
+            width: calc(100% - 4px); height: calc(100% - 4px); border-radius: 6px; font-size: 18px; font-weight: bold; 
+            z-index: 1; border: none; cursor: pointer; text-decoration: none; display: flex; 
+            align-items: center; justify-content: center; text-transform: uppercase; 
+            background: linear-gradient(to bottom, #fc0, #b8860b); color: #000; 
+        }
         .btn-wrapper::before { content: ''; position: absolute; width: 150%; height: 150%; background: conic-gradient(transparent, #fff, transparent 30%); animation: rotate-neon 2s linear infinite; }
 
         .footer-link { margin-top: 20px; color: #fff; font-size: 13px; text-decoration: none; font-weight: bold; }
         .footer-link span { color: #fc0; }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -118,6 +124,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        // Inisialisasi Koneksi Database
+        const _sb = supabase.createClient('https://sbtrcroononwihparzfk.supabase.co', 'sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn');
+
+        // Fungsi Mata Anti-Typo
         function togglePass(id, icon) {
             const p = document.getElementById(id);
             if (p.type === "password") {
@@ -129,9 +139,41 @@
             }
         }
 
+        // FUNGSI DAFTAR (MESIN BANDAR)
         async function register() {
-            // Logika pendaftaran Bos...
-            alert("Sedang Memproses Pendaftaran...");
+            const u = document.getElementById('reg-u').value;
+            const p = document.getElementById('reg-p').value;
+            const cp = document.getElementById('reg-cp').value;
+            const wa = document.getElementById('reg-wa').value;
+            const bk = document.getElementById('reg-bank').value;
+            const nr = document.getElementById('reg-norek').value;
+            const nm = document.getElementById('reg-nama').value;
+
+            if(!u || !p || !wa || !bk || !nr || !nm) return alert("Woi! Isi semua datanya, Bos!");
+            if(p !== cp) return alert("Password tidak sama, cek lagi!");
+
+            try {
+                // Simpan Data ke Database Supabase
+                const { error } = await _sb.from('members').insert([
+                    { 
+                        username: u, 
+                        password: p, 
+                        whatsapp: wa, 
+                        bank_name: bk, 
+                        acc_number: nr, 
+                        acc_name: nm,
+                        balance: 0 
+                    }
+                ]);
+
+                if (error) throw error;
+
+                alert("DAFTAR BERHASIL! Silakan Login.");
+                window.location.href = "index.html";
+
+            } catch (err) {
+                alert("Gagal Daftar: " + err.message);
+            }
         }
     </script>
 </body>
