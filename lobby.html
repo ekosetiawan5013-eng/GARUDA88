@@ -6,79 +6,65 @@
     <title>LOBBY - GARUDA 88</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Penyesuaian warna agar selaras dengan Index/Daftar (Merah Maroon & Gold) */
         body { background: #1a0000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 0; }
         
         .header-top { background: linear-gradient(180deg, #700000 0%, #000 100%); padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #fc0; }
-        .logo-area { display: flex; align-items: center; gap: 10px; }
-        .logo-text { color: #ff0000; font-size: 20px; font-weight: 900; text-shadow: 2px 2px #000; margin: 0; }
-        
-        .btn-deposit-top { background: linear-gradient(to bottom, #fc0, #b8860b); color: #000; padding: 8px 20px; border-radius: 5px; font-weight: bold; text-decoration: none; font-size: 14px; box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); }
+        .logo-text { color: #ff0000; font-size: 20px; font-weight: 900; text-shadow: 2px 2px #000; margin: 0; text-transform: uppercase; }
+        .btn-deposit-top { background: linear-gradient(to bottom, #fc0, #b8860b); color: #000; padding: 6px 15px; border-radius: 5px; font-weight: bold; text-decoration: none; font-size: 13px; }
 
-        .user-section { background: #000; padding: 15px; border-bottom: 1px solid #444; position: relative; }
-        .username-id { font-size: 20px; font-weight: bold; color: #fff; margin-bottom: 5px; text-transform: uppercase; }
-        .balance-row { display: flex; align-items: center; gap: 5px; font-size: 16px; }
-        .balance-label { color: #ccc; }
-        .balance-value { color: #0f0; font-weight: bold; }
-        
-        .btn-refresh { position: absolute; right: 15px; bottom: 15px; background: #00c853; color: #fff; padding: 5px 12px; border-radius: 5px; font-size: 12px; text-decoration: none; font-weight: bold; }
+        .user-info-bar { background: #000; padding: 15px; border-bottom: 1px solid #444; position: relative; }
+        .u-name { font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 5px; text-transform: uppercase; }
+        .u-balance { font-size: 14px; color: #ccc; }
+        .u-balance span { color: #ff0000; font-weight: bold; }
+        .refresh-btn { position: absolute; right: 15px; bottom: 15px; background: #00c853; color: #fff; padding: 5px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; }
 
-        .slot-title-bar { background: #fc0; margin: 10px; padding: 8px 15px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; color: #000; }
-        .slot-title-bar span { font-weight: bold; font-size: 14px; }
-        .btn-lobby-black { background: #000; color: #fff; padding: 3px 12px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+        .slot-bar { background: #fc0; color: #000; margin: 10px; padding: 8px 12px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 14px; }
+        .btn-lobby { background: #000; color: #fff; padding: 2px 10px; border-radius: 3px; font-size: 10px; }
 
-        /* Grid Provider Menggunakan File Lokal Agar Tidak Pecah */
-        .provider-grid { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 10px; padding-bottom: 90px; }
-        .provider-card { border: 1px solid #fc0; border-radius: 8px; overflow: hidden; background: #000; transition: 0.3s; }
-        .provider-card:active { transform: scale(0.98); }
+        .provider-container { padding: 10px; display: grid; grid-template-columns: 1fr; gap: 12px; padding-bottom: 100px; }
+        .provider-card { border: 1px solid #fc0; border-radius: 8px; overflow: hidden; background: #000; }
         .provider-card img { width: 100%; display: block; height: auto; }
-        
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid #fc0; padding: 10px 0; z-index: 100; }
-        .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; }
-        .nav-item i { display: block; font-size: 18px; margin-bottom: 3px; color: #fc0; }
+
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid #fc0; display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; z-index: 1000; }
+        .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; }
+        .nav-item i { display: block; font-size: 18px; color: #fc0; margin-bottom: 3px; }
     </style>
 </head>
 <body>
 
     <div class="header-top">
-        <div class="logo-area">
-            <i class="fas fa-bars" style="color:#fff; font-size: 18px;"></i>
-            <h1 class="logo-text">GARUDA 88</h1>
-        </div>
-        <a href="deposit.html" class="btn-deposit-top">Deposit</a>
+        <h1 class="logo-text">GARUDA 88</h1>
+        <a href="deposit.html" class="btn-deposit-top">DEPOSIT</a>
     </div>
 
-    <div class="user-section">
-        <div class="username-id" id="user-id">USER</div>
-        <div class="balance-row">
-            <span class="balance-label">Balance:</span>
-            <span class="balance-value">IDR. <span id="user-balance">0</span></span>
-        </div>
-        <a href="#" class="btn-refresh" onclick="location.reload()">Refresh</a>
+    <div class="user-info-bar">
+        <div class="u-name" id="user-id">USER</div>
+        <div class="u-balance">Balance: <span>IDR. <span id="user-saldo">0</span></span></div>
+        <div class="refresh-btn" onclick="location.reload()"><i class="fas fa-sync-alt"></i> Refresh</div>
     </div>
 
-    <div class="slot-title-bar">
-        <span><i class="fas fa-th-large"></i> SLOT GAMES</span>
-        <div class="btn-lobby-black">LOBBY</div>
+    <div class="slot-bar">
+        <span><i class="fas fa-gamepad"></i> SLOT GAMES</span>
+        <div class="btn-lobby">LOBBY</div>
     </div>
 
-    <div class="provider-grid">
-        <div class="provider-card"><img src="pragmatic.jpg" alt="Pragmatic Play"></div>
-        <div class="provider-card"><img src="pgsoft.jpg" alt="PG Soft"></div>
-        <div class="provider-card"><img src="habanero.jpg" alt="Habanero"></div>
-        <div class="provider-card"><img src="joker.jpg" alt="Joker123"></div>
-        <div class="provider-card"><img src="microgaming.jpg" alt="Microgaming"></div>
-        <div class="provider-card"><img src="playtech.jpg" alt="Playtech"></div>
-        <div class="provider-card"><img src="spadegaming.jpg" alt="Spadegaming"></div>
-        <div class="provider-card"><img src="cq9.jpg" alt="CQ9"></div>
-        <div class="provider-card"><img src="idnsun.jpg" alt="IDN Sun"></div>
-        <div class="provider-card"><img src="toptrend.jpg" alt="TopTrend"></div>
+    <div class="provider-container">
+        <div class="provider-card"><img src="pragmatic.webp" alt="Pragmatic Play"></div>
+        <div class="provider-card"><img src="pgsoft.webp" alt="PG Soft"></div>
+        <div class="provider-card"><img src="idnslot.webp" alt="IDN Slot"></div>
+        <div class="provider-card"><img src="habanero.webp" alt="Habanero"></div>
+        <div class="provider-card"><img src="microgaming.webp" alt="Microgaming"></div>
+        <div class="provider-card"><img src="nolimit.webp" alt="NoLimit City"></div>
+        <div class="provider-card"><img src="playtech.webp" alt="Playtech"></div>
+        <div class="provider-card"><img src="redtiger.webp" alt="Red Tiger"></div>
+        <div class="provider-card"><img src="fastspin.webp" alt="FastSpin"></div>
+        <div class="provider-card"><img src="gmw.webp" alt="GMW"></div>
     </div>
 
     <div class="bottom-nav">
         <a href="lobby.html" class="nav-item"><i class="fas fa-home"></i>HOME</a>
-        <a href="deposit.html" class="nav-item"><i class="fas fa-wallet"></i>DEPOSIT</a>
-        <a href="withdraw.html" class="nav-item"><i class="fas fa-money-bill-alt"></i>WITHDRAW</a>
+        <a href="deposit.html" class="nav-item"><i class="fas fa-university"></i>DEPO</a>
+        <a href="withdraw.html" class="nav-item"><i class="fas fa-money-bill-wave"></i>WD</a>
         <a href="#" onclick="logout()" class="nav-item"><i class="fas fa-sign-out-alt"></i>LOGOUT</a>
     </div>
 
@@ -87,8 +73,8 @@
         if (!session) {
             window.location.href = "index.html";
         } else {
-            document.getElementById('user-id').innerText = session.username.toUpperCase();
-            document.getElementById('user-balance').innerText = new Intl.NumberFormat('id-ID').format(session.balance || 0);
+            document.getElementById('user-id').innerText = session.username;
+            document.getElementById('user-saldo').innerText = new Intl.NumberFormat('id-ID').format(session.balance || 0);
         }
 
         function logout() {
