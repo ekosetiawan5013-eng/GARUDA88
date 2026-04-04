@@ -199,6 +199,11 @@
     </div>
 
     <script>
+        // --- KONFIGURASI SUPABASE SUDAH TERPASANG ---
+        const _SB_URL = "https://vixksrvbctovncsnlysk.supabase.co"; 
+        const _SB_KEY = "sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn";
+        const supabaseClient = supabase.createClient(_SB_URL, _SB_KEY);
+
         // INISIALISASI SESSION SAAT LOAD
         const session = JSON.parse(localStorage.getItem('userSession'));
         if (!session) { 
@@ -206,6 +211,34 @@
         } else {
             document.getElementById('user-id').innerText = session.username.toUpperCase();
             document.getElementById('user-saldo').innerText = new Intl.NumberFormat('id-ID').format(session.balance || 0);
+            
+            // Tarik saldo asli dari Supabase saat masuk lobby
+            loadSaldoFromDB(session.username);
+        }
+
+        // FUNGSI SINKRONISASI KE TABEL MEMBERS
+        async function loadSaldoFromDB(username) {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('members')
+                    .select('balance')
+                    .eq('username', username)
+                    .single();
+
+                if (data) {
+                    // Update tampilan saldo di layar
+                    document.getElementById('user-saldo').innerText = new Intl.NumberFormat('id-ID').format(data.balance);
+                    
+                    // Update session lokal agar tetap sinkron jika pindah halaman
+                    let currentSession = JSON.parse(localStorage.getItem('userSession'));
+                    if(currentSession) {
+                        currentSession.balance = data.balance;
+                        localStorage.setItem('userSession', JSON.stringify(currentSession));
+                    }
+                }
+            } catch (err) {
+                console.log("Koneksi Supabase Bermasalah");
+            }
         }
 
         // FUNGSI LOGOUT
@@ -214,19 +247,14 @@
             window.location.href = "index.html"; 
         }
 
-        // FUNGSI SINKRONISASI SALDO OTOMATIS (CEK TIAP 5 DETIK)
+        // CEK SALDO TIAP 5 DETIK (AUTOMATIC REFRESH SALDO)
         function syncBalance() {
             const currentSession = JSON.parse(localStorage.getItem('userSession'));
             if (currentSession) {
-                // Tampilkan saldo terbaru dari session
-                const saldoElement = document.getElementById('user-saldo');
-                if (saldoElement) {
-                    saldoElement.innerText = new Intl.NumberFormat('id-ID').format(currentSession.balance || 0);
-                }
+                loadSaldoFromDB(currentSession.username);
             }
         }
 
-        // Jalankan interval sinkronisasi
         setInterval(syncBalance, 5000);
     </script>
 </body>
