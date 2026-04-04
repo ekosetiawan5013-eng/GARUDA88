@@ -6,134 +6,49 @@
     <title>LOBBY - GARUDA 88</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <style>
-        :root {
-            --primary-red: #ff0000;
-            --neon-green: #00ff00;
-        }
-
+        :root { --primary-red: #ff0000; --neon-green: #00ff00; }
         * { box-sizing: border-box; }
         body { background: #000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
-        
-        /* HEADER - Animasi Ketikan (Typing) Kembali Hidup */
-        .header-top { 
-            background: linear-gradient(180deg, #4b0000 0%, #000 100%); 
-            padding: 12px 15px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-bottom: 2px solid var(--primary-red); 
-        }
-
+        .header-top { background: linear-gradient(180deg, #4b0000 0%, #000 100%); padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--primary-red); }
         .brand-container { display: flex; align-items: center; gap: 10px; }
         .garuda-logo { height: 35px; width: auto; }
         .typing-container { display: inline-block; min-width: 160px; }
-        .logo-text { 
-            color: var(--primary-red); 
-            font-family: 'Orbitron', sans-serif;
-            font-size: 20px; 
-            font-weight: 900; 
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); 
-            margin: 0; 
-            text-transform: uppercase; 
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid var(--primary-red);
-            width: 0;
-            animation: typing 3s steps(9, end) infinite, blink-caret 0.75s step-end infinite;
-        }
-
+        .logo-text { color: var(--primary-red); font-family: 'Orbitron', sans-serif; font-size: 20px; font-weight: 900; text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); margin: 0; text-transform: uppercase; white-space: nowrap; overflow: hidden; border-right: 3px solid var(--primary-red); width: 0; animation: typing 3s steps(9, end) infinite, blink-caret 0.75s step-end infinite; }
         @keyframes typing { 0% { width: 0; } 50% { width: 100%; } 80% { width: 100%; } 100% { width: 0; } }
         @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--primary-red); } }
-
-        /* --- EFEK KHUSUS DEPOSIT (CTA HIDUP) --- */
-        .btn-deposit-top { 
-            background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); 
-            color: #fff; padding: 7px 18px; border-radius: 5px; 
-            font-weight: bold; text-decoration: none; font-size: 13px; 
-            animation: deposit-pulse 1.5s infinite; 
-            box-shadow: 0 0 5px var(--primary-red);
-            border: 1px solid #fff;
-        }
-
-        @keyframes deposit-pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
-        }
-
-        /* User Info Bar */
+        .btn-deposit-top { background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); color: #fff; padding: 7px 18px; border-radius: 5px; font-weight: bold; text-decoration: none; font-size: 13px; animation: deposit-pulse 1.5s infinite; box-shadow: 0 0 5px var(--primary-red); border: 1px solid #fff; }
+        @keyframes deposit-pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); } }
         .user-info-bar { background: #0f0f0f; padding: 12px 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
         .u-balance span { color: var(--primary-red); font-weight: bold; }
         .refresh-btn { background: #222; color: #fff; padding: 6px 12px; border-radius: 4px; border: 1px solid #444; cursor: pointer; }
-
-        /* Slot Bar */
         .slot-bar { background: var(--primary-red); color: #fff; margin: 10px; padding: 8px 12px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
         .btn-lobby-label { background: #000; color: #fff; padding: 3px 12px; border-radius: 3px; font-size: 11px; }
-
-        /* --- GRID PROVIDER --- */
         .provider-container { padding: 0 10px 20px 10px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .provider-card { 
-            border-radius: 12px; 
-            overflow: hidden; 
-            background: #000; 
-            display: flex; 
-            flex-direction: column; 
-            aspect-ratio: 1 / 1; 
-            border: 1.5px solid var(--primary-red); 
-        }
-
+        .provider-card { border-radius: 12px; overflow: hidden; background: #000; display: flex; flex-direction: column; aspect-ratio: 1 / 1; border: 1.5px solid var(--primary-red); }
         .img-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .provider-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
         .card-idn { background: radial-gradient(circle, #2a1b5d 0%, #1a103d 100%); }
         .card-idn .img-wrapper { padding: 8px; }
         .card-idn img { object-fit: contain; }
-
         .card-white { background-color: #fff; }
         .card-white .img-wrapper { padding: 12px; }
         .card-white img { object-fit: contain; }
-
-        /* --- PLAY NOW BUTTON (WARNA MERAH + RAINBOW GLOW) --- */
-        .play-now {
-            background: linear-gradient(180deg, #ff3333 0%, #990000 100%);
-            color: #fff; text-align: center; padding: 10px 0; font-size: 13px; font-weight: 900; border: none; width: 100%; text-transform: uppercase; 
-            border-top: 1px solid #fff;
-            animation: rainbow-glow 2s infinite linear;
-            letter-spacing: 1px;
-        }
-
-        @keyframes rainbow-glow {
-            0% { color: #fff; text-shadow: 0 0 10px #ff0000; }
-            20% { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
-            40% { color: #0000ff; text-shadow: 0 0 10px #0000ff; }
-            60% { color: #00ffff; text-shadow: 0 0 10px #00ffff; }
-            80% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
-            100% { color: #fff; text-shadow: 0 0 10px #ff0000; }
-        }
-
-        /* --- BANK STATUS --- */
+        .play-now { background: linear-gradient(180deg, #ff3333 0%, #990000 100%); color: #fff; text-align: center; padding: 10px 0; font-size: 13px; font-weight: 900; border: none; width: 100%; text-transform: uppercase; border-top: 1px solid #fff; animation: rainbow-glow 2s infinite linear; letter-spacing: 1px; }
+        @keyframes rainbow-glow { 0% { color: #fff; text-shadow: 0 0 10px #ff0000; } 20% { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; } 40% { color: #0000ff; text-shadow: 0 0 10px #0000ff; } 60% { color: #00ffff; text-shadow: 0 0 10px #00ffff; } 80% { color: #00ff00; text-shadow: 0 0 10px #00ff00; } 100% { color: #fff; text-shadow: 0 0 10px #ff0000; } }
         .footer-info { text-align: center; padding: 20px 10px 110px 10px; background: #000; color: #888; font-size: 11px; border-top: 1px solid #222; }
         .bank-container-wrapper { display: flex; justify-content: center; margin-bottom: 20px; }
         .bank-status { display: grid; grid-template-columns: repeat(3, auto); gap: 10px 20px; text-align: left; }
         .status-item { display: flex; align-items: center; gap: 6px; font-size: 10px; color: #ccc; font-weight: 600; }
         .dot { height: 7px; width: 7px; border-radius: 50%; background: var(--neon-green); animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-
-        .copyright-text { line-height: 1.6; }
-        strong { color: var(--primary-red); }
-
-        /* Bottom Nav */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; z-index: 1000; }
         .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; }
         .nav-item i { display: block; font-size: 20px; color: var(--primary-red); margin-bottom: 3px; }
     </style>
 </head>
 <body>
-
     <div class="header-top">
         <div class="brand-container">
             <img src="logogaruda.png" alt="Logo" class="garuda-logo">
@@ -147,7 +62,7 @@
             <div class="u-name" id="user-id">USER</div>
             <div class="u-balance">Balance: <span>IDR. <span id="user-saldo">0</span></span></div>
         </div>
-        <button class="refresh-btn" onclick="location.reload()"><i class="fas fa-sync-alt"></i></button>
+        <button class="refresh-btn" onclick="refreshSaldo()"><i class="fas fa-sync-alt"></i></button>
     </div>
 
     <div class="slot-bar">
@@ -185,10 +100,7 @@
                 <div class="status-item"><span class="dot"></span> PANIN</div>
             </div>
         </div>
-        <div class="copyright-text">
-            &copy; Copyright 2026 - All Rights Reserved.<br>
-            Official Licensed by GARUDA 88 Management.
-        </div> 
+        <div class="copyright-text">&copy; Copyright 2026 - All Rights Reserved.<br>Official Licensed by GARUDA 88 Management.</div> 
     </div>
 
     <div class="bottom-nav">
@@ -199,24 +111,19 @@
     </div>
 
     <script>
-        // --- KONFIGURASI SUPABASE SUDAH TERPASANG ---
         const _SB_URL = "https://vixksrvbctovncsnlysk.supabase.co"; 
         const _SB_KEY = "sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn";
         const supabaseClient = supabase.createClient(_SB_URL, _SB_KEY);
 
-        // INISIALISASI SESSION SAAT LOAD
         const session = JSON.parse(localStorage.getItem('userSession'));
         if (!session) { 
             window.location.href = "index.html"; 
         } else {
             document.getElementById('user-id').innerText = session.username.toUpperCase();
             document.getElementById('user-saldo').innerText = new Intl.NumberFormat('id-ID').format(session.balance || 0);
-            
-            // Tarik saldo asli dari Supabase saat masuk lobby
-            loadSaldoFromDB(session.username);
+            loadSaldoFromDB(session.username); // Ambil data segar dari Supabase saat masuk
         }
 
-        // FUNGSI SINKRONISASI KE TABEL MEMBERS
         async function loadSaldoFromDB(username) {
             try {
                 const { data, error } = await supabaseClient
@@ -226,36 +133,39 @@
                     .single();
 
                 if (data) {
-                    // Update tampilan saldo di layar
                     document.getElementById('user-saldo').innerText = new Intl.NumberFormat('id-ID').format(data.balance);
-                    
-                    // Update session lokal agar tetap sinkron jika pindah halaman
                     let currentSession = JSON.parse(localStorage.getItem('userSession'));
                     if(currentSession) {
                         currentSession.balance = data.balance;
                         localStorage.setItem('userSession', JSON.stringify(currentSession));
                     }
                 }
-            } catch (err) {
-                console.log("Koneksi Supabase Bermasalah");
+            } catch (err) { console.log("Gagal sinkron"); }
+        }
+
+        function refreshSaldo() {
+            const currentSession = JSON.parse(localStorage.getItem('userSession'));
+            if (currentSession) {
+                const icon = document.querySelector('.refresh-btn i');
+                icon.classList.add('fa-spin'); // Kasih efek putar pas di klik
+                loadSaldoFromDB(currentSession.username).then(() => {
+                    setTimeout(() => icon.classList.remove('fa-spin'), 800);
+                });
             }
         }
 
-        // FUNGSI LOGOUT
         function logout() { 
             localStorage.removeItem('userSession'); 
             window.location.href = "index.html"; 
         }
 
-        // CEK SALDO TIAP 5 DETIK (AUTOMATIC REFRESH SALDO)
-        function syncBalance() {
+        // --- SISTEM RADAR OTOMATIS (Cek tiap 5 detik) ---
+        setInterval(() => {
             const currentSession = JSON.parse(localStorage.getItem('userSession'));
             if (currentSession) {
                 loadSaldoFromDB(currentSession.username);
             }
-        }
-
-        setInterval(syncBalance, 5000);
+        }, 5000); 
     </script>
 </body>
 </html>
