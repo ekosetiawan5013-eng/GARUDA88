@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KASIR DEPOSIT - GARUDA 88</title>
+    <title>GARUDA 88 - LOGIN PRESISI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
-        .main-header { background: #cc0000; color: #fff; text-align: center; padding: 12px; font-weight: bold; font-size: 18px; text-transform: uppercase; border-bottom: 2px solid #fff; }
-        .user-section { background: #1a1a1a; padding: 15px; border-bottom: 1px solid #444; }
-        .user-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .balance-box { background: #000; border: 1px solid #cc0000; padding: 5px 10px; border-radius: 4px; color: #fff; font-weight: bold; }
+        .main-header { background: #cc0000; color: #fff; text-align: center; padding: 12px; font-weight: bold; font-size: 18px; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #fff; }
         
+        .user-profile-section { background: #1a1a1a; padding: 15px; border-bottom: 1px solid #444; }
+        .user-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .username-text { font-weight: bold; font-size: 16px; color: #fff; text-transform: uppercase; }
+        .balance-box { background: #000; border: 1px solid #cc0000; padding: 5px 10px; border-radius: 4px; color: #fff; font-weight: bold; }
+        .refresh-btn { background: #cc0000; color: white; border: 1px solid #fff; padding: 5px 10px; border-radius: 4px; font-size: 12px; cursor: pointer; }
+
         .box-simetris { 
             background: #000; padding: 15px; margin: 10px auto; width: 90%; 
-            border-radius: 8px; border: 1px solid #cc0000; font-size: 13px; box-sizing: border-box;
-            display: flex; flex-direction: column; justify-content: center; min-height: 140px;
+            min-height: 140px; border-radius: 8px; border: 1px solid #cc0000; 
+            font-size: 13px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center;
         }
         .data-row { display: grid; grid-template-columns: 100px 10px 1fr; margin-bottom: 8px; color: #ccc;}
         .data-row strong { color: #fff; }
@@ -26,33 +29,37 @@
         .method-card i { font-size: 20px; display: block; margin-bottom: 5px; }
 
         #qris-content { text-align: center; display: none; }
-        /* NAMA FILE SUDAH SAYA GANTI JADI QRIS.PNG */
-        .qris-image { width: 220px; height: auto; background: #fff; margin: 10px auto; padding: 10px; border-radius: 5px; display: block; border: 3px solid #fff; }
+        .qris-image { width: 220px; height: auto; background: #fff; margin: 10px auto; padding: 10px; border-radius: 5px; border: 3px solid #fff; display: block; }
+
+        .target-header { color: #cc0000; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid #cc0000; padding-bottom: 5px; margin-bottom: 10px; text-align: center;}
+        .copy-btn { background: #fff; color: #000; border: none; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; float: right; margin-top: -5px;}
 
         .form-section { padding: 15px 5%; }
-        input { background: #fff; border: 1px solid #ccc; padding: 12px; border-radius: 4px; width: 100%; box-sizing: border-box; color: #000; font-weight: bold; font-size: 16px; margin-bottom: 15px;}
+        .input-group { display: grid; grid-template-columns: 90px 10px 1fr; align-items: center; margin-bottom: 20px; }
+        input { background: #fff; border: 1px solid #ccc; padding: 12px; border-radius: 4px; width: 100%; box-sizing: border-box; color: #000; font-weight: bold; font-size: 16px; }
         .btn-kirim { background: linear-gradient(to bottom, #00aa00, #006600); color: white; width: 100%; padding: 15px; border: 1px solid #fff; border-radius: 5px; font-weight: bold; font-size: 18px; cursor: pointer; text-transform: uppercase; }
 
         .peraturan-section { background: #000; padding: 20px 5%; font-size: 12px; line-height: 1.6; border-top: 1px solid #333; color: #ddd; margin-bottom: 40px;}
-        .peraturan-section h3 { color: #fff; text-align: center; margin-bottom: 10px; border-bottom: 1px solid #cc0000; padding-bottom: 5px;}
+        .peraturan-section h3 { color: #fff; text-align: center; margin-bottom: 15px; text-transform: uppercase; border-bottom: 1px solid #cc0000; padding-bottom: 5px;}
+        .peraturan-section ol { padding-left: 20px; }
+        .peraturan-section li { margin-bottom: 8px; }
     </style>
 </head>
 <body>
 
     <div class="main-header">KASIR DEPOSIT</div>
 
-    <div class="user-section">
-        <div class="user-row">
-            <span id="p-username" style="font-weight:bold; text-transform:uppercase;">LOADING...</span>
-            <span style="color: #0f0; font-size: 11px;"><i class="fas fa-circle"></i> Online</span>
+    <div class="user-profile-section">
+        <div class="user-header-row">
+            <span class="username-text" id="p-username">LOADING...</span>
+            <button class="refresh-btn" onclick="location.reload()">REFRESH</button>
         </div>
-        <div class="user-row">
+        <div class="user-header-row">
             <div class="balance-box">SALDO: IDR <span id="p-balance">0</span></div>
-            <button style="background:#cc0000; color:#fff; border:1px solid #fff; padding:5px 10px; border-radius:4px;" onclick="location.reload()">REFRESH</button>
         </div>
         
         <div class="box-simetris">
-            <div style="color: #888; font-size: 11px; margin-bottom: 8px;">Data Bank Terdaftar Anda:</div>
+            <div class="target-header">Data Bank Terdaftar Anda</div>
             <div class="data-row"><span>Nama Bank</span><span>:</span><strong id="m-bank">...</strong></div>
             <div class="data-row"><span>Nama Rek</span><span>:</span><strong id="m-acc-name">...</strong></div>
             <div class="data-row"><span>No Rek</span><span>:</span><strong id="m-acc-num">...</strong></div>
@@ -72,22 +79,39 @@
 
     <div class="box-simetris">
         <div id="bank-content">
-            <p style="color:#cc0000; font-weight:bold; text-align:center; margin-top:0;">TUJUAN TRANSFER</p>
+            <div class="target-header">Rekening Tujuan Transfer</div>
             <div class="data-row"><span>Nama Bank</span><span>:</span><strong>DANA</strong></div>
             <div class="data-row"><span>Atas Nama</span><span>:</span><strong>EKO SETIAWAN</strong></div>
-            <div class="data-row"><span>No Rekening</span><span>:</span><strong style="color: #ff0; font-size: 18px;">082157578668</strong></div>
+            <div class="data-row"><span>No Rekening</span><span>:</span><strong style="color: #fff; font-size: 18px;">082157578668</strong></div>
+            <button class="copy-btn" onclick="copyText('082157578668')">Salin</button>
         </div>
 
         <div id="qris-content">
-            <p style="color:#cc0000; font-weight:bold; text-align:center; margin-top:0;">SCAN QRIS UNTUK BAYAR</p>
-            <img src="qris.png" class="qris-image" alt="QRIS DANA">
-            <p style="font-size: 11px; color: #ff0;">Screenshot & Scan di Aplikasi DANA</p>
+            <div class="target-header">SCAN QRIS UNTUK BAYAR</div>
+            <img src="qris.png" alt="QRIS DANA" class="qris-image">
+            <div style="font-size: 11px; color: #ff0; margin-top: 8px;">Screenshot & Scan di Aplikasi DANA</div>
         </div>
     </div>
 
     <div class="form-section">
-        <input type="number" id="amount" placeholder="Minimal 10.000">
+        <div class="input-group">
+            <span style="color: #fff; font-size: 13px;">Nominal</span><span>:</span>
+            <input type="number" id="amount" placeholder="Minimal 10000">
+        </div>
         <button onclick="kirimDepo()" class="btn-kirim">KONFIRMASI DEPOSIT</button>
+    </div>
+
+    <div class="peraturan-section">
+        <h3>Peraturan</h3>
+        <ol>
+            <li>Minimal Deposit = Bank Transfer IDR 10.000</li>
+            <li>Untuk transfer antar bank / transfer beda mesin atm. Mohon gunakan nominal unik contoh : 25.417 .</li>
+            <li>Harap perhatikan rekening deposit kami yang sedang aktif sebelum melakukan pengiriman deposit.</li>
+            <li>Deposit Menggunakan account bank selain yang di daftarkan tidak di perbolehkan.</li>
+            <li>Setelah melakukan proses pengiriman dan mengisi form secara benar maka deposit anda akan di proses dalam kurun waktu 5 menit.</li>
+            <li>Maksimal claim deposit 7 hari atau 1 minggu.</li>
+            <li>Silakan hubungin customer service kami via live chat untuk konfirmasi.</li>
+        </ol>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -98,8 +122,13 @@
         function switchTab(type) {
             document.getElementById('bank-content').style.display = type === 'bank' ? 'block' : 'none';
             document.getElementById('qris-content').style.display = type === 'qris' ? 'block' : 'none';
-            document.getElementById('btn-bank').className = type === 'bank' ? 'method-card active' : 'method-card';
-            document.getElementById('btn-qris').className = type === 'qris' ? 'method-card active' : 'method-card';
+            document.getElementById('btn-bank').classList.toggle('active', type === 'bank');
+            document.getElementById('btn-qris').classList.toggle('active', type === 'qris');
+        }
+
+        function copyText(txt) {
+            navigator.clipboard.writeText(txt);
+            alert('Berhasil disalin: ' + txt);
         }
 
         if(session) {
@@ -111,18 +140,24 @@
         async function fetchMemberBank() {
             const { data } = await _sb.from('members').select('*').eq('username', session.username).single();
             if (data) {
-                document.getElementById('m-bank').innerText = data.bank_name;
-                document.getElementById('m-acc-name').innerText = data.acc_name;
-                document.getElementById('m-acc-num').innerText = data.acc_number;
+                document.getElementById('m-bank').innerText = data.bank_name || '-';
+                document.getElementById('m-acc-name').innerText = data.acc_name || '-';
+                document.getElementById('m-acc-num').innerText = data.acc_number || '-';
             }
         }
 
         async function kirimDepo() {
             const amt = document.getElementById('amount').value;
-            if(amt < 10000) return alert("Minimal 10.000!");
-            const target = document.getElementById('btn-qris').classList.contains('active') ? "QRIS" : "DANA";
-            const { error } = await _sb.from('transactions').insert([{ username: session.username, type: 'DEPOSIT', amount: parseInt(amt), bank_target: target, status: 'PENDING' }]);
-            if(!error) { alert("Berhasil Terkirim!"); window.location.href = "lobby.html"; }
+            if(!amt || amt < 10000) return alert("Minimal Deposit 10.000!");
+            const method = document.getElementById('btn-qris').classList.contains('active') ? "QRIS" : "DANA";
+            const { error } = await _sb.from('transactions').insert([{ 
+                username: session.username, type: 'DEPOSIT', amount: parseInt(amt), 
+                bank_target: method, status: 'PENDING' 
+            }]);
+            if(!error) { 
+                alert("Laporan Deposit Terkirim!"); 
+                window.location.href = "lobby.html"; 
+            }
         }
     </script>
 </body>
