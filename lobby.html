@@ -52,7 +52,7 @@
         .slot-bar { background: var(--primary-red); color: #fff; margin: 10px; padding: 8px 12px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
         .btn-lobby-label { background: #000; color: #fff; padding: 3px 12px; border-radius: 3px; font-size: 11px; }
 
-        /* --- GRID PROVIDER FULL LOGO --- */
+        /* --- GRID PROVIDER --- */
         .provider-container { padding: 0 10px 20px 10px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         
         .provider-card { 
@@ -65,21 +65,35 @@
             border: 1.5px solid var(--primary-red); 
         }
 
+        /* Container gambar default (Full) */
         .img-wrapper { 
             flex: 1; 
             display: flex; 
-            padding: 0; /* Menghilangkan sisa blank hitam di pinggir */
+            align-items: center;
+            justify-content: center;
             overflow: hidden; 
         }
 
         .provider-card img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* Ini yang membuat gambar penuh ke kotak tanpa sisa hitam */
+            object-fit: cover; 
             display: block; 
         }
 
-        /* Animasi Tombol Play Now */
+        /* PERBAIKAN: Padding khusus untuk logo agar tidak terlalu mepet ke tepi */
+        .card-adjust .img-wrapper { 
+            padding: 15px; /* Memberi ruang agar logo & teks mengecil sedikit */
+        }
+        
+        .card-adjust img { 
+            object-fit: contain; /* Memastikan seluruh logo terlihat */
+        }
+
+        /* Background Putih untuk Microgaming & Habanero */
+        .card-white { background-color: #fff; }
+
+        /* Play Now Button */
         @keyframes soft-blink { 0% { filter: brightness(100%); } 50% { filter: brightness(130%); } 100% { filter: brightness(100%); } }
         .play-now {
             background: linear-gradient(180deg, #ff3333 0%, #990000 100%);
@@ -134,9 +148,13 @@
     <div class="provider-container">
         <div class="provider-card"><div class="img-wrapper"><img src="pragmatic.webp"></div><div class="play-now">PLAY NOW</div></div>
         <div class="provider-card"><div class="img-wrapper"><img src="pgsoft.webp"></div><div class="play-now">PLAY NOW</div></div>
-        <div class="provider-card"><div class="img-wrapper"><img src="idnslot.webp"></div><div class="play-now">PLAY NOW</div></div>
-        <div class="provider-card"><div class="img-wrapper"><img src="habanero.webp"></div><div class="play-now">PLAY NOW</div></div>
-        <div class="provider-card"><div class="img-wrapper"><img src="microgaming.webp"></div><div class="play-now">PLAY NOW</div></div>
+        
+        <div class="provider-card card-adjust"><div class="img-wrapper"><img src="idnslot.webp"></div><div class="play-now">PLAY NOW</div></div>
+        
+        <div class="provider-card card-white card-adjust"><div class="img-wrapper"><img src="habanero.webp"></div><div class="play-now">PLAY NOW</div></div>
+        
+        <div class="provider-card card-white card-adjust"><div class="img-wrapper"><img src="microgaming.webp"></div><div class="play-now">PLAY NOW</div></div>
+        
         <div class="provider-card"><div class="img-wrapper"><img src="nolimit.webp"></div><div class="play-now">PLAY NOW</div></div>
         <div class="provider-card"><div class="img-wrapper"><img src="playtech.webp"></div><div class="play-now">PLAY NOW</div></div>
         <div class="provider-card"><div class="img-wrapper"><img src="redtiger.webp"></div><div class="play-now">PLAY NOW</div></div>
