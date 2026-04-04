@@ -8,23 +8,60 @@
     <style>
         body { background: #1a0000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 0; }
         
+        /* Header */
         .header-top { background: linear-gradient(180deg, #700000 0%, #000 100%); padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #fc0; }
         .logo-text { color: #ff0000; font-size: 20px; font-weight: 900; text-shadow: 2px 2px #000; margin: 0; text-transform: uppercase; }
-        .btn-deposit-top { background: linear-gradient(to bottom, #fc0, #b8860b); color: #000; padding: 6px 15px; border-radius: 5px; font-weight: bold; text-decoration: none; font-size: 13px; }
+        .btn-deposit-top { background: #fc0; color: #000; padding: 6px 15px; border-radius: 5px; font-weight: bold; text-decoration: none; font-size: 13px; }
 
+        /* User Info */
         .user-info-bar { background: #000; padding: 15px; border-bottom: 1px solid #444; position: relative; }
         .u-name { font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 5px; text-transform: uppercase; }
         .u-balance { font-size: 14px; color: #ccc; }
         .u-balance span { color: #ff0000; font-weight: bold; }
         .refresh-btn { position: absolute; right: 15px; bottom: 15px; background: #00c853; color: #fff; padding: 5px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; }
 
+        /* Slot Bar */
         .slot-bar { background: #fc0; color: #000; margin: 10px; padding: 8px 12px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 14px; }
         .btn-lobby { background: #000; color: #fff; padding: 2px 10px; border-radius: 3px; font-size: 10px; }
 
-        .provider-container { padding: 10px; display: grid; grid-template-columns: 1fr; gap: 12px; padding-bottom: 100px; }
-        .provider-card { border: 1px solid #fc0; border-radius: 8px; overflow: hidden; background: #000; }
-        .provider-card img { width: 100%; display: block; height: auto; }
+        /* Grid 2 Kolom x 5 Baris */
+        .provider-container { 
+            padding: 10px; 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); /* 2 Kolom ke samping */
+            gap: 10px; 
+            padding-bottom: 100px; 
+        }
+        
+        .provider-card { 
+            border: 1px solid #fc0; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            background: #000; 
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .provider-card img { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
+        }
 
+        /* Tombol Play Now */
+        .play-now {
+            background: linear-gradient(to bottom, #fff700, #ffcc00);
+            color: #000;
+            text-align: center;
+            padding: 5px 0;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-top: 1px solid #fc0;
+            cursor: pointer;
+        }
+
+        /* Navigasi Bawah */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid #fc0; display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; z-index: 1000; }
         .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; }
         .nav-item i { display: block; font-size: 18px; color: #fc0; margin-bottom: 3px; }
@@ -49,16 +86,20 @@
     </div>
 
     <div class="provider-container">
-        <div class="provider-card"><img src="pragmatic.webp" alt="Pragmatic Play"></div>
-        <div class="provider-card"><img src="pgsoft.webp" alt="PG Soft"></div>
-        <div class="provider-card"><img src="idnslot.webp" alt="IDN Slot"></div>
-        <div class="provider-card"><img src="habanero.webp" alt="Habanero"></div>
-        <div class="provider-card"><img src="microgaming.webp" alt="Microgaming"></div>
-        <div class="provider-card"><img src="nolimit.webp" alt="NoLimit City"></div>
-        <div class="provider-card"><img src="playtech.webp" alt="Playtech"></div>
-        <div class="provider-card"><img src="redtiger.webp" alt="Red Tiger"></div>
-        <div class="provider-card"><img src="fastspin.webp" alt="FastSpin"></div>
-        <div class="provider-card"><img src="gmw.webp" alt="GMW"></div>
+        <div class="provider-card"><img src="pragmatic.webp"><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><img src="pgsoft.webp"><div class="play-now">PLAY NOW</div></div>
+        
+        <div class="provider-card"><img src="idnslot.webp"><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><img src="habanero.webp"><div class="play-now">PLAY NOW</div></div>
+        
+        <div class="provider-card"><img src="microgaming.webp"><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><img src="nolimit.webp"><div class="play-now">PLAY NOW</div></div>
+        
+        <div class="provider-card"><img src="playtech.webp"><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><img src="redtiger.webp"><div class="play-now">PLAY NOW</div></div>
+        
+        <div class="provider-card"><img src="fastspin.webp"><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><img src="gmw.webp"><div class="play-now">PLAY NOW</div></div>
     </div>
 
     <div class="bottom-nav">
