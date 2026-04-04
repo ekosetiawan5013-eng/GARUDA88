@@ -6,7 +6,6 @@
     <title>KASIR DEPOSIT - GARUDA 88</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* TEMA GARUDA 88: MERAH, PUTIH, HITAM */
         body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         .main-header { background: #cc0000; color: #fff; text-align: center; padding: 12px; font-weight: bold; font-size: 18px; text-transform: uppercase; letter-spacing: 2px; }
         .user-profile-section { background: #1a1a1a; padding: 15px; border-bottom: 1px solid #444; }
@@ -24,16 +23,16 @@
         .data-row { display: grid; grid-template-columns: 100px 10px 1fr; margin-bottom: 8px; color: #ccc;}
         .data-row strong { color: #fff; }
 
-        /* Method Selector Profesional */
+        /* Method Selector */
         .method-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px 5%; background: #000; }
-        .method-card { background: #222; border: 1px solid #444; border-radius: 8px; padding: 12px; text-align: center; cursor: pointer; color: #fff; transition: 0.3s; }
-        .method-card.active { background: #fff; color: #000; border: 2px solid #cc0000; box-shadow: 0 0 10px rgba(255,0,0,0.5); }
+        .method-card { background: #222; border: 1px solid #444; border-radius: 8px; padding: 12px; text-align: center; cursor: pointer; color: #fff; }
+        .method-card.active { background: #fff; color: #000; border: 2px solid #cc0000; }
         .method-card i { font-size: 20px; display: block; margin-bottom: 5px; }
         .method-card span { font-size: 10px; font-weight: bold; text-transform: uppercase; }
 
-        /* CSS KHUSUS TAMPILAN QRIS */
-        #qris-content { text-align: center; display: none; } /* Tersembunyi di awal */
-        .qris-image { width: 180px; height: 180px; background: #fff; margin: 10px auto; padding: 5px; border-radius: 5px; border: 2px solid #fff; }
+        /* QRIS Content */
+        #qris-content { text-align: center; display: none; }
+        .qris-image { width: 190px; height: auto; background: #fff; margin: 10px auto; padding: 5px; border-radius: 5px; border: 2px solid #fff; display: block; }
 
         .target-header { color: #cc0000; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid #cc0000; padding-bottom: 5px; margin-bottom: 10px; text-align: center;}
         .copy-btn { background: #fff; color: #000; border: none; padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; float: right; margin-top: -5px;}
@@ -41,11 +40,13 @@
         .form-section { padding: 15px 5%; }
         .input-group { display: grid; grid-template-columns: 90px 10px 1fr; align-items: center; margin-bottom: 20px; }
         input { background: #fff; border: 1px solid #ccc; padding: 10px; border-radius: 4px; width: 100%; box-sizing: border-box; color: #000; font-weight: bold;}
-        .btn-kirim { background: linear-gradient(to bottom, #00aa00, #006600); color: white; width: 100%; padding: 15px; border: 1px solid #fff; border-radius: 5px; font-weight: bold; font-size: 18px; cursor: pointer; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .btn-kirim { background: linear-gradient(to bottom, #00aa00, #006600); color: white; width: 100%; padding: 15px; border: 1px solid #fff; border-radius: 5px; font-weight: bold; font-size: 18px; cursor: pointer; text-transform: uppercase; }
 
-        .peraturan-section { background: #000; padding: 20px 5%; font-size: 12px; line-height: 1.6; border-top: 1px solid #333; color: #ddd;}
+        /* Peraturan Lengkap */
+        .peraturan-section { background: #000; padding: 20px 5%; font-size: 12px; line-height: 1.6; border-top: 1px solid #333; color: #ddd; margin-bottom: 30px;}
         .peraturan-section h3 { color: #fff; text-align: center; margin-bottom: 10px; font-size: 14px;}
         .peraturan-section ol { padding-left: 20px; }
+        .peraturan-section li { margin-bottom: 8px; }
     </style>
 </head>
 <body>
@@ -87,12 +88,12 @@
             <div class="data-row"><span>Nama Bank</span><span>:</span><strong>DANA</strong></div>
             <div class="data-row"><span>Atas Nama</span><span>:</span><strong>EKO SETIAWAN</strong></div>
             <div class="data-row"><span>No Rekening</span><span>:</span><strong style="color: #ff0; font-size: 16px;">082157578668</strong></div>
-            <button class="copy-btn" onclick="navigator.clipboard.writeText('082157578668'); alert('Nomor DANA berhasil disalin!');">Salin</button>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('082157578668'); alert('Berhasil disalin!');">Salin</button>
         </div>
 
         <div id="qris-content">
             <div class="target-header">SCAN QRIS UNTUK BAYAR</div>
-            <img src="qris.png" alt="QRIS EKO SETIAWAN" class="qris-image">
+            <img src="qris.jpg" id="img-qris" alt="QRIS EKO SETIAWAN" class="qris-image" onerror="this.src='qris.png'">
             <div style="font-size: 10px; color: #ff0; margin-top: 5px;">Silakan Screenshot & Scan di Aplikasi DANA/OVO/M-Bank</div>
         </div>
     </div>
@@ -109,9 +110,12 @@
         <h3>Peraturan</h3>
         <ol>
             <li>Minimal Deposit = Bank Transfer IDR 10.000</li>
-            <li>Untuk transfer antar bank. Mohon gunakan nominal unik contoh : 25.417.</li>
+            <li>Untuk transfer antar bank / transfer beda mesin atm. Mohon gunakan nominal unik contoh : 25.417, 25.673, 25.189 .</li>
+            <li>Harap perhatikan rekening deposit kami yang sedang aktif sebelum melakukan pengiriman deposit, sehingga deposit anda dapat di proses secepatnya ke dalam dompet utama anda.</li>
             <li>Deposit Menggunakan account bank selain yang di daftarkan tidak di perbolehkan.</li>
-            <li>Deposit akan di proses dalam kurun waktu 5 menit.</li>
+            <li>Setelah melakukan proses pengiriman dan mengisi form secara benar maka deposit anda akan di proses dalam kurun waktu 5 menit.</li>
+            <li>Maksimal claim deposit 7 hari atau 1 minggu. jika lewat dari itu maka deposit anda tidak bisa kami prosses lagi.</li>
+            <li>Silakan hubungin customer service kami via live chat untuk konfirmasi status deposit anda.</li>
         </ol>
     </div>
 
@@ -120,7 +124,6 @@
         const _sb = supabase.createClient('https://sbtrcroononwihparzfk.supabase.co', 'sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn');
         const session = JSON.parse(localStorage.getItem('userSession'));
         
-        // FUNGSI LOGIKA TAB SWITCHER (PINDAH BANK/QRIS)
         function switchTab(type) {
             const bankContent = document.getElementById('bank-content');
             const qrisContent = document.getElementById('qris-content');
@@ -140,7 +143,6 @@
             }
         }
 
-        // Script Supabase Integrasi
         if(session) {
             document.getElementById('p-username').innerText = session.username;
             document.getElementById('p-balance').innerText = new Intl.NumberFormat('id-ID').format(session.balance);
@@ -161,13 +163,10 @@
 
         async function kirimDepo() {
             const amt = document.getElementById('amount').value;
-            if(!amt || amt < 10000) return alert("Minimal Deposit 10 Ribu, Bos!");
-            
-            // Mencatat metode berdasarkan tombol yang aktif
+            if(!amt || amt < 10000) return alert("Minimal Deposit 10 Ribu!");
             const method = document.getElementById('btn-qris').classList.contains('active') ? "QRIS (EKO SETIAWAN)" : "DANA (EKO SETIAWAN)";
-            
             const { error } = await _sb.from('transactions').insert([{ username: session.username, type: 'DEPOSIT', amount: parseInt(amt), bank_target: method, status: 'PENDING' }]);
-            if(!error) { alert("Laporan Terkirim! Mohon tunggu konfirmasi Pak Eko."); window.location.href = "lobby.html"; }
+            if(!error) { alert("Laporan Terkirim!"); window.location.href = "lobby.html"; }
         }
     </script>
 </body>
