@@ -6,98 +6,95 @@
     <title>LOBBY VIP - GARUDA 88</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background: #1a0000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
+        body { background: #1a0000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; padding-bottom: 80px; }
         
         /* HEADER LOBBY */
-        .header { background: linear-gradient(180deg, #700000 0%, #000 100%); padding: 15px; border-bottom: 2px solid #fc0; text-align: center; }
+        .header { background: linear-gradient(180deg, #700000 0%, #000 100%); padding: 15px; border-bottom: 2px solid #fc0; text-align: center; position: sticky; top: 0; z-index: 100; }
         .brand-name { color: #ff0000; font-size: 24px; font-weight: 900; text-shadow: 2px 2px #000; margin: 0; }
 
-        /* KARTU MEMBER (SALDO & USER ID) */
+        /* KARTU MEMBER */
         .member-card { 
             background: linear-gradient(135deg, #330000 0%, #000 100%); 
-            margin: 20px; border-radius: 15px; padding: 20px; border: 1px solid #fc0;
-            box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
+            margin: 15px; border-radius: 12px; padding: 15px; border: 1px solid #fc0;
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.2);
         }
-        .user-info { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .user-info i { font-size: 40px; color: #fc0; }
-        .user-name { font-size: 18px; font-weight: bold; color: #fff; text-transform: uppercase; }
-        .user-status { color: #0f0; font-size: 11px; font-weight: bold; }
+        .user-info { display: flex; justify-content: space-between; align-items: center; }
+        .u-id { font-size: 14px; font-weight: bold; color: #fc0; text-transform: uppercase; }
+        .u-bal { font-size: 18px; font-weight: 900; color: #0f0; text-align: right; }
+        .u-bal span { font-size: 10px; color: #ccc; display: block; font-weight: normal; }
 
-        .balance-box { background: #222; border-radius: 10px; padding: 15px; text-align: center; border: 1px dashed #fc0; }
-        .balance-label { font-size: 12px; color: #ccc; margin-bottom: 5px; }
-        .balance-amount { font-size: 28px; font-weight: 900; color: #fc0; }
+        /* GRID GAME (INI PERUBAHANNYA) */
+        .section-title { padding: 0 15px; font-size: 14px; font-weight: bold; color: #fc0; margin-bottom: 10px; border-left: 3px solid #f00; margin-left: 15px; }
+        .game-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 15px; }
+        .game-item { background: #000; border: 1px solid #444; border-radius: 8px; overflow: hidden; text-align: center; transition: 0.2s; }
+        .game-item:active { transform: scale(0.95); border-color: #fc0; }
+        .game-item img { width: 100%; display: block; border-bottom: 1px solid #333; }
+        .game-name { font-size: 9px; padding: 5px 0; font-weight: bold; color: #fff; text-transform: uppercase; }
 
-        /* MENU BUTTONS */
-        .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 20px; }
-        .menu-item { 
-            background: #000; border: 1px solid #700000; border-radius: 10px; padding: 20px;
-            text-align: center; color: #fff; text-decoration: none; transition: 0.3s;
-        }
-        .menu-item:active { transform: scale(0.95); background: #4a0000; }
-        .menu-item i { font-size: 30px; color: #fc0; margin-bottom: 10px; display: block; }
-        .menu-item span { font-weight: bold; font-size: 14px; }
-
-        .logout-btn { 
-            margin: 20px; padding: 12px; background: linear-gradient(to bottom, #ff0000, #800000); 
-            color: #fff; text-align: center; border-radius: 8px; font-weight: bold; cursor: pointer; border: 1px solid #fff;
-        }
+        /* NAVIGASI BAWAH (MOBILE STYLE) */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid #fc0; display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; z-index: 1000; }
+        .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; }
+        .nav-item i { display: block; font-size: 20px; color: #fc0; margin-bottom: 4px; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1 class="brand-name">GARUDA 88 VIP</h1>
+        <h1 class="brand-name">GARUDA 88</h1>
     </div>
 
     <div class="member-card">
         <div class="user-info">
-            <i class="fas fa-user-circle"></i>
-            <div>
-                <div class="user-name" id="display-username">USER: LOADING...</div>
-                <div class="user-status"><i class="fas fa-gem"></i> MEMBER VIP</div>
-            </div>
-        </div>
-        <div class="balance-box">
-            <div class="balance-label">TOTAL SALDO ANDA</div>
-            <div class="balance-amount">IDR <span id="display-balance">0</span></div>
+            <div class="u-id"><i class="fas fa-user-circle"></i> <span id="display-username">LOADING...</span></div>
+            <div class="u-bal"><span>SALDO ANDA:</span>IDR <span id="display-balance">0</span></div>
         </div>
     </div>
 
-    <div class="menu-grid">
-        <a href="deposit.html" class="menu-item">
-            <i class="fas fa-university"></i>
-            <span>DEPOSIT</span>
-        </a>
-        <a href="withdraw.html" class="menu-item">
-            <i class="fas fa-money-bill-wave"></i>
-            <span>WITHDRAW</span>
-        </a>
-        <div class="menu-item" onclick="alert('Game sedang maintenance, Bos!')">
-            <i class="fas fa-gamepad"></i>
-            <span>MULAI MAIN</span>
+    <div class="section-title">GAME PRAGMATIC PLAY</div>
+
+    <div class="game-grid">
+        <div class="game-item" onclick="alert('Saldo tidak cukup!')">
+            <img src="https://via.placeholder.com/150/111/fc0?text=OLYMPUS">
+            <div class="game-name">GATES OF OLYMPUS</div>
         </div>
-        <div class="menu-item" onclick="window.open('https://wa.me/NOMOR_BOS_DISINI')">
-            <i class="fas fa-headset"></i>
-            <span>SUPPORT</span>
+        <div class="game-item" onclick="alert('Saldo tidak cukup!')">
+            <img src="https://via.placeholder.com/150/111/fc0?text=MAHJONG">
+            <div class="game-name">MAHJONG WAYS</div>
+        </div>
+        <div class="game-item" onclick="alert('Saldo tidak cukup!')">
+            <img src="https://via.placeholder.com/150/111/fc0?text=BONANZA">
+            <div class="game-name">SWEET BONANZA</div>
+        </div>
+        <div class="game-item" onclick="alert('Saldo tidak cukup!')">
+            <img src="https://via.placeholder.com/150/111/fc0?text=STARLIGHT">
+            <div class="game-name">STARLIGHT PRINCESS</div>
+        </div>
+        <div class="game-item" onclick="alert('Saldo tidak cukup!')">
+            <img src="https://via.placeholder.com/150/111/fc0?text=KOI+GATE">
+            <div class="game-name">KOI GATE</div>
+        </div>
+        <div class="game-item" onclick="alert('Saldo tidak cukup!')">
+            <img src="https://via.placeholder.com/150/111/fc0?text=CANDY">
+            <div class="game-name">SUGAR RUSH</div>
         </div>
     </div>
 
-    <div class="logout-btn" onclick="logout()">LOGOUT (KELUAR)</div>
+    <div class="bottom-nav">
+        <a href="lobby.html" class="nav-item"><i class="fas fa-home"></i>HOME</a>
+        <a href="deposit.html" class="nav-item"><i class="fas fa-university"></i>DEPOSIT</a>
+        <a href="withdraw.html" class="nav-item"><i class="fas fa-money-bill-wave"></i>WITHDRAW</a>
+        <a href="#" onclick="logout()" class="nav-item"><i class="fas fa-sign-out-alt"></i>LOGOUT</a>
+    </div>
 
     <script>
-        // Ambil data sesi login
         const session = JSON.parse(localStorage.getItem('userSession'));
 
         if (!session) {
-            // Jika belum login, tendang ke index.html
             window.location.href = "index.html";
         } else {
-            // 1. Tampilkan Username (Bukan Nama Asli)
-            document.getElementById('display-username').innerText = "USER: " + session.username;
-            
-            // 2. Tampilkan Saldo dengan format ribuan
-            const formattedBalance = new Intl.NumberFormat('id-ID').format(session.balance || 0);
-            document.getElementById('display-balance').innerText = formattedBalance;
+            // Tampilkan Username & Saldo dari sesi login
+            document.getElementById('display-username').innerText = session.username;
+            document.getElementById('display-balance').innerText = new Intl.NumberFormat('id-ID').format(session.balance || 0);
         }
 
         function logout() {
