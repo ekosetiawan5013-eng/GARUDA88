@@ -15,7 +15,7 @@
         * { box-sizing: border-box; }
         body { background: #000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* Header & Animasi Typing */
+        /* Header */
         .header-top { 
             background: linear-gradient(180deg, #4b0000 0%, #000 100%); 
             padding: 12px 15px; 
@@ -52,20 +52,23 @@
             font-weight: bold; text-decoration: none; font-size: 13px; 
         }
 
-        /* User Info Section */
+        /* User Info */
         .user-info-bar { background: #0f0f0f; padding: 12px 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
         .u-balance span { color: var(--primary-red); font-weight: bold; }
         .refresh-btn { background: #222; color: #fff; padding: 6px 12px; border-radius: 4px; border: 1px solid #444; cursor: pointer; }
 
-        /* Slot Bar Merah */
+        /* Slot Bar */
         .slot-bar { background: var(--primary-red); color: #fff; margin: 10px; padding: 8px 12px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
         .btn-lobby-label { background: #000; color: #fff; padding: 3px 12px; border-radius: 3px; font-size: 11px; }
 
-        /* Grid Provider */
+        /* Grid Provider (KEMBALI LENGKAP) */
         .provider-container { padding: 0 10px 20px 10px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         .provider-card { border-radius: 12px; overflow: hidden; background: #000; display: flex; flex-direction: column; aspect-ratio: 1 / 1; border: 1px solid var(--primary-red); }
         .img-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .provider-card img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* Penyesuaian khusus logo tertentu agar tidak terpotong */
+        .card-contain img { object-fit: contain; padding: 10px; }
 
         @keyframes soft-blink { 0% { filter: brightness(100%); } 50% { filter: brightness(150%); } 100% { filter: brightness(100%); } }
         .play-now {
@@ -73,7 +76,7 @@
             color: #fff; text-align: center; padding: 10px 0; font-size: 12px; font-weight: 900; border: none; width: 100%; text-transform: uppercase; animation: soft-blink 1.5s infinite;
         }
 
-        /* --- BAGIAN BANK & FOOTER (DIPERBAIKI: RAPI & TENGAH) --- */
+        /* --- FOOTER & BANK --- */
         .footer-info { text-align: center; padding: 20px 10px 110px 10px; background: #000; color: #888; font-size: 11px; }
         
         .bank-container-wrapper {
@@ -89,17 +92,8 @@
             text-align: left;
         }
 
-        .status-item { 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            font-size: 10px;
-            color: #ccc;
-            font-weight: 600;
-            white-space: nowrap;
-        }
+        .status-item { display: flex; align-items: center; gap: 8px; font-size: 10px; color: #ccc; font-weight: 600; }
 
-        /* Animasi Titik Berkedip */
         @keyframes pulse-green {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
             70% { transform: scale(1.2); box-shadow: 0 0 0 5px rgba(0, 255, 0, 0); }
@@ -107,12 +101,8 @@
         }
 
         .dot { 
-            height: 7px; 
-            width: 7px; 
-            border-radius: 50%; 
-            display: inline-block; 
-            background: var(--neon-green); 
-            animation: pulse-green 1.5s infinite; 
+            height: 7px; width: 7px; border-radius: 50%; display: inline-block; 
+            background: var(--neon-green); animation: pulse-green 1.5s infinite; 
         }
 
         .copyright-text { border-top: 1px solid #222; padding-top: 15px; line-height: 1.6; }
@@ -150,10 +140,16 @@
     <div class="provider-container">
         <div class="provider-card"><div class="img-wrapper"><img src="pragmatic.webp"></div><div class="play-now">PLAY NOW</div></div>
         <div class="provider-card"><div class="img-wrapper"><img src="pgsoft.webp"></div><div class="play-now">PLAY NOW</div></div>
-        <div class="provider-card"><div class="img-wrapper"><img src="idnslot.webp"></div><div class="play-now">PLAY NOW</div></div>
-        <div class="provider-card"><div class="img-wrapper"><img src="habanero.webp"></div><div class="play-now">PLAY NOW</div></div>
-        <div class="provider-card"><div class="img-wrapper"><img src="microgaming.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card card-contain"><div class="img-wrapper"><img src="idnslot.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card card-contain"><div class="img-wrapper"><img src="habanero.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card card-contain"><div class="img-wrapper"><img src="microgaming.webp"></div><div class="play-now">PLAY NOW</div></div>
         <div class="provider-card"><div class="img-wrapper"><img src="nolimit.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card card-contain"><div class="img-wrapper"><img src="playtech.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="redtiger.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="fastspin.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="gmw.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="advantplay.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="jili.webp"></div><div class="play-now">PLAY NOW</div></div>
     </div>
 
     <div class="footer-info">
@@ -188,9 +184,8 @@
 
     <script>
         const session = JSON.parse(localStorage.getItem('userSession'));
-        if (!session) {
-            window.location.href = "index.html";
-        } else {
+        if (!session) { window.location.href = "index.html"; } 
+        else {
             document.getElementById('user-id').innerText = session.username.toUpperCase();
             document.getElementById('user-saldo').innerText = new Intl.NumberFormat('id-ID').format(session.balance || 0);
         }
