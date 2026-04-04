@@ -65,7 +65,6 @@
             border: 1.5px solid var(--primary-red); 
         }
 
-        /* Container gambar default (Full) */
         .img-wrapper { 
             flex: 1; 
             display: flex; 
@@ -81,17 +80,23 @@
             display: block; 
         }
 
-        /* PERBAIKAN: Padding khusus untuk logo agar tidak terlalu mepet ke tepi */
-        .card-adjust .img-wrapper { 
-            padding: 15px; /* Memberi ruang agar logo & teks mengecil sedikit */
-        }
-        
-        .card-adjust img { 
-            object-fit: contain; /* Memastikan seluruh logo terlihat */
-        }
+        /* --- PERBAIKAN KHUSUS LOGO --- */
 
-        /* Background Putih untuk Microgaming & Habanero */
+        /* 1. IDN SLOT: Menghilangkan sisa hitam dengan background senada */
+        .card-idn { 
+            background: radial-gradient(circle, #2a1b5d 0%, #1a103d 100%); /* Warna senada logo IDN */
+        }
+        .card-idn .img-wrapper { padding: 10px; }
+        .card-idn img { object-fit: contain; }
+
+        /* 2. Microgaming & Habanero: Background Putih */
         .card-white { background-color: #fff; }
+        .card-white .img-wrapper { padding: 15px; }
+        .card-white img { object-fit: contain; }
+
+        /* 3. Playtech: Padding sedikit agar proporsional */
+        .card-playtech .img-wrapper { padding: 5px; }
+        .card-playtech img { object-fit: contain; }
 
         /* Play Now Button */
         @keyframes soft-blink { 0% { filter: brightness(100%); } 50% { filter: brightness(130%); } 100% { filter: brightness(100%); } }
@@ -100,23 +105,12 @@
             color: #fff; text-align: center; padding: 10px 0; font-size: 12px; font-weight: 900; border: none; width: 100%; text-transform: uppercase; animation: soft-blink 1.5s infinite;
         }
 
-        /* --- BANK & FOOTER --- */
+        /* --- FOOTER & NAV --- */
         .footer-info { text-align: center; padding: 20px 10px 110px 10px; background: #000; color: #888; font-size: 11px; }
-        .bank-container-wrapper { display: flex; justify-content: center; margin-bottom: 25px; }
-        .bank-status { display: grid; grid-template-columns: repeat(3, auto); gap: 10px 25px; text-align: left; }
-        .status-item { display: flex; align-items: center; gap: 8px; font-size: 10px; color: #ccc; font-weight: 600; }
-
-        @keyframes pulse-green {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
-            70% { transform: scale(1.2); box-shadow: 0 0 0 5px rgba(0, 255, 0, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
-        }
-        .dot { height: 7px; width: 7px; border-radius: 50%; display: inline-block; background: var(--neon-green); animation: pulse-green 1.5s infinite; }
-
         .copyright-text { border-top: 1px solid #222; padding-top: 15px; line-height: 1.6; }
         strong { color: var(--primary-red); }
+        .dot { height: 7px; width: 7px; border-radius: 50%; display: inline-block; background: var(--neon-green); margin-right: 5px; }
 
-        /* Nav Bawah */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; z-index: 1000; }
         .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; }
         .nav-item i { display: block; font-size: 20px; color: var(--primary-red); margin-bottom: 3px; }
@@ -149,38 +143,19 @@
         <div class="provider-card"><div class="img-wrapper"><img src="pragmatic.webp"></div><div class="play-now">PLAY NOW</div></div>
         <div class="provider-card"><div class="img-wrapper"><img src="pgsoft.webp"></div><div class="play-now">PLAY NOW</div></div>
         
-        <div class="provider-card card-adjust"><div class="img-wrapper"><img src="idnslot.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card card-idn"><div class="img-wrapper"><img src="idnslot.webp"></div><div class="play-now">PLAY NOW</div></div>
         
-        <div class="provider-card card-white card-adjust"><div class="img-wrapper"><img src="habanero.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card card-white"><div class="img-wrapper"><img src="habanero.webp"></div><div class="play-now">PLAY NOW</div></div>
         
-        <div class="provider-card card-white card-adjust"><div class="img-wrapper"><img src="microgaming.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card card-white"><div class="img-wrapper"><img src="microgaming.webp"></div><div class="play-now">PLAY NOW</div></div>
+        
+        <div class="provider-card card-playtech card-white"><div class="img-wrapper"><img src="playtech.webp"></div><div class="play-now">PLAY NOW</div></div>
         
         <div class="provider-card"><div class="img-wrapper"><img src="nolimit.webp"></div><div class="play-now">PLAY NOW</div></div>
-        <div class="provider-card"><div class="img-wrapper"><img src="playtech.webp"></div><div class="play-now">PLAY NOW</div></div>
         <div class="provider-card"><div class="img-wrapper"><img src="redtiger.webp"></div><div class="play-now">PLAY NOW</div></div>
-        <div class="provider-card"><div class="img-wrapper"><img src="fastspin.webp"></div><div class="play-now">PLAY NOW</div></div>
-        <div class="provider-card"><div class="img-wrapper"><img src="gmw.webp"></div><div class="play-now">PLAY NOW</div></div>
-        <div class="provider-card"><div class="img-wrapper"><img src="advantplay.webp"></div><div class="play-now">PLAY NOW</div></div>
-        <div class="provider-card"><div class="img-wrapper"><img src="jili.webp"></div><div class="play-now">PLAY NOW</div></div>
     </div>
 
     <div class="footer-info">
-        <div class="bank-container-wrapper">
-            <div class="bank-status">
-                <div class="status-item"><span class="dot"></span> BCA</div>
-                <div class="status-item"><span class="dot"></span> BNI</div>
-                <div class="status-item"><span class="dot"></span> BRI</div>
-                <div class="status-item"><span class="dot"></span> MANDIRI</div>
-                <div class="status-item"><span class="dot"></span> CIMB</div>
-                <div class="status-item"><span class="dot"></span> PERMATA</div>
-                <div class="status-item"><span class="dot"></span> DANAMON</div>
-                <div class="status-item"><span class="dot"></span> DANA</div>
-                <div class="status-item"><span class="dot"></span> OVO</div>
-                <div class="status-item"><span class="dot"></span> GOPAY</div>
-                <div class="status-item"><span class="dot"></span> LINKAJA</div>
-                <div class="status-item"><span class="dot"></span> QRIS</div>
-            </div>
-        </div>
         <div class="copyright-text">
             &copy; Copyright 2014 - 2026 . <strong>GARUDA 88</strong> . All Rights Reserved.<br>
             Official Licensed by PAGCOR and BMM Testlabs.
