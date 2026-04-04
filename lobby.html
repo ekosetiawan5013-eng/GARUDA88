@@ -94,22 +94,22 @@
         .card-white .img-wrapper { padding: 12px; }
         .card-white img { object-fit: contain; }
 
-        /* --- PLAY NOW BUTTON (EFEK BARU: RAINBOW NEON GLITCH) --- */
+        /* --- PLAY NOW BUTTON (WARNA MERAH + RAINBOW GLOW) --- */
         .play-now {
-            background: linear-gradient(180deg, #222 0%, #000 100%);
+            background: linear-gradient(180deg, #ff3333 0%, #990000 100%); /* Kembali ke Merah */
             color: #fff; text-align: center; padding: 10px 0; font-size: 13px; font-weight: 900; border: none; width: 100%; text-transform: uppercase; 
-            border-top: 1px solid var(--primary-red);
+            border-top: 1px solid #fff;
             animation: rainbow-glow 2s infinite linear;
             letter-spacing: 1px;
         }
 
         @keyframes rainbow-glow {
-            0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+            0% { color: #fff; text-shadow: 0 0 10px #ff0000; }
             20% { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
             40% { color: #0000ff; text-shadow: 0 0 10px #0000ff; }
             60% { color: #00ffff; text-shadow: 0 0 10px #00ffff; }
             80% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
-            100% { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+            100% { color: #fff; text-shadow: 0 0 10px #ff0000; }
         }
 
         /* --- BANK STATUS --- */
