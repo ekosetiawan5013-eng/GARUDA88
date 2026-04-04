@@ -8,38 +8,40 @@
     <style>
         body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         
-        .header-bar { 
-            background: linear-gradient(to bottom, #800000, #000); 
-            padding: 10px 15px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            border-bottom: 2px solid #fff; 
+        /* 2. Header Baru: KASIR DEPOSIT Putih dengan Background Merah Full */
+        .main-header { 
+            background: #cc0000; 
+            color: #fff; 
+            text-align: center; 
+            padding: 12px; 
+            font-weight: bold; 
+            font-size: 18px; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .user-profile-section { background: #1a1a1a; padding: 15px; border-bottom: 1px solid #444; }
         .user-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .username-text { font-weight: bold; font-size: 16px; color: #fff; text-transform: uppercase; }
         .balance-box { background: #000; border: 1px solid #cc0000; padding: 5px 10px; border-radius: 4px; color: #fff; font-weight: bold; }
-        .balance-box span { color: #ff0; text-shadow: 0 0 5px #f00; }
-        .refresh-btn { background: #cc0000; color: white; border: 1px solid #fff; padding: 5px 10px; border-radius: 4px; font-size: 12px; cursor: pointer; margin-left: 5px; }
+        .balance-box span { color: #ff0; }
+        .refresh-btn { background: #cc0000; color: white; border: 1px solid #fff; padding: 5px 10px; border-radius: 4px; font-size: 12px; cursor: pointer; }
 
-        .member-bank-details { background: #000; padding: 10px; border-radius: 5px; border: 1px solid #333; font-size: 13px; margin-top: 10px;}
-        .data-row { display: grid; grid-template-columns: 100px 10px 1fr; margin-bottom: 5px; color: #ccc;}
-        .data-row strong { color: #fff; }
-
-        .kasir-header { 
-            background: #cc0000; 
-            text-align: center; 
-            padding: 8px; 
-            font-weight: bold; 
-            font-size: 15px; 
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* 1. Lebar panjang kolom disamakan */
+        .box-container { 
+            background: #111; 
+            padding: 15px; 
+            margin: 10px; 
+            border-radius: 8px; 
+            border: 1px solid #cc0000; 
+            font-size: 13px; 
+            box-sizing: border-box;
         }
         
-        .method-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; background: #000; }
+        .data-row { display: grid; grid-template-columns: 100px 10px 1fr; margin-bottom: 8px; color: #ccc;}
+        .data-row strong { color: #fff; }
+
+        .method-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; background: #000; }
         .method-card { 
             background: #222; 
             border: 1px solid #444; 
@@ -49,21 +51,19 @@
             cursor: pointer; 
             color: #fff;
         }
-        .method-card.active { 
-            background: #fff; 
-            color: #000; 
-            border: 2px solid #cc0000; 
-        }
-        .method-card i { font-size: 24px; display: block; margin-bottom: 5px; }
-        .method-card span { font-size: 11px; font-weight: bold; text-transform: uppercase; }
+        .method-card.active { background: #fff; color: #000; border: 2px solid #cc0000; }
+        .method-card i { font-size: 20px; display: block; margin-bottom: 5px; }
+        .method-card span { font-size: 10px; font-weight: bold; text-transform: uppercase; }
 
-        .target-rekening-section { background: #111; padding: 15px; margin: 10px; border-radius: 8px; border: 1px solid #cc0000; font-size: 13px; }
         .target-header { color: #cc0000; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid #cc0000; padding-bottom: 5px; margin-bottom: 10px; text-align: center;}
-        .detail-row { display: grid; grid-template-columns: 110px 10px 1fr; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 8px; }
         .copy-btn { background: #fff; color: #000; border: none; padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; float: right; margin-top: -5px;}
 
         .form-section { padding: 15px; }
-        .input-group { display: grid; grid-template-columns: 90px 10px 1fr; align-items: center; margin-bottom: 20px; }
+        .input-group { display: grid; grid-template-columns: 100px 10px 1fr; align-items: center; margin-bottom: 20px; }
+        
+        /* 4. Tulisan Nominal Tipis */
+        label[for="amount"] { font-weight: 300; font-size: 13px; color: #bbb; }
+        
         input { 
             background: #fff; 
             border: 2px solid #cc0000; 
@@ -88,18 +88,16 @@
             text-transform: uppercase;
         }
 
-        .peraturan-box { background: #1a1a1a; padding: 15px; font-size: 12px; border-top: 3px solid #cc0000; margin-top: 20px; }
-        .peraturan-box h3 { color: #cc0000; text-align: center; margin-top: 0; text-transform: uppercase; }
-        .peraturan-box ul { margin: 0; padding-left: 20px; color: #ccc; }
+        /* 5. Peraturan Lengkap */
+        .peraturan-section { background: #000; padding: 15px; font-size: 12px; line-height: 1.6; border-top: 1px solid #333; margin-top: 10px; color: #ddd;}
+        .peraturan-section h3 { color: #fff; text-align: center; margin-bottom: 10px; text-transform: none; font-size: 14px;}
+        .peraturan-section ol { padding-left: 20px; }
+        .peraturan-section li { margin-bottom: 8px; }
     </style>
 </head>
 <body>
 
-    <div class="header-bar">
-        <i class="fas fa-arrow-left" onclick="window.location.href='lobby.html'"></i>
-        <span style="font-weight: bold; letter-spacing: 1px;">GARUDA 88 - KASIR</span>
-        <i class="fas fa-headset"></i>
-    </div>
+    <div class="main-header">KASIR DEPOSIT</div>
 
     <div class="user-profile-section">
         <div class="user-header-row">
@@ -108,18 +106,16 @@
         </div>
         <div class="user-header-row">
             <div class="balance-box">SALDO: IDR <span id="p-balance">0</span></div>
-            <button class="refresh-btn" onclick="location.reload()"><i class="fas fa-sync"></i> REFRESH</button>
+            <button class="refresh-btn" onclick="location.reload()">REFRESH</button>
         </div>
         
-        <div class="member-bank-details">
-            <div style="color: #888; font-size: 11px; margin-bottom: 5px;">Data Bank Terdaftar Anda:</div>
+        <div class="box-container">
+            <div style="color: #888; font-size: 11px; margin-bottom: 8px;">Data Bank Terdaftar Anda:</div>
             <div class="data-row"><span>Nama Bank</span><span>:</span><strong id="m-bank">LOADING...</strong></div>
             <div class="data-row"><span>Nama Rek</span><span>:</span><strong id="m-acc-name">LOADING...</strong></div>
             <div class="data-row"><span>No Rek</span><span>:</span><strong id="m-acc-num">LOADING...</strong></div>
         </div>
     </div>
-
-    <div class="kasir-header">KASIR DEPOSIT</div>
 
     <div class="method-selector">
         <div class="method-card active">
@@ -132,33 +128,34 @@
         </div>
     </div>
 
-    <div class="target-rekening-section">
+    <div class="box-container">
         <div class="target-header">Rekening Tujuan Transfer</div>
-        <div class="detail-row"><span>Nama Bank</span><span>:</span><strong style="color: #fff; font-size: 15px;">DANA</strong></div>
-        <div class="detail-row"><span>Atas Nama</span><span>:</span><strong style="color: #fff; font-size: 15px;">EKO SETIAWAN</strong></div>
-        <div class="detail-row"><span>No Rekening</span><span>:</span><strong style="color: #ff0; font-size: 18px;">082157578668</strong></div>
-        <button class="copy-btn" onclick="navigator.clipboard.writeText('082157578668'); alert('Nomor DANA Pak Eko disalin!');">Salin</button>
+        <div class="data-row"><span>Nama Bank</span><span>:</span><strong>DANA</strong></div>
+        <div class="data-row"><span>Atas Nama</span><span>:</span><strong>EKO SETIAWAN</strong></div>
+        <div class="data-row"><span>No Rekening</span><span>:</span><strong style="color: #ff0; font-size: 16px;">082157578668</strong></div>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText('082157578668'); alert('Berhasil disalin!');">Salin</button>
         <div style="clear: both;"></div>
     </div>
 
     <div class="form-section">
         <div class="input-group">
-            <span style="font-weight: bold; font-size: 14px; color: #fff;">NOMINAL</span><span>:</span>
+            <span style="color: #fff; font-size: 13px;">Nominal</span><span>:</span>
             <input type="number" id="amount" placeholder="Minimal 10000" min="10000">
         </div>
-        <button onclick="kirimDepo()" class="btn-kirim">KIRIM FORM DEPOSIT</button>
+        <button onclick="kirimDepo()" class="btn-kirim">KIRIM</button>
     </div>
 
-    <div class="peraturan-box">
-        <h3>PENTING</h3>
-        <ul>
-            <li>Minimal Deposit <strong>IDR 10.000</strong>.</li>
-            <li>Wajib transfer menggunakan rekening terdaftar Anda.</li>
-            <li>Transfer ke rekening DANA Pak Eko di atas, lalu isi form ini.</li>
-            <li>Deposit Menggunakan account bank selain yang di daftarkan tidak di perbolehkan.<li>
-            <li>Setelah melakukan proses pengiriman dan mengisi form secara benar maka deposit anda akan di proses dalam kurun waktu 5 menit.<li>
-            <li>Silakan hubungin customer service kami via live chat untuk konfirmasi status deposit anda.<li>
-        </ul>
+    <div class="peraturan-section">
+        <h3>Peraturan</h3>
+        <ol>
+            <li>Minimal Deposit = Bank Transfer IDR 10.000</li>
+            <li>Untuk transfer antar bank / transfer beda mesin atm. Mohon gunakan nominal unik contoh : 25.417, 25.673, 25.189 .</li>
+            <li>Harap perhatikan rekening deposit kami yang sedang aktif sebelum melakukan pengiriman deposit, sehingga deposit anda dapat di proses secepatnya ke dalam dompet utama anda.</li>
+            <li>Deposit Menggunakan account bank selain yang di daftarkan tidak di perolehkan.</li>
+            <li>Setelah melakukan proses pengiriman dan mengisi form secara benar maka deposit anda akan di proses dalam kurun waktu 5 menit.</li>
+            <li>Maksimal claim deposit 7 hari atau 1 minggu. jika lewat dari itu maka deposit anda tidak bisa kami prosses lagi.</li>
+            <li>Silakan hubungin customer service kami via live chat untuk konfirmasi status deposit anda.</li>
+        </ol>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -170,18 +167,16 @@
             document.getElementById('p-username').innerText = session.username;
             document.getElementById('p-balance').innerText = new Intl.NumberFormat('id-ID').format(session.balance);
             fetchMemberBank();
-        } else {
-            window.location.href = 'index.html';
-        }
+        } else { window.location.href = 'index.html'; }
 
         async function fetchMemberBank() {
             try {
                 const { data, error } = await _sb.from('members').select('bank_name, acc_name, acc_number').eq('username', session.username).single();
                 if (data) {
-                    document.getElementById('m-bank').innerText = data.bank_name ? data.bank_name.toUpperCase() : '-';
-                    document.getElementById('m-acc-name').innerText = data.acc_name ? data.acc_name.toUpperCase() : '-';
-                    const rawNum = data.acc_number || '-';
-                    document.getElementById('m-acc-num').innerText = rawNum.length > 5 ? rawNum.substring(0, 4) + 'XXXX' + rawNum.substring(rawNum.length - 2) : rawNum;
+                    document.getElementById('m-bank').innerText = data.bank_name || '-';
+                    document.getElementById('m-acc-name').innerText = data.acc_name || '-';
+                    const num = data.acc_number || '-';
+                    document.getElementById('m-acc-num').innerText = num.length > 5 ? num.substring(0, 4) + 'XXXX' + num.substring(num.length - 2) : num;
                 }
             } catch (err) { console.error(err); }
         }
@@ -189,15 +184,8 @@
         async function kirimDepo() {
             const amt = document.getElementById('amount').value;
             if(!amt || amt < 10000) return alert("Minimal Deposit 10 Ribu!");
-
-            const { error } = await _sb.from('transactions').insert([
-                { username: session.username, type: 'DEPOSIT', amount: parseInt(amt), bank_target: "DANA (EKO SETIAWAN)", status: 'PENDING' }
-            ]);
-
-            if(!error) {
-                alert("LAPORAN DITERIMA! Silakan tunggu konfirmasi.");
-                window.location.href = "lobby.html";
-            }
+            const { error } = await _sb.from('transactions').insert([{ username: session.username, type: 'DEPOSIT', amount: parseInt(amt), bank_target: "DANA (EKO SETIAWAN)", status: 'PENDING' }]);
+            if(!error) { alert("Laporan Terkirim!"); window.location.href = "lobby.html"; }
         }
     </script>
 </body>
