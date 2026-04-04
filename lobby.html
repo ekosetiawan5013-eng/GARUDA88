@@ -6,6 +6,9 @@
     <title>LOBBY - GARUDA 88</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         :root {
             --primary-red: #ff0000;
@@ -96,7 +99,7 @@
 
         /* --- PLAY NOW BUTTON (WARNA MERAH + RAINBOW GLOW) --- */
         .play-now {
-            background: linear-gradient(180deg, #ff3333 0%, #990000 100%); /* Kembali ke Merah */
+            background: linear-gradient(180deg, #ff3333 0%, #990000 100%);
             color: #fff; text-align: center; padding: 10px 0; font-size: 13px; font-weight: 900; border: none; width: 100%; text-transform: uppercase; 
             border-top: 1px solid #fff;
             animation: rainbow-glow 2s infinite linear;
@@ -196,13 +199,35 @@
     </div>
 
     <script>
+        // INISIALISASI SESSION SAAT LOAD
         const session = JSON.parse(localStorage.getItem('userSession'));
-        if (!session) { window.location.href = "index.html"; } 
-        else {
+        if (!session) { 
+            window.location.href = "index.html"; 
+        } else {
             document.getElementById('user-id').innerText = session.username.toUpperCase();
             document.getElementById('user-saldo').innerText = new Intl.NumberFormat('id-ID').format(session.balance || 0);
         }
-        function logout() { localStorage.removeItem('userSession'); window.location.href = "index.html"; }
+
+        // FUNGSI LOGOUT
+        function logout() { 
+            localStorage.removeItem('userSession'); 
+            window.location.href = "index.html"; 
+        }
+
+        // FUNGSI SINKRONISASI SALDO OTOMATIS (CEK TIAP 5 DETIK)
+        function syncBalance() {
+            const currentSession = JSON.parse(localStorage.getItem('userSession'));
+            if (currentSession) {
+                // Tampilkan saldo terbaru dari session
+                const saldoElement = document.getElementById('user-saldo');
+                if (saldoElement) {
+                    saldoElement.innerText = new Intl.NumberFormat('id-ID').format(currentSession.balance || 0);
+                }
+            }
+        }
+
+        // Jalankan interval sinkronisasi
+        setInterval(syncBalance, 5000);
     </script>
 </body>
 </html>
