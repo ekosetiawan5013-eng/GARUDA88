@@ -10,6 +10,7 @@
         :root {
             --primary-red: #ff0000;
             --dark-red: #8b0000;
+            --gold: #ffcc00;
         }
 
         * { box-sizing: border-box; }
@@ -25,23 +26,10 @@
             border-bottom: 2px solid var(--primary-red); 
         }
 
-        .brand-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .brand-container { display: flex; align-items: center; gap: 10px; }
+        .garuda-logo { height: 35px; width: auto; display: block; }
 
-        .garuda-logo {
-            height: 35px;
-            width: auto;
-            display: block;
-        }
-
-        .typing-container {
-            display: inline-block;
-            min-width: 160px;
-        }
-
+        .typing-container { display: inline-block; min-width: 160px; }
         .logo-text { 
             color: var(--primary-red); 
             font-family: 'Orbitron', sans-serif;
@@ -54,22 +42,11 @@
             overflow: hidden;
             border-right: 3px solid var(--primary-red);
             width: 0;
-            animation: 
-                typing 3s steps(9, end) infinite,
-                blink-caret 0.75s step-end infinite;
+            animation: typing 3s steps(9, end) infinite, blink-caret 0.75s step-end infinite;
         }
 
-        @keyframes typing {
-            0% { width: 0; }
-            50% { width: 100%; }
-            80% { width: 100%; }
-            100% { width: 0; }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--primary-red); }
-        }
+        @keyframes typing { 0% { width: 0; } 50% { width: 100%; } 80% { width: 100%; } 100% { width: 0; } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--primary-red); } }
 
         .btn-deposit-top { 
             background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); 
@@ -87,30 +64,31 @@
         .slot-bar { background: var(--primary-red); color: #fff; margin: 10px; padding: 8px 12px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
         .btn-lobby-label { background: #000; color: #fff; padding: 3px 12px; border-radius: 3px; font-size: 11px; }
 
-        /* Grid Provider & Border Merah */
-        .provider-container { padding: 0 10px 100px 10px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        /* Grid Provider */
+        .provider-container { padding: 0 10px 20px 10px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         .provider-card { border: 1.5px solid var(--primary-red); border-radius: 12px; overflow: hidden; background: #000; display: flex; flex-direction: column; aspect-ratio: 1 / 1; }
         .img-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .provider-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* Penyesuaian Logo Spesifik agar Tidak Sesak & Full Background */
         .card-idn .img-wrapper { background: #2e1a4e; padding: 15px; }
         .card-habanero .img-wrapper, .card-microgaming .img-wrapper { background: #fff; padding: 15px; }
         .card-idn img, .card-habanero img, .card-microgaming img { object-fit: contain; max-width: 100%; max-height: 100%; }
 
-        /* Efek Blink untuk Play Now */
-        @keyframes soft-blink {
-            0% { filter: brightness(100%); }
-            50% { filter: brightness(150%); box-shadow: inset 0 0 15px rgba(255,255,255,0.2); }
-            100% { filter: brightness(100%); }
-        }
-
+        @keyframes soft-blink { 0% { filter: brightness(100%); } 50% { filter: brightness(150%); } 100% { filter: brightness(100%); } }
         .play-now {
             background: linear-gradient(180deg, #ff3333 0%, #990000 100%);
             color: #fff; text-align: center; padding: 10px 0; font-size: 12px; font-weight: 900; border: none; width: 100%; cursor: pointer;
-            text-transform: uppercase;
-            animation: soft-blink 1.5s infinite ease-in-out;
+            text-transform: uppercase; animation: soft-blink 1.5s infinite ease-in-out;
         }
+
+        /* Copyright & Bank Info (Sesuai Referensi) */
+        .footer-info { text-align: center; padding: 20px 10px 110px 10px; background: #000; color: #888; font-size: 11px; }
+        .bank-status { display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
+        .status-item { display: flex; align-items: center; gap: 5px; }
+        .dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; }
+        .dot-online { background: #00ff00; box-shadow: 0 0 5px #00ff00; }
+        .dot-offline { background: #ff0000; }
+        .copyright-text { border-top: 1px solid #222; padding-top: 15px; line-height: 1.6; }
 
         /* Nav Bawah */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; z-index: 1000; }
@@ -122,10 +100,8 @@
 
     <div class="header-top">
         <div class="brand-container">
-            <img src="logogaruda.png" alt="Logo Garuda 88" class="garuda-logo">
-            <div class="typing-container">
-                <h1 class="logo-text">GARUDA 88</h1>
-            </div>
+            <img src="logogaruda.png" alt="Logo" class="garuda-logo">
+            <div class="typing-container"><h1 class="logo-text">GARUDA 88</h1></div>
         </div>
         <a href="deposit.html" class="btn-deposit-top">DEPOSIT</a>
     </div>
@@ -144,45 +120,30 @@
     </div>
 
     <div class="provider-container">
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="pragmatic.webp"></div>
-            <div class="play-now">PLAY NOW</div>
+        <div class="provider-card"><div class="img-wrapper"><img src="pragmatic.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="pgsoft.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card card-idn"><div class="img-wrapper"><img src="idnslot.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card card-habanero"><div class="img-wrapper"><img src="habanero.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card card-microgaming"><div class="img-wrapper"><img src="microgaming.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="nolimit.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="playtech.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="redtiger.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="fastspin.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="gmw.webp"></div><div class="play-now">PLAY NOW</div></div>
+    </div>
+
+    <div class="footer-info">
+        <div class="bank-status">
+            <div class="status-item"><span class="dot dot-online"></span> BCA</div>
+            <div class="status-item"><span class="dot dot-online"></span> BNI</div>
+            <div class="status-item"><span class="dot dot-online"></span> MANDIRI</div>
+            <div class="status-item"><span class="dot dot-online"></span> BRI</div>
+            <div class="status-item"><span class="dot dot-online"></span> DANAMON</div>
+            <div class="status-item"><span class="dot dot-online"></span> QRIS</div>
         </div>
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="pgsoft.webp"></div>
-            <div class="play-now">PLAY NOW</div>
-        </div>
-        <div class="provider-card card-idn">
-            <div class="img-wrapper"><img src="idnslot.webp"></div>
-            <div class="play-now">PLAY NOW</div>
-        </div>
-        <div class="provider-card card-habanero">
-            <div class="img-wrapper"><img src="habanero.webp"></div>
-            <div class="play-now">PLAY NOW</div>
-        </div>
-        <div class="provider-card card-microgaming">
-            <div class="img-wrapper"><img src="microgaming.webp"></div>
-            <div class="play-now">PLAY NOW</div>
-        </div>
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="nolimit.webp"></div>
-            <div class="play-now">PLAY NOW</div>
-        </div>
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="playtech.webp"></div>
-            <div class="play-now">PLAY NOW</div>
-        </div>
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="redtiger.webp"></div>
-            <div class="play-now">PLAY NOW</div>
-        </div>
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="fastspin.webp"></div>
-            <div class="play-now">PLAY NOW</div>
-        </div>
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="gmw.webp"></div>
-            <div class="play-now">PLAY NOW</div>
+        <div class="copyright-text">
+            &copy; Copyright 2014 - 2026 . <strong>GARUDA 88</strong> . All Rights Reserved.<br>
+            Official Licensed by PAGCOR and BMM Testlabs.
         </div>
     </div>
 
@@ -201,11 +162,7 @@
             document.getElementById('user-id').innerText = session.username.toUpperCase();
             document.getElementById('user-saldo').innerText = new Intl.NumberFormat('id-ID').format(session.balance || 0);
         }
-
-        function logout() {
-            localStorage.removeItem('userSession');
-            window.location.href = "index.html";
-        }
+        function logout() { localStorage.removeItem('userSession'); window.location.href = "index.html"; }
     </script>
 </body>
 </html>
