@@ -15,6 +15,7 @@
         * { box-sizing: border-box; }
         body { background: #000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
+        /* Header & Animasi Typing */
         .header-top { 
             background: linear-gradient(180deg, #4b0000 0%, #000 100%); 
             padding: 12px 15px; 
@@ -38,13 +39,13 @@
 
         .typing-container {
             display: inline-block;
-            min-width: 160px;
+            min-width: 140px;
         }
 
         .logo-text { 
             color: var(--primary-red); 
             font-family: 'Orbitron', sans-serif;
-            font-size: 20px; 
+            font-size: 18px; 
             font-weight: 900; 
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); 
             margin: 0; 
@@ -70,30 +71,70 @@
             50% { border-color: var(--primary-red); }
         }
 
-        /* ANIMASI BARU: Berkedip Halus */
+        .btn-deposit-top { 
+            background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); 
+            color: #fff; padding: 7px 15px; border-radius: 5px; 
+            font-weight: bold; text-decoration: none; font-size: 12px; 
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+        }
+
+        /* User Info Section */
+        .user-info-bar { background: #0f0f0f; padding: 12px 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
+        .u-data { display: flex; flex-direction: column; }
+        .u-name { font-size: 15px; font-weight: bold; color: #fff; text-transform: uppercase; }
+        .u-balance { font-size: 13px; color: #ccc; }
+        .u-balance span { color: var(--primary-red); font-weight: bold; }
+        .refresh-btn { background: #222; color: #fff; padding: 6px 12px; border-radius: 4px; border: 1px solid #444; cursor: pointer; }
+
+        /* Hot Slot Games Bar */
+        .slot-bar { background: var(--primary-red); color: #fff; margin: 10px; padding: 8px 12px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 14px; }
+        .btn-lobby-label { background: #000; color: #fff; padding: 3px 12px; border-radius: 3px; font-size: 11px; }
+
+        /* GRID PROVIDER - DIPERBAIKI */
+        .provider-container { 
+            padding: 0 10px 100px 10px; 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 12px; 
+        }
+
+        .provider-card { 
+            border: 1.5px solid var(--primary-red); 
+            border-radius: 12px; 
+            overflow: hidden; 
+            background: #000; 
+            display: flex; 
+            flex-direction: column; 
+            aspect-ratio: 1 / 1; 
+        }
+
+        .img-wrapper { 
+            flex: 1; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden; 
+            padding: 5px;
+        }
+
+        .provider-card img { 
+            max-width: 100%; 
+            max-height: 100%; 
+            object-fit: contain; 
+            display: block; 
+        }
+
+        /* Khusus Background Putih/Warna untuk Provider Tertentu */
+        .card-habanero .img-wrapper, .card-microgaming .img-wrapper, .card-playtech .img-wrapper { background: #fff; }
+        .card-idn .img-wrapper { background: #2e1a4e; }
+
+        /* PLAY NOW BLINKING - DIPERBAIKI */
         @keyframes soft-blink {
             0% { filter: brightness(100%); }
-            50% { filter: brightness(130%); box-shadow: 0 0 10px var(--primary-red); }
+            50% { filter: brightness(140%); box-shadow: inset 0 0 15px rgba(255,255,255,0.3); }
             100% { filter: brightness(100%); }
         }
 
-        .btn-deposit-top { 
-            background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); 
-            color: #fff; padding: 7px 18px; border-radius: 5px; 
-            font-weight: bold; text-decoration: none; font-size: 13px; 
-        }
-
-        .user-info-bar { background: #0f0f0f; padding: 12px 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
-        
-        .slot-bar { background: var(--primary-red); color: #fff; margin: 10px; padding: 8px 12px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-        .btn-lobby-label { background: #000; color: #fff; padding: 3px 12px; border-radius: 3px; font-size: 11px; }
-
-        .provider-container { padding: 0 10px 100px 10px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .provider-card { border: 1.5px solid var(--primary-red); border-radius: 12px; overflow: hidden; background: #000; display: flex; flex-direction: column; aspect-ratio: 1 / 1; }
-        .img-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .provider-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-        /* PLAY NOW DENGAN EFEK HIDUP */
         .play-now {
             background: linear-gradient(180deg, #ff3333 0%, #990000 100%);
             color: #fff; 
@@ -105,10 +146,11 @@
             width: 100%; 
             cursor: pointer;
             text-transform: uppercase;
-            animation: soft-blink 1.5s infinite ease-in-out; /* Mengaktifkan kedip */
+            animation: soft-blink 1.5s infinite ease-in-out;
         }
 
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; }
+        /* Nav Bawah */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; z-index: 1000; }
         .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; }
         .nav-item i { display: block; font-size: 20px; color: var(--primary-red); margin-bottom: 3px; }
     </style>
@@ -117,7 +159,7 @@
 
     <div class="header-top">
         <div class="brand-container">
-            <img src="logogaruda.png" alt="Logo Garuda 88" class="garuda-logo">
+            <img src="logogaruda.png" alt="Logo" class="garuda-logo">
             <div class="typing-container">
                 <h1 class="logo-text">GARUDA 88</h1>
             </div>
@@ -127,8 +169,8 @@
 
     <div class="user-info-bar">
         <div class="u-data">
-            <div class="u-name" id="user-id">USER</div>
-            <div class="u-balance">Balance: <span>IDR. <span id="user-saldo">0</span></span></div>
+            <div class="u-name">USER</div>
+            <div class="u-balance">Balance: <span>IDR. 0</span></div>
         </div>
         <button class="refresh-btn" onclick="location.reload()"><i class="fas fa-sync-alt"></i></button>
     </div>
@@ -147,13 +189,45 @@
             <div class="img-wrapper"><img src="pgsoft.webp"></div>
             <div class="play-now">PLAY NOW</div>
         </div>
+        <div class="provider-card card-idn">
+            <div class="img-wrapper"><img src="idnslot.webp"></div>
+            <div class="play-now">PLAY NOW</div>
         </div>
+        <div class="provider-card card-habanero">
+            <div class="img-wrapper"><img src="habanero.webp"></div>
+            <div class="play-now">PLAY NOW</div>
+        </div>
+        <div class="provider-card card-microgaming">
+            <div class="img-wrapper"><img src="microgaming.webp"></div>
+            <div class="play-now">PLAY NOW</div>
+        </div>
+        <div class="provider-card">
+            <div class="img-wrapper"><img src="nolimit.webp"></div>
+            <div class="play-now">PLAY NOW</div>
+        </div>
+        <div class="provider-card card-playtech">
+            <div class="img-wrapper"><img src="playtech.webp"></div>
+            <div class="play-now">PLAY NOW</div>
+        </div>
+        <div class="provider-card">
+            <div class="img-wrapper"><img src="redtiger.webp"></div>
+            <div class="play-now">PLAY NOW</div>
+        </div>
+        <div class="provider-card">
+            <div class="img-wrapper"><img src="fastspin.webp"></div>
+            <div class="play-now">PLAY NOW</div>
+        </div>
+        <div class="provider-card">
+            <div class="img-wrapper"><img src="gmw.webp"></div>
+            <div class="play-now">PLAY NOW</div>
+        </div>
+    </div>
 
     <div class="bottom-nav">
         <a href="lobby.html" class="nav-item"><i class="fas fa-home"></i>HOME</a>
         <a href="deposit.html" class="nav-item"><i class="fas fa-wallet"></i>DEPO</a>
         <a href="withdraw.html" class="nav-item"><i class="fas fa-money-check-alt"></i>WD</a>
-        <a href="#" class="nav-item"><i class="fas fa-sign-out-alt"></i>EXIT</a>
+        <a href="index.html" class="nav-item"><i class="fas fa-sign-out-alt"></i>EXIT</a>
     </div>
 
 </body>
