@@ -15,7 +15,6 @@
         * { box-sizing: border-box; }
         body { background: #000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* Header & Animasi Typing */
         .header-top { 
             background: linear-gradient(180deg, #4b0000 0%, #000 100%); 
             padding: 12px 15px; 
@@ -25,29 +24,26 @@
             border-bottom: 2px solid var(--primary-red); 
         }
 
-        /* Container untuk Logo Garuda dan Teks */
         .brand-container {
             display: flex;
             align-items: center;
-            gap: 10px; /* Jarak antara logo dan teks */
+            gap: 10px;
         }
 
-        /* Styling Logo Garuda Emas */
         .garuda-logo {
-            height: 35px; /* Sesuaikan tinggi logo */
+            height: 35px;
             width: auto;
             display: block;
         }
 
-        /* Container Teks Logo untuk Efek Mengetik */
         .typing-container {
             display: inline-block;
-            min-width: 160px; /* Menjaga agar layout tidak goyang saat ngetik */
+            min-width: 160px;
         }
 
         .logo-text { 
             color: var(--primary-red); 
-            font-family: 'Orbitron', sans-serif; /* Font Baru */
+            font-family: 'Orbitron', sans-serif;
             font-size: 20px; 
             font-weight: 900; 
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); 
@@ -55,61 +51,63 @@
             text-transform: uppercase; 
             white-space: nowrap;
             overflow: hidden;
-            border-right: 3px solid var(--primary-red); /* Kursor ketik */
+            border-right: 3px solid var(--primary-red);
             width: 0;
             animation: 
                 typing 3s steps(9, end) infinite,
                 blink-caret 0.75s step-end infinite;
         }
 
-        /* Animasi Ngetik dari Kosong ke Full */
         @keyframes typing {
             0% { width: 0; }
-            50% { width: 100%; } /* Selesai mengetik di detik ke 1.5 */
-            80% { width: 100%; } /* Berhenti sejenak (Pause) */
-            100% { width: 0; }   /* Hilang untuk mengulang lagi */
+            50% { width: 100%; }
+            80% { width: 100%; }
+            100% { width: 0; }
         }
 
-        /* Animasi Kursor Berkedip */
         @keyframes blink-caret {
             from, to { border-color: transparent }
             50% { border-color: var(--primary-red); }
+        }
+
+        /* ANIMASI BARU: Berkedip Halus */
+        @keyframes soft-blink {
+            0% { filter: brightness(100%); }
+            50% { filter: brightness(130%); box-shadow: 0 0 10px var(--primary-red); }
+            100% { filter: brightness(100%); }
         }
 
         .btn-deposit-top { 
             background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); 
             color: #fff; padding: 7px 18px; border-radius: 5px; 
             font-weight: bold; text-decoration: none; font-size: 13px; 
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.4); 
         }
 
-        /* Section User Info */
         .user-info-bar { background: #0f0f0f; padding: 12px 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
-        .u-balance span { color: var(--primary-red); font-weight: bold; }
-        .refresh-btn { background: #222; color: #fff; padding: 6px 12px; border-radius: 4px; border: 1px solid #444; }
-
-        /* Slot Bar Merah */
+        
         .slot-bar { background: var(--primary-red); color: #fff; margin: 10px; padding: 8px 12px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
         .btn-lobby-label { background: #000; color: #fff; padding: 3px 12px; border-radius: 3px; font-size: 11px; }
 
-        /* Grid Provider & Border Merah */
         .provider-container { padding: 0 10px 100px 10px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         .provider-card { border: 1.5px solid var(--primary-red); border-radius: 12px; overflow: hidden; background: #000; display: flex; flex-direction: column; aspect-ratio: 1 / 1; }
         .img-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .provider-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* Penyesuaian Logo Spesifik */
-        .card-idn .img-wrapper { background: #2e1a4e; padding: 15px; }
-        .card-habanero .img-wrapper, .card-microgaming .img-wrapper { background: #fff; padding: 15px; }
-        .card-idn img, .card-habanero img, .card-microgaming img { object-fit: contain; max-width: 100%; max-height: 100%; }
-
-        /* Tombol Play Now Merah */
+        /* PLAY NOW DENGAN EFEK HIDUP */
         .play-now {
             background: linear-gradient(180deg, #ff3333 0%, #990000 100%);
-            color: #fff; text-align: center; padding: 10px 0; font-size: 12px; font-weight: 900; border: none; width: 100%; cursor: pointer;
+            color: #fff; 
+            text-align: center; 
+            padding: 10px 0; 
+            font-size: 12px; 
+            font-weight: 900; 
+            border: none; 
+            width: 100%; 
+            cursor: pointer;
+            text-transform: uppercase;
+            animation: soft-blink 1.5s infinite ease-in-out; /* Mengaktifkan kedip */
         }
 
-        /* Nav Bawah */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; }
         .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; }
         .nav-item i { display: block; font-size: 20px; color: var(--primary-red); margin-bottom: 3px; }
@@ -149,52 +147,14 @@
             <div class="img-wrapper"><img src="pgsoft.webp"></div>
             <div class="play-now">PLAY NOW</div>
         </div>
-        <div class="provider-card card-idn">
-            <div class="img-wrapper"><img src="idnslot.webp"></div>
-            <div class="play-now">PLAY NOW</div>
         </div>
-        <div class="provider-card card-habanero">
-            <div class="img-wrapper"><img src="habanero.webp"></div>
-            <div class="play-now">PLAY NOW</div>
-        </div>
-        <div class="provider-card card-microgaming">
-            <div class="img-wrapper"><img src="microgaming.webp"></div>
-            <div class="play-now">PLAY NOW</div>
-        </div>
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="nolimit.webp"></div>
-            <div class="play-now">PLAY NOW</div>
-        </div>
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="playtech.webp"></div>
-            <div class="play-now">PLAY NOW</div>
-        </div>
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="redtiger.webp"></div>
-            <div class="play-now">PLAY NOW</div>
-        </div>
-    </div>
 
     <div class="bottom-nav">
         <a href="lobby.html" class="nav-item"><i class="fas fa-home"></i>HOME</a>
         <a href="deposit.html" class="nav-item"><i class="fas fa-wallet"></i>DEPO</a>
         <a href="withdraw.html" class="nav-item"><i class="fas fa-money-check-alt"></i>WD</a>
-        <a href="#" onclick="logout()" class="nav-item"><i class="fas fa-sign-out-alt"></i>EXIT</a>
+        <a href="#" class="nav-item"><i class="fas fa-sign-out-alt"></i>EXIT</a>
     </div>
 
-    <script>
-        const session = JSON.parse(localStorage.getItem('userSession'));
-        if (!session) {
-            window.location.href = "index.html";
-        } else {
-            document.getElementById('user-id').innerText = session.username.toUpperCase();
-            document.getElementById('user-saldo').innerText = new Intl.NumberFormat('id-ID').format(session.balance || 0);
-        }
-
-        function logout() {
-            localStorage.removeItem('userSession');
-            window.location.href = "index.html";
-        }
-    </script>
 </body>
 </html>
