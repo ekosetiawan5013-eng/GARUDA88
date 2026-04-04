@@ -3,82 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOBBY VIP - GARUDA 88</title>
+    <title>LOBBY - GARUDA 88</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* CSS ASLI BOS - TIDAK ADA YANG DIUBAH */
-        body { background: #1a0000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
-        .header { background: linear-gradient(180deg, #700000 0%, #000 100%); padding: 15px; border-bottom: 2px solid #fc0; text-align: center; }
-        .brand-name { color: #ff0000; font-size: 24px; font-weight: 900; text-shadow: 2px 2px #000; margin: 0; }
-        .member-card { background: linear-gradient(135deg, #330000 0%, #000 100%); margin: 20px; border-radius: 15px; padding: 20px; border: 1px solid #fc0; box-shadow: 0 0 15px rgba(255, 204, 0, 0.2); }
-        .user-info { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .user-info i { font-size: 40px; color: #fc0; }
-        .user-name { font-size: 18px; font-weight: bold; color: #fff; text-transform: uppercase; }
-        .balance-box { background: #222; border-radius: 10px; padding: 15px; text-align: center; border: 1px dashed #fc0; }
-        .balance-amount { font-size: 28px; font-weight: 900; color: #fc0; }
+        body { background: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 0; }
         
-        /* MENU PROVIDER GAME YANG BOS MAKSUD */
-        .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 20px; }
-        .menu-item { background: #000; border: 1px solid #700000; border-radius: 10px; padding: 20px; text-align: center; color: #fff; text-decoration: none; }
-        .menu-item i { font-size: 30px; color: #fc0; margin-bottom: 10px; display: block; }
-        .logout-btn { margin: 20px; padding: 12px; background: linear-gradient(to bottom, #ff0000, #800000); color: #fff; text-align: center; border-radius: 8px; font-weight: bold; border: 1px solid #fff; cursor: pointer; }
+        /* HEADER UTAMA */
+        .header-top { background: #000; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #fc0; }
+        .logo-area { display: flex; align-items: center; gap: 10px; }
+        .logo-text { color: #fc0; font-size: 20px; font-weight: bold; margin: 0; }
+        .btn-deposit-top { background: linear-gradient(to bottom, #fff700, #ffcc00); color: #000; padding: 8px 20px; border-radius: 5px; font-weight: bold; text-decoration: none; font-size: 14px; box-shadow: 0 0 10px #fc0; }
+
+        /* USER & BALANCE SECTION (SESUAI GAMBAR) */
+        .user-section { background: #000; padding: 15px; border-bottom: 2px solid #fc0; position: relative; }
+        .username-id { font-size: 22px; font-weight: bold; color: #fff; margin-bottom: 5px; text-transform: uppercase; }
+        .balance-row { display: flex; align-items: center; gap: 5px; font-size: 16px; }
+        .balance-label { color: #ccc; }
+        .balance-value { color: #f00; font-weight: bold; }
+        .btn-refresh { position: absolute; right: 15px; bottom: 15px; background: #00c853; color: #fff; padding: 5px 15px; border-radius: 5px; font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 5px; font-weight: bold; }
+
+        /* SLOT GAMES TITLE BAR */
+        .slot-title-bar { background: linear-gradient(to bottom, #fff700, #ffcc00); margin: 10px; padding: 8px 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; color: #000; }
+        .slot-title-bar span { font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .btn-lobby-black { background: #000; color: #fff; padding: 3px 15px; border-radius: 5px; font-size: 12px; font-weight: bold; }
+
+        /* PROVIDER GRID (GAMBAR PROVIDER) */
+        .provider-grid { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 10px; }
+        .provider-card { border: 2px solid #fc0; border-radius: 10px; overflow: hidden; background: #000; position: relative; }
+        .provider-card img { width: 100%; display: block; }
+        
+        /* BOTTOM NAV */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #fc0; padding: 10px 0; z-index: 100; }
+        .nav-item { text-align: center; color: #fc0; text-decoration: none; font-size: 11px; font-weight: bold; }
+        .nav-item i { display: block; font-size: 20px; margin-bottom: 3px; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1 class="brand-name">GARUDA 88 VIP</h1>
+    <div class="header-top">
+        <div class="logo-area">
+            <i class="fas fa-bars" style="color:#fff; font-size: 20px;"></i>
+            <h1 class="logo-text">GARUDA 88</h1>
+        </div>
+        <a href="deposit.html" class="btn-deposit-top">Deposit</a>
     </div>
 
-    <div class="member-card">
-        <div class="user-info">
-            <i class="fas fa-user-circle"></i>
-            <div>
-                <div class="user-name" id="display-username">MEMANGGIL DATA...</div>
-                <div style="color: #0f0; font-size: 11px; font-weight: bold;"><i class="fas fa-gem"></i> MEMBER VIP</div>
-            </div>
+    <div class="user-section">
+        <div class="username-id" id="user-id">LOADING...</div>
+        <div class="balance-row">
+            <span class="balance-label">Balance:</span>
+            <span class="balance-value">IDR. <span id="user-balance">0</span></span>
         </div>
-        <div class="balance-box">
-            <div style="font-size: 12px; color: #ccc;">TOTAL SALDO ANDA</div>
-            <div class="balance-amount">IDR <span id="display-balance">0</span></div>
+        <a href="#" class="btn-refresh" onclick="location.reload()"><i class="fas fa-sync-alt"></i> Refresh</a>
+    </div>
+
+    <div class="slot-title-bar">
+        <span><i class="fas fa-seven-seven-seven"></i> SLOT GAMES</span>
+        <div class="btn-lobby-black">LOBBY</div>
+    </div>
+
+    <div class="provider-grid">
+        <div class="provider-card">
+            <img src="https://via.placeholder.com/500x200/000/fc0?text=PRAGMATIC+PLAY" alt="Pragmatic">
+        </div>
+        <div class="provider-card">
+            <img src="https://via.placeholder.com/500x200/000/fc0?text=PG+SOFT" alt="PGSoft">
+        </div>
+        <div class="provider-card">
+            <img src="https://via.placeholder.com/500x200/000/fc0?text=HABANERO" alt="Habanero">
+        </div>
+        <div class="provider-card">
+            <img src="https://via.placeholder.com/500x200/000/fc0?text=JOKER123" alt="Joker">
         </div>
     </div>
 
-    <div class="menu-grid">
-        <a href="deposit.html" class="menu-item">
-            <i class="fas fa-university"></i>
-            <span>DEPOSIT</span>
-        </a>
-        <a href="withdraw.html" class="menu-item">
-            <i class="fas fa-money-bill-wave"></i>
-            <span>WITHDRAW</span>
-        </a>
-        <div class="menu-item" onclick="alert('Provider Pragmatic Play sedang maintenance!')">
-            <i class="fas fa-gamepad"></i>
-            <span>SLOT GAMES</span>
-        </div>
-        <div class="menu-item" onclick="window.location.href='https://wa.me/NOMOR_BOS'">
-            <i class="fas fa-headset"></i>
-            <span>LIVE SUPPORT</span>
-        </div>
+    <div style="height: 80px;"></div> <div class="bottom-nav">
+        <a href="lobby.html" class="nav-item"><i class="fas fa-home"></i>HOME</a>
+        <a href="deposit.html" class="nav-item"><i class="fas fa-university"></i>DEPOSIT</a>
+        <a href="withdraw.html" class="nav-item"><i class="fas fa-money-bill-wave"></i>WITHDRAW</a>
+        <a href="#" onclick="logout()" class="nav-item"><i class="fas fa-sign-out-alt"></i>LOGOUT</a>
     </div>
-
-    <div class="logout-btn" onclick="logout()">LOGOUT (KELUAR SITUS)</div>
 
     <script>
-        // Kunci untuk menghubungkan Login dan Lobby
         const session = JSON.parse(localStorage.getItem('userSession'));
-
         if (!session) {
-            // Kalau tidak ada data login, balikkan ke awal
             window.location.href = "index.html";
         } else {
-            // Pasang Username ke layar
-            document.getElementById('display-username').innerText = "USER: " + session.username.toUpperCase();
-            
-            // Pasang Saldo ke layar dengan format rupiah
-            const formattedBalance = new Intl.NumberFormat('id-ID').format(session.balance || 0);
-            document.getElementById('display-balance').innerText = formattedBalance;
+            document.getElementById('user-id').innerText = session.username.toUpperCase();
+            document.getElementById('user-balance').innerText = new Intl.NumberFormat('id-ID').format(session.balance || 0);
         }
 
         function logout() {
