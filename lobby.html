@@ -10,7 +10,7 @@
         :root {
             --primary-red: #ff0000;
             --dark-red: #8b0000;
-            --gold: #ffcc00;
+            --neon-green: #00ff00;
         }
 
         * { box-sizing: border-box; }
@@ -28,7 +28,6 @@
 
         .brand-container { display: flex; align-items: center; gap: 10px; }
         .garuda-logo { height: 35px; width: auto; display: block; }
-
         .typing-container { display: inline-block; min-width: 160px; }
         .logo-text { 
             color: var(--primary-red); 
@@ -52,10 +51,9 @@
             background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); 
             color: #fff; padding: 7px 18px; border-radius: 5px; 
             font-weight: bold; text-decoration: none; font-size: 13px; 
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.4); 
         }
 
-        /* Section User Info */
+        /* User Info Section */
         .user-info-bar { background: #0f0f0f; padding: 12px 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
         .u-balance span { color: var(--primary-red); font-weight: bold; }
         .refresh-btn { background: #222; color: #fff; padding: 6px 12px; border-radius: 4px; border: 1px solid #444; cursor: pointer; }
@@ -66,13 +64,9 @@
 
         /* Grid Provider */
         .provider-container { padding: 0 10px 20px 10px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .provider-card { border: 1.5px solid var(--primary-red); border-radius: 12px; overflow: hidden; background: #000; display: flex; flex-direction: column; aspect-ratio: 1 / 1; }
+        .provider-card { border: 1.5 solid var(--primary-red); border-radius: 12px; overflow: hidden; background: #000; display: flex; flex-direction: column; aspect-ratio: 1 / 1; border: 1px solid var(--primary-red); }
         .img-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .provider-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-        .card-idn .img-wrapper { background: #2e1a4e; padding: 15px; }
-        .card-habanero .img-wrapper, .card-microgaming .img-wrapper { background: #fff; padding: 15px; }
-        .card-idn img, .card-habanero img, .card-microgaming img { object-fit: contain; max-width: 100%; max-height: 100%; }
 
         @keyframes soft-blink { 0% { filter: brightness(100%); } 50% { filter: brightness(150%); } 100% { filter: brightness(100%); } }
         .play-now {
@@ -81,14 +75,48 @@
             text-transform: uppercase; animation: soft-blink 1.5s infinite ease-in-out;
         }
 
-        /* Copyright & Bank Info (Sesuai Referensi) */
+        /* --- BAGIAN BANK & FOOTER (DIPERBAIKI) --- */
         .footer-info { text-align: center; padding: 20px 10px 110px 10px; background: #000; color: #888; font-size: 11px; }
-        .bank-status { display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
-        .status-item { display: flex; align-items: center; gap: 5px; }
-        .dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; }
-        .dot-online { background: #00ff00; box-shadow: 0 0 5px #00ff00; }
-        .dot-offline { background: #ff0000; }
+        
+        .bank-status { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 10px; 
+            margin-bottom: 20px;
+            text-align: left;
+            padding: 0 5px;
+        }
+
+        .status-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+            font-size: 10px;
+            color: #aaa;
+            font-weight: bold;
+        }
+
+        /* Animasi Titik Berkedip (Pulsing Glow) */
+        @keyframes pulse-green {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+            70% { transform: scale(1.2); box-shadow: 0 0 0 6px rgba(0, 255, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+        }
+
+        .dot { 
+            height: 7px; 
+            width: 7px; 
+            border-radius: 50%; 
+            display: inline-block; 
+        }
+
+        .dot-online { 
+            background: var(--neon-green); 
+            animation: pulse-green 1.5s infinite; 
+        }
+
         .copyright-text { border-top: 1px solid #222; padding-top: 15px; line-height: 1.6; }
+        strong { color: var(--primary-red); }
 
         /* Nav Bawah */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; z-index: 1000; }
@@ -122,9 +150,9 @@
     <div class="provider-container">
         <div class="provider-card"><div class="img-wrapper"><img src="pragmatic.webp"></div><div class="play-now">PLAY NOW</div></div>
         <div class="provider-card"><div class="img-wrapper"><img src="pgsoft.webp"></div><div class="play-now">PLAY NOW</div></div>
-        <div class="provider-card card-idn"><div class="img-wrapper"><img src="idnslot.webp"></div><div class="play-now">PLAY NOW</div></div>
-        <div class="provider-card card-habanero"><div class="img-wrapper"><img src="habanero.webp"></div><div class="play-now">PLAY NOW</div></div>
-        <div class="provider-card card-microgaming"><div class="img-wrapper"><img src="microgaming.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="idnslot.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="habanero.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="microgaming.webp"></div><div class="play-now">PLAY NOW</div></div>
         <div class="provider-card"><div class="img-wrapper"><img src="nolimit.webp"></div><div class="play-now">PLAY NOW</div></div>
         <div class="provider-card"><div class="img-wrapper"><img src="playtech.webp"></div><div class="play-now">PLAY NOW</div></div>
         <div class="provider-card"><div class="img-wrapper"><img src="redtiger.webp"></div><div class="play-now">PLAY NOW</div></div>
@@ -136,9 +164,14 @@
         <div class="bank-status">
             <div class="status-item"><span class="dot dot-online"></span> BCA</div>
             <div class="status-item"><span class="dot dot-online"></span> BNI</div>
-            <div class="status-item"><span class="dot dot-online"></span> MANDIRI</div>
             <div class="status-item"><span class="dot dot-online"></span> BRI</div>
+            <div class="status-item"><span class="dot dot-online"></span> MANDIRI</div>
+            <div class="status-item"><span class="dot dot-online"></span> CIMB</div>
             <div class="status-item"><span class="dot dot-online"></span> DANAMON</div>
+            <div class="status-item"><span class="dot dot-online"></span> DANA</div>
+            <div class="status-item"><span class="dot dot-online"></span> OVO</div>
+            <div class="status-item"><span class="dot dot-online"></span> GOPAY</div>
+            <div class="status-item"><span class="dot dot-online"></span> LINKAJA</div>
             <div class="status-item"><span class="dot dot-online"></span> QRIS</div>
         </div>
         <div class="copyright-text">
