@@ -47,13 +47,12 @@
         .img-wrapper {
             flex: 1;
             display: flex;
-            background: #000;
-            overflow: hidden;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
 
-        /* Default: Full Frame untuk Pragmatic, PG Soft, dll */
+        /* Default: Full untuk Pragmatic, PGSoft, dll */
         .provider-card img { 
             width: 100%; 
             height: 100%; 
@@ -61,25 +60,35 @@
             display: block;
         }
 
-        /* PERBAIKAN KHUSUS: IDN SLOT & HABANERO (DIPERKECIL SEDIKIT) */
-        .card-small .img-wrapper {
-            padding: 12px; /* Memberi ruang agar tidak sesak */
+        /* PERBAIKAN: IDN SLOT (Full Background & Tidak Sesak) */
+        .card-idn .img-wrapper {
+            background: #2e1a4e; /* Warna ungu gelap khas IDN agar full */
+            padding: 15px;
         }
-        .card-small img {
+        .card-idn img {
             object-fit: contain;
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 100%;
+            max-height: 100%;
         }
 
-        /* PERBAIKAN KHUSUS: MICROGAMING (UTUH) */
+        /* PERBAIKAN: HABANERO (Full Background & Tidak Sesak) */
+        .card-habanero .img-wrapper {
+            background: #ffffff; /* Warna putih khas Habanero agar full */
+            padding: 18px;
+        }
+        .card-habanero img {
+            object-fit: contain;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* PERBAIKAN: MICROGAMING */
         .card-microgaming .img-wrapper {
+            background: #ffffff;
             padding: 15px;
-            background: #fff;
         }
         .card-microgaming img { 
             object-fit: contain;
-            width: auto;
-            height: auto;
             max-width: 100%;
             max-height: 100%;
         }
@@ -114,7 +123,7 @@
 
     <div class="user-info-bar">
         <div class="u-data">
-            <div class="u-name" id="user-id">USER</div>
+            <div class="u-name" id="user-id">BANJARAN</div>
             <div class="u-balance">Balance: <span>IDR. <span id="user-saldo">0</span></span></div>
         </div>
         <button class="refresh-btn" onclick="location.reload()"><i class="fas fa-sync-alt"></i> Refresh</button>
@@ -134,11 +143,11 @@
             <div class="img-wrapper"><img src="pgsoft.webp"></div>
             <div class="play-now">PLAY NOW</div>
         </div>
-        <div class="provider-card card-small">
+        <div class="provider-card card-idn">
             <div class="img-wrapper"><img src="idnslot.webp"></div>
             <div class="play-now">PLAY NOW</div>
         </div>
-        <div class="provider-card card-small">
+        <div class="provider-card card-habanero">
             <div class="img-wrapper"><img src="habanero.webp"></div>
             <div class="play-now">PLAY NOW</div>
         </div>
