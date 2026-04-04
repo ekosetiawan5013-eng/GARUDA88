@@ -15,7 +15,7 @@
         * { box-sizing: border-box; }
         body { background: #000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* Header */
+        /* HEADER - Animasi Ketikan (Typing) Kembali Hidup */
         .header-top { 
             background: linear-gradient(180deg, #4b0000 0%, #000 100%); 
             padding: 12px 15px; 
@@ -27,6 +27,7 @@
 
         .brand-container { display: flex; align-items: center; gap: 10px; }
         .garuda-logo { height: 35px; width: auto; }
+        .typing-container { display: inline-block; min-width: 160px; }
         .logo-text { 
             color: var(--primary-red); 
             font-family: 'Orbitron', sans-serif;
@@ -35,7 +36,15 @@
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); 
             margin: 0; 
             text-transform: uppercase; 
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid var(--primary-red);
+            width: 0;
+            animation: typing 3s steps(9, end) infinite, blink-caret 0.75s step-end infinite;
         }
+
+        @keyframes typing { 0% { width: 0; } 50% { width: 100%; } 80% { width: 100%; } 100% { width: 0; } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--primary-red); } }
 
         .btn-deposit-top { 
             background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); 
@@ -52,9 +61,8 @@
         .slot-bar { background: var(--primary-red); color: #fff; margin: 10px; padding: 8px 12px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
         .btn-lobby-label { background: #000; color: #fff; padding: 3px 12px; border-radius: 3px; font-size: 11px; }
 
-        /* --- GRID PROVIDER --- */
+        /* --- GRID PROVIDER (10 ITEM & LOGO PAS) --- */
         .provider-container { padding: 0 10px 20px 10px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        
         .provider-card { 
             border-radius: 12px; 
             overflow: hidden; 
@@ -65,38 +73,18 @@
             border: 1.5px solid var(--primary-red); 
         }
 
-        .img-wrapper { 
-            flex: 1; 
-            display: flex; 
-            align-items: center;
-            justify-content: center;
-            overflow: hidden; 
-        }
+        .img-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .provider-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        .provider-card img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            display: block; 
-        }
-
-        /* --- PERBAIKAN KHUSUS LOGO --- */
-
-        /* 1. IDN SLOT: Menghilangkan sisa hitam dengan background senada */
-        .card-idn { 
-            background: radial-gradient(circle, #2a1b5d 0%, #1a103d 100%); /* Warna senada logo IDN */
-        }
-        .card-idn .img-wrapper { padding: 10px; }
+        /* Background Khusus IDN Slot */
+        .card-idn { background: radial-gradient(circle, #2a1b5d 0%, #1a103d 100%); }
+        .card-idn .img-wrapper { padding: 8px; }
         .card-idn img { object-fit: contain; }
 
-        /* 2. Microgaming & Habanero: Background Putih */
+        /* Background Putih & Fit untuk Habanero, Microgaming, Playtech */
         .card-white { background-color: #fff; }
-        .card-white .img-wrapper { padding: 15px; }
+        .card-white .img-wrapper { padding: 12px; }
         .card-white img { object-fit: contain; }
-
-        /* 3. Playtech: Padding sedikit agar proporsional */
-        .card-playtech .img-wrapper { padding: 5px; }
-        .card-playtech img { object-fit: contain; }
 
         /* Play Now Button */
         @keyframes soft-blink { 0% { filter: brightness(100%); } 50% { filter: brightness(130%); } 100% { filter: brightness(100%); } }
@@ -105,12 +93,18 @@
             color: #fff; text-align: center; padding: 10px 0; font-size: 12px; font-weight: 900; border: none; width: 100%; text-transform: uppercase; animation: soft-blink 1.5s infinite;
         }
 
-        /* --- FOOTER & NAV --- */
-        .footer-info { text-align: center; padding: 20px 10px 110px 10px; background: #000; color: #888; font-size: 11px; }
-        .copyright-text { border-top: 1px solid #222; padding-top: 15px; line-height: 1.6; }
-        strong { color: var(--primary-red); }
-        .dot { height: 7px; width: 7px; border-radius: 50%; display: inline-block; background: var(--neon-green); margin-right: 5px; }
+        /* --- BANK STATUS RAPI TENGAH --- */
+        .footer-info { text-align: center; padding: 20px 10px 110px 10px; background: #000; color: #888; font-size: 11px; border-top: 1px solid #222; }
+        .bank-container-wrapper { display: flex; justify-content: center; margin-bottom: 20px; }
+        .bank-status { display: grid; grid-template-columns: repeat(3, auto); gap: 10px 20px; text-align: left; }
+        .status-item { display: flex; align-items: center; gap: 6px; font-size: 10px; color: #ccc; font-weight: 600; }
+        .dot { height: 7px; width: 7px; border-radius: 50%; background: var(--neon-green); animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
+        .copyright-text { line-height: 1.6; }
+        strong { color: var(--primary-red); }
+
+        /* Bottom Nav */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; z-index: 1000; }
         .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; }
         .nav-item i { display: block; font-size: 20px; color: var(--primary-red); margin-bottom: 3px; }
@@ -121,7 +115,7 @@
     <div class="header-top">
         <div class="brand-container">
             <img src="logogaruda.png" alt="Logo" class="garuda-logo">
-            <div class="logo-text">GARUDA 88</div>
+            <div class="typing-container"><h1 class="logo-text">GARUDA 88</h1></div>
         </div>
         <a href="deposit.html" class="btn-deposit-top">DEPOSIT</a>
     </div>
@@ -142,20 +136,30 @@
     <div class="provider-container">
         <div class="provider-card"><div class="img-wrapper"><img src="pragmatic.webp"></div><div class="play-now">PLAY NOW</div></div>
         <div class="provider-card"><div class="img-wrapper"><img src="pgsoft.webp"></div><div class="play-now">PLAY NOW</div></div>
-        
         <div class="provider-card card-idn"><div class="img-wrapper"><img src="idnslot.webp"></div><div class="play-now">PLAY NOW</div></div>
-        
         <div class="provider-card card-white"><div class="img-wrapper"><img src="habanero.webp"></div><div class="play-now">PLAY NOW</div></div>
-        
         <div class="provider-card card-white"><div class="img-wrapper"><img src="microgaming.webp"></div><div class="play-now">PLAY NOW</div></div>
-        
-        <div class="provider-card card-playtech card-white"><div class="img-wrapper"><img src="playtech.webp"></div><div class="play-now">PLAY NOW</div></div>
-        
         <div class="provider-card"><div class="img-wrapper"><img src="nolimit.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card card-white"><div class="img-wrapper"><img src="playtech.webp"></div><div class="play-now">PLAY NOW</div></div>
         <div class="provider-card"><div class="img-wrapper"><img src="redtiger.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="fastspin.webp"></div><div class="play-now">PLAY NOW</div></div>
+        <div class="provider-card"><div class="img-wrapper"><img src="gmw.webp"></div><div class="play-now">PLAY NOW</div></div>
     </div>
 
     <div class="footer-info">
+        <div class="bank-container-wrapper">
+            <div class="bank-status">
+                <div class="status-item"><span class="dot"></span> BCA</div>
+                <div class="status-item"><span class="dot"></span> BNI</div>
+                <div class="status-item"><span class="dot"></span> BRI</div>
+                <div class="status-item"><span class="dot"></span> MANDIRI</div>
+                <div class="status-item"><span class="dot"></span> CIMB</div>
+                <div class="status-item"><span class="dot"></span> PERMATA</div>
+                <div class="status-item"><span class="dot"></span> DANA</div>
+                <div class="status-item"><span class="dot"></span> OVO</div>
+                <div class="status-item"><span class="dot"></span> QRIS</div>
+            </div>
+        </div>
         <div class="copyright-text">
             &copy; Copyright 2014 - 2026 . <strong>GARUDA 88</strong> . All Rights Reserved.<br>
             Official Licensed by PAGCOR and BMM Testlabs.
