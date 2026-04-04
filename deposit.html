@@ -9,34 +9,42 @@
         /* TEMA KHAS GARUDA 88: MERAH, PUTIH, HITAM */
         body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         
+        /* Navigasi Atas */
         .header-bar { 
             background: linear-gradient(to bottom, #800000, #000); 
-            padding: 15px; 
+            padding: 10px 15px; 
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
             border-bottom: 2px solid #fff; 
         }
 
-        .user-info-section { background: #1a1a1a; padding: 15px; border-bottom: 1px solid #444; }
-        .user-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 14px; }
-        .balance-box { color: #fff; font-weight: bold; }
-        .balance-box span { color: #ff0000; text-shadow: 0 0 5px #f00; }
-        
-        .refresh-btn { background: #cc0000; color: white; border: 1px solid #fff; padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer; }
+        /* Seksi Profil Member (Bagian Atas) */
+        .user-profile-section { background: #1a1a1a; padding: 15px; border-bottom: 1px solid #444; }
+        .user-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .username-text { font-weight: bold; font-size: 16px; color: #fff; text-transform: uppercase; }
+        .balance-box { background: #000; border: 1px solid #cc0000; padding: 5px 10px; border-radius: 4px; color: #fff; font-weight: bold; }
+        .balance-box span { color: #ff0; text-shadow: 0 0 5px #f00; }
+        .refresh-btn { background: #cc0000; color: white; border: 1px solid #fff; padding: 5px 10px; border-radius: 4px; font-size: 12px; cursor: pointer; margin-left: 5px; }
 
+        /* Detail Bank Member (Data saat Daftar) */
+        .member-bank-details { background: #000; padding: 10px; border-radius: 5px; border: 1px solid #333; font-size: 13px; margin-top: 10px;}
+        .data-row { display: grid; grid-template-columns: 100px 10px 1fr; margin-bottom: 5px; color: #ccc;}
+        .data-row strong { color: #fff; }
+
+        /* Judul Menu */
         .kasir-header { 
             background: #cc0000; 
             text-align: center; 
-            padding: 10px; 
+            padding: 8px; 
             font-weight: bold; 
-            font-size: 16px; 
+            font-size: 15px; 
             color: #fff;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         
-        /* SELECTOR METODE (BANK & QRIS) */
+        /* Selector Metode (Bank & QRIS) */
         .method-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; background: #000; }
         .method-card { 
             background: #222; 
@@ -46,6 +54,7 @@
             text-align: center; 
             cursor: pointer; 
             transition: 0.3s;
+            color: #fff;
         }
         .method-card.active { 
             background: #fff; 
@@ -54,16 +63,17 @@
             box-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
         .method-card i { font-size: 24px; display: block; margin-bottom: 5px; }
-        .method-card span { font-size: 12px; font-weight: bold; text-transform: uppercase; }
+        .method-card span { font-size: 11px; font-weight: bold; text-transform: uppercase; }
 
-        /* DETAIL REKENING */
-        .deposit-details { background: #111; padding: 15px; margin: 10px; border-radius: 8px; border: 1px solid #cc0000; font-size: 13px; }
+        /* DETAIL REKENING TUJUAN (EKO SETIAWAN - Bagian Bawah) */
+        .target-rekening-section { background: #111; padding: 15px; margin: 10px; border-radius: 8px; border: 1px solid #cc0000; font-size: 13px; }
+        .target-header { color: #cc0000; font-weight: bold; text-transform: uppercase; border-bottom: 1px solid #cc0000; padding-bottom: 5px; margin-bottom: 10px; text-align: center;}
         .detail-row { display: grid; grid-template-columns: 110px 10px 1fr; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 8px; }
-        .copy-btn { background: #fff; color: #000; border: none; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; cursor: pointer; float: right; }
+        .copy-btn { background: #fff; color: #000; border: none; padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; float: right; margin-top: -5px;}
 
-        /* FORM INPUT */
+        /* FORM INPUT & TOMBOL */
         .form-section { padding: 15px; }
-        .input-group { display: grid; grid-template-columns: 100px 10px 1fr; align-items: center; margin-bottom: 20px; }
+        .input-group { display: grid; grid-template-columns: 90px 10px 1fr; align-items: center; margin-bottom: 20px; }
         input, select { 
             background: #fff; 
             border: 2px solid #cc0000; 
@@ -80,7 +90,7 @@
             color: white; 
             width: 100%; 
             padding: 15px; 
-            border: 1px solid #fff; 
+            border: 2px solid #fff; 
             border-radius: 5px; 
             font-weight: bold; 
             font-size: 18px; 
@@ -89,36 +99,44 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
+        /* Peraturan */
         .peraturan-box { background: #1a1a1a; padding: 15px; font-size: 12px; border-top: 3px solid #cc0000; margin-top: 20px; }
         .peraturan-box h3 { color: #cc0000; text-align: center; margin-top: 0; text-transform: uppercase; }
-        .peraturan-box li { margin-bottom: 5px; color: #ccc; }
+        .peraturan-box ul { margin: 0; padding-left: 20px; color: #ccc; }
     </style>
 </head>
 <body>
 
     <div class="header-bar">
-        <i class="fas fa-arrow-left" onclick="window.location.href='lobby.html'"></i>
-        <span style="font-weight: bold; letter-spacing: 2px;">GARUDA 88</span>
-        <i class="fas fa-headset"></i>
+        <i class="fas fa-arrow-left" onclick="window.location.href='lobby.html'" style="font-size: 18px;"></i>
+        <span style="font-weight: bold; letter-spacing: 1px; font-size: 14px;">GARUDA 88 - KASIR</span>
+        <i class="fas fa-headset" style="font-size: 18px;"></i>
     </div>
 
-    <div class="user-info-section">
-        <div class="user-row">
-            <span id="player-username" style="font-weight: bold;">MEMLOADING...</span>
-            <span style="color: #0f0; font-size: 10px;"><i class="fas fa-circle"></i> Online</span>
+    <div class="user-profile-section">
+        <div class="user-header-row">
+            <span class="username-text" id="p-username">LOADING...</span>
+            <span style="color: #0f0; font-size: 11px;"><i class="fas fa-circle"></i> Online</span>
         </div>
-        <div class="user-row">
-            <div class="balance-box">SALDO: <span id="player-balance">IDR 0</span></div>
+        <div class="user-header-row">
+            <div class="balance-box">SALDO: IDR <span id="p-balance">0</span></div>
             <button class="refresh-btn" onclick="location.reload()"><i class="fas fa-sync"></i> REFRESH</button>
         </div>
+        
+        <div class="member-bank-details">
+            <div style="color: #888; font-size: 11px; margin-bottom: 5px;">Data Bank Terdaftar Anda:</div>
+            <div class="data-row"><span>Nama Bank</span><span>:</span><strong id="m-bank">LOADING...</strong></div>
+            <div class="data-row"><span>Nama Rek</span><span>:</span><strong id="m-acc-name">LOADING...</strong></div>
+            <div class="data-row"><span>No Rek</span><span>:</span><strong id="m-acc-num">LOADING...</strong></div>
+        </div>
     </div>
 
-    <div class="kasir-header">MENU KASIR DEPOSIT</div>
+    <div class="kasir-header">KASIR DEPOSIT</div>
 
     <div class="method-selector">
         <div class="method-card active">
             <i class="fas fa-university"></i>
-            <span>TRANSFER BANK</span>
+            <span>BANK TRANSFER</span>
         </div>
         <div class="method-card">
             <i class="fas fa-qrcode"></i>
@@ -126,79 +144,112 @@
         </div>
     </div>
 
-    <div class="deposit-details">
-        <div class="detail-row"><span>Nama Bank</span><span>:</span><span style="color: #fff; font-weight: bold;">DANA</span></div>
-        <div class="detail-row"><span>Atas Nama</span><span>:</span><span style="color: #fff; font-weight: bold;">EKO SETIAWAN</span></div>
-        <div class="detail-row"><span>No Rekening</span><span>:</span><span style="color: #ff0; font-weight: bold; font-size: 16px;">082157578668</span></div>
-        <button class="copy-btn" onclick="navigator.clipboard.writeText('082157578668'); alert('Nomor berhasil disalin!');">Salin No</button>
-        <div style="clear: both;"></div>
-        
-        <div style="margin-top: 15px;" class="detail-row">
-            <span>Metode</span><span>:</span>
-            <select id="method">
-                <option value="DANA">DANA</option>
-                <option value="OVO">OVO</option>
-                <option value="GOPAY">GOPAY</option>
-                <option value="BANK">TRANSFER BANK</option>
-            </select>
+    <div class="target-rekening-section">
+        <div class="target-header">Rekening Tujuan Transfer</div>
+        <div class="detail-row"><span>Nama Bank</span><span>:</span><strong style="color: #fff; font-size: 15px;">DANA</strong></div>
+        <div class="detail-row"><span>Atas Nama</span><span>:</span><strong style="color: #fff; font-size: 15px;">EKO SETIAWAN</strong></div>
+        <div class="detail-row">
+            <span>No Rekening</span><span>:</span>
+            <strong style="color: #ff0; font-size: 18px; letter-spacing: 1px;">082157578668</strong>
         </div>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText('082157578668'); alert('Nomor DANA Pak Eko disalin!');">Salin</button>
+        <div style="clear: both;"></div>
     </div>
 
     <div class="form-section">
         <div class="input-group">
-            <span style="font-weight: bold;">NOMINAL</span><span>:</span>
-            <input type="number" id="amount" value="10000" min="10000">
+            <span style="font-weight: bold; font-size: 14px; color: #fff;">NOMINAL</span><span>:</span>
+            <input type="number" id="amount" value="10000" min="10000" placeholder="Min. 10000">
         </div>
-        <button onclick="kirimDepo()" class="btn-kirim">KIRIM SEKARANG</button>
+        <button onclick="kirimDepo()" class="btn-kirim">KIRIM FORM DEPOSIT</button>
     </div>
 
     <div class="peraturan-box">
-        <h3>SYARAT & KETENTUAN</h3>
+        <h3>PENTING</h3>
         <ul>
-            <li>Minimal Deposit adalah <strong>IDR 10.000</strong>.</li>
-            <li>Wajib kirim dana ke rekening yang tertera di atas.</li>
-            <li>Gunakan nama pengirim yang sama dengan nama terdaftar.</li>
-            <li>Simpan bukti transfer hingga saldo masuk ke dompet Anda.</li>
+            <li>Minimal Deposit <strong>IDR 10.000</strong>.</li>
+            <li>Wajib transfer menggunakan rekening terdaftar Anda (di bagian atas).</li>
+            <li>Transfer ke rekening DANA Pak Eko di atas, lalu isi form ini.</li>
+            <li>Salah transfer / nama pengirim beda, deposit <strong>TIDAK DIPROSES</strong>.</li>
         </ul>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        // Kredensial Supabase Pak Eko
         const _sb = supabase.createClient('https://sbtrcroononwihparzfk.supabase.co', 'sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn');
         
+        // Ambil session login
         const session = JSON.parse(localStorage.getItem('userSession'));
+        
         if(session) {
-            document.getElementById('player-username').innerText = session.username.toUpperCase();
-            document.getElementById('player-balance').innerText = "IDR " + new Intl.NumberFormat('id-ID').format(session.balance);
+            // Tampilkan Data Utama
+            document.getElementById('p-username').innerText = session.username;
+            document.getElementById('p-balance').innerText = new Intl.NumberFormat('id-ID').format(session.balance);
+            
+            // Mengambil Data Bank Member dari Database secara real-time
+            fetchMemberBank();
         } else {
+            // Jika tidak ada session, tendang ke login
             window.location.href = 'index.html';
+        }
+
+        async function fetchMemberBank() {
+            try {
+                // Ambil data spesifik member berdasarkan username dari tabel 'members'
+                const { data, error } = await _sb
+                    .from('members')
+                    .select('bank_name, acc_name, acc_number')
+                    .eq('username', session.username)
+                    .single(); // Kita hanya butuh 1 baris data
+
+                if (error) throw error;
+
+                if (data) {
+                    // Masukkan data bank member ke tampilan (Bagian Atas)
+                    document.getElementById('m-bank').innerText = data.bank_name ? data.bank_name.toUpperCase() : '-';
+                    document.getElementById('m-acc-name').innerText = data.acc_name ? data.acc_name.toUpperCase() : '-';
+                    // Sembunyikan sebagian nomor rekening demi privasi (opsional, seperti referensi)
+                    const rawNum = data.acc_number || '-';
+                    const hiddenNum = rawNum.length > 5 ? rawNum.substring(0, 4) + 'XXXX' + rawNum.substring(rawNum.length - 2) : rawNum;
+                    document.getElementById('m-acc-num').innerText = hiddenNum;
+                }
+            } catch (err) {
+                console.error("Gagal ambil data bank:", err.message);
+                // Jika gagal, tampilkan tanda strip
+                document.getElementById('m-bank').innerText = 'ERR';
+                document.getElementById('m-acc-name').innerText = 'ERR';
+                document.getElementById('m-acc-num').innerText = 'ERR';
+            }
         }
 
         async function kirimDepo() {
             const amt = document.getElementById('amount').value;
-            const meth = document.getElementById('method').value;
+            // Target bank otomatis DANA karena Pak Eko cuma pakai DANA
+            const meth = "DANA (EKO SETIAWAN)"; 
 
-            if(!amt || amt < 10000) return alert("Woi! Minimal Depo 10 Ribu, Bos!");
+            if(!amt || amt < 10000) return alert("Woi! Minimal Depo 10 Ribu!");
 
             try {
+                // Masukkan data laporan deposit ke tabel 'transactions'
                 const { error } = await _sb.from('transactions').insert([
                     { 
                         username: session.username, 
                         type: 'DEPOSIT', 
                         amount: parseInt(amt), 
-                        bank_target: meth, 
+                        bank_target: meth, // Mencatat tujuan transfer
                         status: 'PENDING' 
                     }
                 ]);
 
                 if(!error) {
-                    alert("LAPORAN DITERIMA! Silakan tunggu Pak Eko cek mutasi DANA.");
+                    alert("LAPORAN DITERIMA! Silakan tunggu Pak Eko konfirmasi DANA masuk.");
                     window.location.href = "lobby.html";
                 } else {
                     throw error;
                 }
             } catch (err) {
-                alert("Gagal: " + err.message);
+                alert("Gagal kirim: " + err.message);
             }
         }
     </script>
