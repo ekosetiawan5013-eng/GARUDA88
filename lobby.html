@@ -26,7 +26,7 @@
         .slot-bar { background: #fc0; color: #000; margin: 10px; padding: 8px 12px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 14px; }
         .btn-lobby-label { background: #000; color: #fff; padding: 2px 10px; border-radius: 3px; font-size: 10px; }
 
-        /* Grid Provider - Full Frame & Rapi */
+        /* Grid Provider Base Style */
         .provider-container { 
             padding: 0 10px 100px 10px; 
             display: grid; 
@@ -49,13 +49,31 @@
             display: flex;
             background: #000;
             overflow: hidden;
+            align-items: center; /* Tengah secara vertikal */
+            justify-content: center; /* Tengah secara horizontal */
         }
 
+        /* Style Default untuk logo lain (Full Cover) */
         .provider-card img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* Logo FULL menutupi kotak tanpa sisa hitam */
+            object-fit: cover; 
             display: block;
+        }
+
+        /* PERBAIKAN KHUSUS MICROGAMING */
+        /* Kita targetkan card Microgaming menggunakan class spesifik */
+        .card-microgaming .img-wrapper {
+            padding: 15px; /* Memberi ruang agar tulisan tidak mepet border */
+            background: #fff; /* Opsional: beri background putih agar tulisan hitam terlihat jelas, atau hapus jika ingin tetap hitam */
+        }
+        
+        .card-microgaming img { 
+            object-fit: contain; /* Memastikan LOGO & TULISAN utuh tanpa kepotong */
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
         }
 
         /* Tombol Play Now Sejajar */
@@ -88,7 +106,7 @@
 
     <div class="user-info-bar">
         <div class="u-data">
-            <div class="u-name" id="user-id">USER</div>
+            <div class="u-name" id="user-id">BANJARAN</div>
             <div class="u-balance">Balance: <span>IDR. <span id="user-saldo">0</span></span></div>
         </div>
         <button class="refresh-btn" onclick="location.reload()"><i class="fas fa-sync-alt"></i> Refresh</button>
@@ -116,10 +134,12 @@
             <div class="img-wrapper"><img src="habanero.webp"></div>
             <div class="play-now">PLAY NOW</div>
         </div>
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="microgaming.webp"></div>
+
+        <div class="provider-card card-microgaming">
+            <div class="img-wrapper"><img src="microgaming.webp" alt="Microgaming"></div>
             <div class="play-now">PLAY NOW</div>
         </div>
+
         <div class="provider-card">
             <div class="img-wrapper"><img src="nolimit.webp"></div>
             <div class="play-now">PLAY NOW</div>
@@ -150,11 +170,14 @@
     </div>
 
     <script>
+        // Script JSON tetap sama untuk mengambil data session
         const session = JSON.parse(localStorage.getItem('userSession'));
         if (!session) {
-            window.location.href = "index.html";
+            window.location.href = "index.html"; // Redirect jika belum login
         } else {
-            document.getElementById('user-id').innerText = session.username;
+            // Update Username di header
+            document.getElementById('user-id').innerText = session.username.toUpperCase();
+            // Update Saldo dengan format Rupiah
             document.getElementById('user-saldo').innerText = new Intl.NumberFormat('id-ID').format(session.balance || 0);
         }
 
