@@ -51,7 +51,7 @@
             background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); 
             color: #fff; padding: 7px 18px; border-radius: 5px; 
             font-weight: bold; text-decoration: none; font-size: 13px; 
-            animation: deposit-pulse 1.5s infinite; /* Tambahan Animasi */
+            animation: deposit-pulse 1.5s infinite; 
             box-shadow: 0 0 5px var(--primary-red);
             border: 1px solid #fff;
         }
@@ -61,7 +61,6 @@
             70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
         }
-        /* --------------------------------------- */
 
         /* User Info Bar */
         .user-info-bar { background: #0f0f0f; padding: 12px 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
@@ -95,11 +94,18 @@
         .card-white .img-wrapper { padding: 12px; }
         .card-white img { object-fit: contain; }
 
-        /* Play Now Button */
-        @keyframes soft-blink { 0% { filter: brightness(100%); } 50% { filter: brightness(130%); } 100% { filter: brightness(100%); } }
+        /* --- PLAY NOW BUTTON (EFEK PULSE BARU) --- */
         .play-now {
             background: linear-gradient(180deg, #ff3333 0%, #990000 100%);
-            color: #fff; text-align: center; padding: 10px 0; font-size: 12px; font-weight: 900; border: none; width: 100%; text-transform: uppercase; animation: soft-blink 1.5s infinite;
+            color: #fff; text-align: center; padding: 10px 0; font-size: 12px; font-weight: 900; border: none; width: 100%; text-transform: uppercase; 
+            /* Tambahan efek pulse agar seirama dengan deposit */
+            animation: play-pulse 1.5s infinite ease-in-out; 
+        }
+
+        @keyframes play-pulse {
+            0% { filter: brightness(100%); transform: scale(1); }
+            50% { filter: brightness(140%); transform: scale(1.03); }
+            100% { filter: brightness(100%); transform: scale(1); }
         }
 
         /* --- BANK STATUS --- */
