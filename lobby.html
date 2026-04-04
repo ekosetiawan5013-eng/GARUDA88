@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { box-sizing: border-box; }
-        body { background: #1a0000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        body { background: #1a0000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
         /* Header */
         .header-top { background: linear-gradient(180deg, #700000 0%, #000 100%); padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #fc0; }
@@ -26,22 +26,22 @@
         .slot-bar { background: #fc0; color: #000; margin: 10px; padding: 8px 12px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 14px; }
         .btn-lobby-label { background: #000; color: #fff; padding: 2px 10px; border-radius: 3px; font-size: 10px; }
 
-        /* Grid Provider - Rapi & Simetris */
+        /* Grid Provider - Presisi 2 Kolom */
         .provider-container { 
             padding: 0 10px 100px 10px; 
             display: grid; 
-            grid-template-columns: repeat(2, 1fr); /* 2 kolom presisi */
+            grid-template-columns: repeat(2, 1fr); 
             gap: 10px; 
         }
         
         .provider-card { 
-            border: 1px solid #fc0; 
-            border-radius: 8px; 
+            border: 1.5px solid #fc0; 
+            border-radius: 10px; 
             overflow: hidden; 
             background: #000; 
             display: flex;
             flex-direction: column;
-            height: 180px; /* Tinggi seragam agar rapi */
+            aspect-ratio: 1 / 1; /* Membuat kotak sempurna agar simetris */
         }
         
         .img-wrapper {
@@ -49,33 +49,36 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px;
+            padding: 5px;
             background: #000;
+            overflow: hidden;
         }
 
         .provider-card img { 
-            max-width: 100%; 
-            max-height: 100%; 
-            object-fit: contain; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; /* Memastikan logo terlihat FULL dan tidak terpotong */
+            display: block;
         }
 
-        /* Tombol Play Now */
+        /* Tombol Play Now - Muncul di Setiap Kotak */
         .play-now {
             background: #fc0;
             color: #000;
             text-align: center;
-            padding: 8px 0;
+            padding: 10px 0;
             font-size: 12px;
-            font-weight: bold;
+            font-weight: 900;
             text-transform: uppercase;
             border: none;
             width: 100%;
+            display: block;
             cursor: pointer;
         }
 
         /* Navigasi Bawah */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid #fc0; display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; z-index: 1000; }
-        .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; }
+        .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; }
         .nav-item i { display: block; font-size: 18px; color: #fc0; margin-bottom: 3px; }
     </style>
 </head>
@@ -101,48 +104,44 @@
 
     <div class="provider-container">
         <div class="provider-card">
-            <div class="img-wrapper"><img src="pragmatic.webp"></div>
-            <button class="play-now">PLAY NOW</button>
+            <div class="img-wrapper"><img src="pragmatic.webp" alt="Pragmatic"></div>
+            <div class="play-now">PLAY NOW</div>
         </div>
         <div class="provider-card">
-            <div class="img-wrapper"><img src="pgsoft.webp"></div>
-            <button class="play-now">PLAY NOW</button>
-        </div>
-        
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="idnslot.webp"></div>
-            <button class="play-now">PLAY NOW</button>
+            <div class="img-wrapper"><img src="pgsoft.webp" alt="PG Soft"></div>
+            <div class="play-now">PLAY NOW</div>
         </div>
         <div class="provider-card">
-            <div class="img-wrapper"><img src="habanero.webp"></div>
-            <button class="play-now">PLAY NOW</button>
-        </div>
-        
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="microgaming.webp"></div>
-            <button class="play-now">PLAY NOW</button>
+            <div class="img-wrapper"><img src="idnslot.webp" alt="IDN Slot"></div>
+            <div class="play-now">PLAY NOW</div>
         </div>
         <div class="provider-card">
-            <div class="img-wrapper"><img src="nolimit.webp"></div>
-            <button class="play-now">PLAY NOW</button>
-        </div>
-        
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="playtech.webp"></div>
-            <button class="play-now">PLAY NOW</button>
+            <div class="img-wrapper"><img src="habanero.webp" alt="Habanero"></div>
+            <div class="play-now">PLAY NOW</div>
         </div>
         <div class="provider-card">
-            <div class="img-wrapper"><img src="redtiger.webp"></div>
-            <button class="play-now">PLAY NOW</button>
-        </div>
-        
-        <div class="provider-card">
-            <div class="img-wrapper"><img src="fastspin.webp"></div>
-            <button class="play-now">PLAY NOW</button>
+            <div class="img-wrapper"><img src="microgaming.webp" alt="Microgaming"></div>
+            <div class="play-now">PLAY NOW</div>
         </div>
         <div class="provider-card">
-            <div class="img-wrapper"><img src="gmw.webp"></div>
-            <button class="play-now">PLAY NOW</button>
+            <div class="img-wrapper"><img src="nolimit.webp" alt="NoLimit"></div>
+            <div class="play-now">PLAY NOW</div>
+        </div>
+        <div class="provider-card">
+            <div class="img-wrapper"><img src="playtech.webp" alt="Playtech"></div>
+            <div class="play-now">PLAY NOW</div>
+        </div>
+        <div class="provider-card">
+            <div class="img-wrapper"><img src="redtiger.webp" alt="Red Tiger"></div>
+            <div class="play-now">PLAY NOW</div>
+        </div>
+        <div class="provider-card">
+            <div class="img-wrapper"><img src="fastspin.webp" alt="FastSpin"></div>
+            <div class="play-now">PLAY NOW</div>
+        </div>
+        <div class="provider-card">
+            <div class="img-wrapper"><img src="gmw.webp" alt="GMW"></div>
+            <div class="play-now">PLAY NOW</div>
         </div>
     </div>
 
