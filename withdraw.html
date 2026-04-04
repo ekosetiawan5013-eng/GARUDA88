@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEPOSIT - GARUDA 88</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <style>
+        body { background: #000; color: #fff; font-family: Arial; margin: 0; padding: 20px; }
+        .header { text-align: center; border-bottom: 2px solid #f00; padding-bottom: 10px; margin-bottom: 20px; }
+        .title { font-family: 'Orbitron'; color: #f00; font-size: 22px; }
+        
+        .bank-info { background: #1a1a1a; padding: 15px; border-radius: 10px; border-left: 5px solid #fc0; margin-bottom: 20px; }
+        .bank-info p { margin: 5px 0; font-size: 14px; }
+        .acc-num { color: #fc0; font-weight: bold; font-size: 18px; letter-spacing: 1px; }
+
+        .form-box { background: #111; padding: 20px; border-radius: 10px; border: 1px solid #333; }
+        label { display: block; margin-bottom: 5px; font-size: 12px; color: #888; }
+        input, select { width: 100%; padding: 12px; margin-bottom: 15px; background: #222; border: 1px solid #444; color: #fff; border-radius: 5px; box-sizing: border-box; }
+        
+        .btn-kirim { width: 100%; padding: 15px; background: linear-gradient(to bottom, #f00, #800); border: none; color: #fff; font-weight: bold; border-radius: 5px; cursor: pointer; text-transform: uppercase; }
+        .btn-back { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="title">FORM DEPOSIT</div>
+    </div>
+
+    <div class="bank-info">
+        <p>TUJUAN TRANSFER:</p>
+        <p><strong>BCA - AN. [NAMA ANDA]</strong></p>
+        <p class="acc-num">1234567890</p>
+        <p style="font-size: 10px; color: #888;">*Pastikan nominal transfer sesuai dengan form.</p>
+    </div>
+
+    <div class="form-box">
+        <label>JUMLAH DEPOSIT (IDR)</label>
+        <input type="number" id="amount" placeholder="Contoh: 50000">
+        
+        <label>METODE PEMBAYARAN</label>
+        <select id="method">
+            <option value="BCA">BCA</option>
+            <option value="DANA">DANA</option>
+            <option value="OVO">OVO</option>
+        </select>
+
+        <button onclick="kirimDepo()" class="btn-kirim">KONFIRMASI DEPOSIT</button>
+    </div>
+
+    <a href="lobby.html" class="btn-back">KEMBALI KE LOBBY</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const _sb = supabase.createClient('URL_ANDA', 'KEY_ANDA');
+
+        async function kirimDepo() {
+            const session = JSON.parse(localStorage.getItem('userSession'));
+            const amt = document.getElementById('amount').value;
+            const meth = document.getElementById('method').value;
+
+            if(!amt || amt < 10000) return alert("Minimal Deposit IDR 10.000");
+
+            const { error } = await _sb.from('transactions').insert([
+                { username: session.username, type: 'DEPOSIT', amount: amt, bank_target: meth, status: 'PENDING' }
+            ]);
+
+            if(!error) {
+                alert("Laporan Deposit Terkirim! Saldo akan masuk setelah admin cek mutasi.");
+                window.location.href = "lobby.html";
+            }
+        }
+    </script>
+</body>
+</html>
