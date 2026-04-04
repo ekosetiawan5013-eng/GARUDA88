@@ -25,29 +25,26 @@
             border-bottom: 2px solid var(--primary-red); 
         }
 
-        /* Container untuk Logo Garuda dan Teks */
         .brand-container {
             display: flex;
             align-items: center;
-            gap: 10px; /* Jarak antara logo dan teks */
+            gap: 10px;
         }
 
-        /* Styling Logo Garuda Emas */
         .garuda-logo {
-            height: 35px; /* Sesuaikan tinggi logo */
+            height: 35px;
             width: auto;
             display: block;
         }
 
-        /* Container Teks Logo untuk Efek Mengetik */
         .typing-container {
             display: inline-block;
-            min-width: 160px; /* Menjaga agar layout tidak goyang saat ngetik */
+            min-width: 160px;
         }
 
         .logo-text { 
             color: var(--primary-red); 
-            font-family: 'Orbitron', sans-serif; /* Font Baru */
+            font-family: 'Orbitron', sans-serif;
             font-size: 20px; 
             font-weight: 900; 
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); 
@@ -55,22 +52,20 @@
             text-transform: uppercase; 
             white-space: nowrap;
             overflow: hidden;
-            border-right: 3px solid var(--primary-red); /* Kursor ketik */
+            border-right: 3px solid var(--primary-red);
             width: 0;
             animation: 
                 typing 3s steps(9, end) infinite,
                 blink-caret 0.75s step-end infinite;
         }
 
-        /* Animasi Ngetik dari Kosong ke Full */
         @keyframes typing {
             0% { width: 0; }
-            50% { width: 100%; } /* Selesai mengetik di detik ke 1.5 */
-            80% { width: 100%; } /* Berhenti sejenak (Pause) */
-            100% { width: 0; }   /* Hilang untuk mengulang lagi */
+            50% { width: 100%; }
+            80% { width: 100%; }
+            100% { width: 0; }
         }
 
-        /* Animasi Kursor Berkedip */
         @keyframes blink-caret {
             from, to { border-color: transparent }
             50% { border-color: var(--primary-red); }
@@ -86,7 +81,7 @@
         /* Section User Info */
         .user-info-bar { background: #0f0f0f; padding: 12px 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
         .u-balance span { color: var(--primary-red); font-weight: bold; }
-        .refresh-btn { background: #222; color: #fff; padding: 6px 12px; border-radius: 4px; border: 1px solid #444; }
+        .refresh-btn { background: #222; color: #fff; padding: 6px 12px; border-radius: 4px; border: 1px solid #444; cursor: pointer; }
 
         /* Slot Bar Merah */
         .slot-bar { background: var(--primary-red); color: #fff; margin: 10px; padding: 8px 12px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
@@ -98,19 +93,27 @@
         .img-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .provider-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* Penyesuaian Logo Spesifik */
+        /* Penyesuaian Logo Spesifik agar Tidak Sesak & Full Background */
         .card-idn .img-wrapper { background: #2e1a4e; padding: 15px; }
         .card-habanero .img-wrapper, .card-microgaming .img-wrapper { background: #fff; padding: 15px; }
         .card-idn img, .card-habanero img, .card-microgaming img { object-fit: contain; max-width: 100%; max-height: 100%; }
 
-        /* Tombol Play Now Merah */
+        /* Efek Blink untuk Play Now */
+        @keyframes soft-blink {
+            0% { filter: brightness(100%); }
+            50% { filter: brightness(150%); box-shadow: inset 0 0 15px rgba(255,255,255,0.2); }
+            100% { filter: brightness(100%); }
+        }
+
         .play-now {
             background: linear-gradient(180deg, #ff3333 0%, #990000 100%);
             color: #fff; text-align: center; padding: 10px 0; font-size: 12px; font-weight: 900; border: none; width: 100%; cursor: pointer;
+            text-transform: uppercase;
+            animation: soft-blink 1.5s infinite ease-in-out;
         }
 
         /* Nav Bawah */
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; }
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; z-index: 1000; }
         .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; }
         .nav-item i { display: block; font-size: 20px; color: var(--primary-red); margin-bottom: 3px; }
     </style>
@@ -171,6 +174,14 @@
         </div>
         <div class="provider-card">
             <div class="img-wrapper"><img src="redtiger.webp"></div>
+            <div class="play-now">PLAY NOW</div>
+        </div>
+        <div class="provider-card">
+            <div class="img-wrapper"><img src="fastspin.webp"></div>
+            <div class="play-now">PLAY NOW</div>
+        </div>
+        <div class="provider-card">
+            <div class="img-wrapper"><img src="gmw.webp"></div>
             <div class="play-now">PLAY NOW</div>
         </div>
     </div>
