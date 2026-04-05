@@ -116,7 +116,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        const _sb = supabase.createClient('https://sbtrcroononwihparzfk.supabase.co', 'sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn');
+        // PAKAI KEY ANON YANG BARU
+        const _sb = supabase.createClient('https://sbtrcroononwihparzfk.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNidHJjcm9vbm9ud2locGFyemZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyNDU5NjQsImV4cCI6MjA5MDgyMTk2NH0.eReJz0D_qHIrCwj0lgjRpdaUHoNd8keVorJIGztRNuU');
+        
         const session = JSON.parse(localStorage.getItem('userSession'));
         
         function switchTab(type) {
@@ -149,12 +151,20 @@
         async function kirimDepo() {
             const amt = document.getElementById('amount').value;
             if(!amt || amt < 10000) return alert("Minimal Deposit 10.000!");
+            
             const method = document.getElementById('btn-qris').classList.contains('active') ? "QRIS" : "DANA";
+            
             const { error } = await _sb.from('transactions').insert([{ 
-                username: session.username, type: 'DEPOSIT', amount: parseInt(amt), 
-                bank_target: method, status: 'PENDING' 
+                username: session.username, 
+                type: 'DEPOSIT', 
+                amount: parseInt(amt), 
+                bank_target: method, 
+                status: 'PENDING' 
             }]);
-            if(!error) { 
+
+            if(error) { 
+                alert("Gagal: " + error.message); 
+            } else { 
                 alert("Laporan Deposit Terkirim!"); 
                 window.location.href = "lobby.html"; 
             }
