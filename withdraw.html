@@ -22,12 +22,19 @@
         .info-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; }
         .info-row span:last-child { color: var(--gold); font-weight: bold; }
 
-        .wd-form { background: #0f0f0f; border: 1px solid var(--primary-red); border-radius: 10px; padding: 20px; }
+        .wd-form { background: #0f0f0f; border: 1px solid #333; border-radius: 10px; padding: 20px; }
         .input-group { margin-bottom: 15px; }
-        .input-group label { display: block; font-size: 12px; color: #aaa; margin-bottom: 5px; }
-        .input-group input, .input-group select { width: 100%; background: #222; border: 1px solid #444; color: #fff; padding: 12px; border-radius: 5px; outline: none; }
+        .input-group label { display: block; font-size: 13px; color: #ccc; margin-bottom: 8px; }
+        .input-group input { width: 100%; background: #fff; border: none; color: #000; padding: 12px; border-radius: 5px; font-weight: bold; }
+
+        .bank-info-section { margin-top: 20px; padding-top: 15px; border-top: 1px dashed #444; }
+        .bank-title { color: var(--gold); font-size: 14px; margin-bottom: 10px; font-weight: bold; }
+        .bank-detail-row { display: grid; grid-template-columns: 120px auto; font-size: 13px; margin-bottom: 8px; color: #eee; }
         
-        .btn-submit-wd { width: 100%; background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); border: none; color: #fff; padding: 15px; border-radius: 5px; font-weight: bold; font-size: 16px; cursor: pointer; text-transform: uppercase; box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+        .btn-submit-wd { width: 100%; background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); border: 1px solid #fff; color: #fff; padding: 15px; border-radius: 5px; font-weight: 900; font-size: 16px; cursor: pointer; text-transform: uppercase; margin-top: 20px; }
+        
+        /* Animasi Loading */
+        .loading-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
 
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(3, 1fr); padding: 10px 0; z-index: 1000; }
         .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; }
@@ -35,9 +42,11 @@
     </style>
 </head>
 <body>
+    <div id="loader" class="loading-overlay"><i class="fas fa-spinner fa-spin fa-3x" style="color: var(--primary-red);"></i></div>
+
     <div class="header-top">
         <a href="lobby.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-        <h1 class="header-title">FORM WITHDRAW</h1>
+        <h1 class="header-title">WITHDRAW</h1>
     </div>
 
     <div class="container">
@@ -48,29 +57,22 @@
 
         <div class="wd-form">
             <div class="input-group">
-                <label>Pilih Bank / E-Wallet</label>
-                <select id="bank-select">
-                    <option value="BCA">BCA</option>
-                    <option value="BNI">BNI</option>
-                    <option value="BRI">BRI</option>
-                    <option value="MANDIRI">MANDIRI</option>
-                    <option value="DANA">DANA</option>
-                    <option value="OVO">OVO</option>
-                </select>
+                <label>Jumlah Penarikan</label>
+                <input type="number" id="amount-wd" placeholder="Masukan jumlah...">
             </div>
             <div class="input-group">
-                <label>Nama Rekening (Sesuai ID)</label>
-                <input type="text" id="acc-name" readonly>
+                <label>Password Akun</label>
+                <input type="password" id="pass-wd" placeholder="Masukan password anda...">
             </div>
-            <div class="input-group">
-                <label>Nomor Rekening</label>
-                <input type="number" id="acc-number" placeholder="Masukkan nomor rekening">
+
+            <div class="bank-info-section">
+                <div class="bank-title">Dana akan dikirim ke</div>
+                <div class="bank-detail-row"><span>Nama Bank</span> <span id="p-bank">: -</span></div>
+                <div class="bank-detail-row"><span>Nama Rekening</span> <span id="p-nama-rek">: -</span></div>
+                <div class="bank-detail-row"><span>No Rekening</span> <span id="p-no-rek">: -</span></div>
             </div>
-            <div class="input-group">
-                <label>Nominal Withdraw (Min: 50.000)</label>
-                <input type="number" id="amount-wd" placeholder="Contoh: 50000">
-            </div>
-            <button class="btn-submit-wd" onclick="prosesWD()">KIRIM PERMINTAAN</button>
+
+            <button class="btn-submit-wd" onclick="prosesWD()">KIRIM</button>
         </div>
     </div>
 
@@ -81,25 +83,65 @@
     </div>
 
     <script>
+        const _SB_URL = "https://sbtrcroononwihparzfk.supabase.co";
+        const _SB_KEY = "sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn";
+        const supabaseClient = supabase.createClient(_SB_URL, _SB_KEY);
+
         const session = JSON.parse(localStorage.getItem('userSession'));
         if (!session) { window.location.href = "index.html"; }
 
         document.getElementById('wd-user').innerText = session.username.toUpperCase();
         document.getElementById('wd-balance').innerText = "IDR " + new Intl.NumberFormat('id-ID').format(session.balance);
-        document.getElementById('acc-name').value = session.username.toUpperCase();
 
-        function prosesWD() {
+        async function fetchMemberBankData() {
+            try {
+                const { data } = await supabaseClient
+                    .from('members')
+                    .select('bank_name, account_name, account_number')
+                    .eq('username', session.username)
+                    .single();
+                if (data) {
+                    document.getElementById('p-bank').innerText = ": " + data.bank_name.toUpperCase();
+                    document.getElementById('p-nama-rek').innerText = ": " + data.account_name.toUpperCase();
+                    document.getElementById('p-no-rek').innerText = ": " + data.account_number;
+                }
+            } catch (e) {}
+        }
+        fetchMemberBankData();
+
+        async function prosesWD() {
             const amount = document.getElementById('amount-wd').value;
-            if (amount < 50000) {
-                alert("Minimal Withdraw adalah 50.000");
-                return;
+            const inputPass = document.getElementById('pass-wd').value;
+            const loader = document.getElementById('loader');
+
+            if (!amount || !inputPass) { alert("Harap isi semua kolom!"); return; }
+            if (amount < 50000) { alert("Minimal WD adalah 50.000!"); return; }
+            if (amount > session.balance) { alert("Saldo tidak mencukupi!"); return; }
+
+            loader.style.display = 'flex';
+
+            try {
+                // INISIATIF: Cek kecocokan password ke Database
+                const { data, error } = await supabaseClient
+                    .from('members')
+                    .select('password')
+                    .eq('username', session.username)
+                    .single();
+
+                if (data && data.password === inputPass) {
+                    // Jika password BENAR
+                    alert("Permintaan Withdraw Berhasil Dikirim!");
+                    window.location.href = "lobby.html";
+                } else {
+                    // Jika password SALAH
+                    alert("PASSWORD SALAH! Penarikan dana ditolak.");
+                    document.getElementById('pass-wd').value = "";
+                }
+            } catch (err) {
+                alert("Terjadi kesalahan sistem.");
+            } finally {
+                loader.style.display = 'none';
             }
-            if (amount > session.balance) {
-                alert("Saldo tidak mencukupi!");
-                return;
-            }
-            alert("Permintaan Withdraw Sedang Diproses!");
-            window.location.href = "lobby.html";
         }
 
         function logout() { 
