@@ -25,15 +25,15 @@
         .wd-form { background: #0f0f0f; border: 1px solid #333; border-radius: 10px; padding: 20px; }
         .input-group { margin-bottom: 15px; }
         .input-group label { display: block; font-size: 13px; color: #ccc; margin-bottom: 8px; }
-        .input-group input { width: 100%; background: #fff; border: none; color: #000; padding: 12px; border-radius: 5px; font-weight: bold; }
+        .input-group input { width: 100%; background: #fff; border: none; color: #000; padding: 12px; border-radius: 5px; font-weight: bold; outline: none; }
 
         .bank-info-section { margin-top: 20px; padding-top: 15px; border-top: 1px dashed #444; }
         .bank-title { color: var(--gold); font-size: 14px; margin-bottom: 10px; font-weight: bold; }
         .bank-detail-row { display: grid; grid-template-columns: 120px auto; font-size: 13px; margin-bottom: 8px; color: #eee; }
         
+        /* Tombol diperbarui: KIRIM PERMINTAAN */
         .btn-submit-wd { width: 100%; background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); border: 1px solid #fff; color: #fff; padding: 15px; border-radius: 5px; font-weight: 900; font-size: 16px; cursor: pointer; text-transform: uppercase; margin-top: 20px; }
         
-        /* Animasi Loading */
         .loading-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
 
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(3, 1fr); padding: 10px 0; z-index: 1000; }
@@ -67,12 +67,12 @@
 
             <div class="bank-info-section">
                 <div class="bank-title">Dana akan dikirim ke</div>
-                <div class="bank-detail-row"><span>Nama Bank</span> <span id="p-bank">: -</span></div>
-                <div class="bank-detail-row"><span>Nama Rekening</span> <span id="p-nama-rek">: -</span></div>
-                <div class="bank-detail-row"><span>No Rekening</span> <span id="p-no-rek">: -</span></div>
+                <div class="bank-detail-row"><span>Nama Bank</span> <span id="p-bank">: Menghubungkan...</span></div>
+                <div class="bank-detail-row"><span>Nama Rekening</span> <span id="p-nama-rek">: Menghubungkan...</span></div>
+                <div class="bank-detail-row"><span>No Rekening</span> <span id="p-no-rek">: Menghubungkan...</span></div>
             </div>
 
-            <button class="btn-submit-wd" onclick="prosesWD()">KIRIM</button>
+            <button class="btn-submit-wd" onclick="prosesWD()">KIRIM PERMINTAAN</button>
         </div>
     </div>
 
@@ -95,17 +95,24 @@
 
         async function fetchMemberBankData() {
             try {
-                const { data } = await supabaseClient
+                // Pastikan kolom ini sama dengan yang ada di Supabase Bapak
+                const { data, error } = await supabaseClient
                     .from('members')
-                    .select('bank_name, account_name, account_number')
+                    .select('*') 
                     .eq('username', session.username)
                     .single();
+
                 if (data) {
-                    document.getElementById('p-bank').innerText = ": " + data.bank_name.toUpperCase();
-                    document.getElementById('p-nama-rek').innerText = ": " + data.account_name.toUpperCase();
-                    document.getElementById('p-no-rek').innerText = ": " + data.account_number;
+                    // Jika kolom di DB Bapak namanya berbeda, silakan sesuaikan bagian 'data.xxx' dibawah ini:
+                    document.getElementById('p-bank').innerText = ": " + (data.bank_name || data.bank || "-").toUpperCase();
+                    document.getElementById('p-nama-rek').innerText = ": " + (data.account_name || data.nama_rekening || "-").toUpperCase();
+                    document.getElementById('p-no-rek').innerText = ": " + (data.account_number || data.nomor_rekening || "-");
+                } else {
+                    console.log("Data tidak ditemukan:", error);
                 }
-            } catch (e) {}
+            } catch (e) {
+                console.log("Error fetching:", e);
+            }
         }
         fetchMemberBankData();
 
@@ -121,24 +128,21 @@
             loader.style.display = 'flex';
 
             try {
-                // INISIATIF: Cek kecocokan password ke Database
-                const { data, error } = await supabaseClient
+                const { data } = await supabaseClient
                     .from('members')
                     .select('password')
                     .eq('username', session.username)
                     .single();
 
                 if (data && data.password === inputPass) {
-                    // Jika password BENAR
                     alert("Permintaan Withdraw Berhasil Dikirim!");
                     window.location.href = "lobby.html";
                 } else {
-                    // Jika password SALAH
-                    alert("PASSWORD SALAH! Penarikan dana ditolak.");
+                    alert("PASSWORD SALAH!");
                     document.getElementById('pass-wd').value = "";
                 }
             } catch (err) {
-                alert("Terjadi kesalahan sistem.");
+                alert("Gangguan koneksi.");
             } finally {
                 loader.style.display = 'none';
             }
