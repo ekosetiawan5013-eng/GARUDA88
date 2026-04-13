@@ -7,76 +7,157 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary-red: #ff0000; --gold: #ffd700; }
-        * { box-sizing: border-box; }
-        body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
-        .header-top { background: linear-gradient(180deg, #4b0000 0%, #000 100%); padding: 12px 15px; display: flex; align-items: center; border-bottom: 2px solid var(--primary-red); }
-        .back-btn { color: #fff; font-size: 20px; margin-right: 15px; text-decoration: none; }
-        .header-title { font-family: 'Orbitron', sans-serif; color: var(--primary-red); font-size: 18px; margin: 0; }
-        .container { padding: 15px; padding-bottom: 100px; }
-        .info-box { background: #111; border: 1px solid #333; border-radius: 8px; padding: 15px; margin-bottom: 20px; }
-        .info-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; }
-        .info-row span:last-child { color: var(--gold); font-weight: bold; }
-        .wd-form { background: #0f0f0f; border: 1px solid #333; border-radius: 10px; padding: 20px; }
-        .input-group { margin-bottom: 15px; }
-        .input-group label { display: block; font-size: 13px; color: #ccc; margin-bottom: 8px; }
-        .input-group input { width: 100%; background: #fff; border: none; color: #000; padding: 12px; border-radius: 5px; font-weight: bold; outline: none; font-size: 16px; }
-        .bank-info-section { margin-top: 20px; padding-top: 15px; border-top: 1px dashed #444; }
-        .bank-detail-row { display: grid; grid-template-columns: 120px auto; font-size: 13px; margin-bottom: 8px; color: #eee; }
-        .btn-submit-wd { width: 100%; background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); border: 1px solid #fff; color: #fff; padding: 15px; border-radius: 5px; font-weight: 900; font-size: 16px; cursor: pointer; text-transform: uppercase; margin-top: 20px; }
-        .loading-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
+        :root { --primary-red: #ff0000; --gold: #ffd700; --dark-bg: #000; --form-bg: #0f0f0f; --input-bg: #fff; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { background: var(--dark-bg); color: #fff; font-family: 'Segoe UI', sans-serif; padding-bottom: 80px; }
+        
+        /* HEADER - BRANDING AMAN */
+        .header-top { background: linear-gradient(180deg, #4b0000 0%, #000 100%); padding: 12px 15px; display: flex; align-items: center; border-bottom: 2px solid var(--primary-red); position: sticky; top: 0; z-index: 100; }
+        .back-btn { color: #fff; font-size: 20px; margin-right: 15px; text-decoration: none; display: flex; align-items: center; }
+        .header-title { font-family: 'Orbitron', sans-serif; color: var(--primary-red); font-size: 18px; text-transform: uppercase; }
+
+        .container { padding: 15px; }
+        
+        /* INFO BOX - BRANDING AMAN */
+        .info-box { background: #111; border: 1px solid #333; border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+        .info-row span:first-child { color: #ccc; }
+        .info-row span:last-child { color: var(--gold); font-weight: bold; font-family: 'Segoe UI', sans-serif; }
+
+        /* FORM WD */
+        .wd-form { background: var(--form-bg); border: 1px solid #333; border-radius: 10px; padding: 20px; margin-bottom: 15px; }
+        .input-group { margin-bottom: 15px; position: relative; } /* Tambah relative buat ikon */
+        .input-group label { display: block; font-size: 13px; color: #ccc; margin-bottom: 8px; font-weight: bold; }
+        
+        /* INPUT DASAR - BRANDING AMAN */
+        .input-group input { width: 100%; background: var(--input-bg); border: 2px solid #fff; color: #000; padding: 12px; padding-right: 40px; /* Kasih ruang buat mata */ border-radius: 5px; font-weight: bold; outline: none; font-size: 16px; transition: 0.3s; }
+        .input-group input:focus { border-color: var(--primary-red); }
+
+        /* --- STYLING IKON MATA (FITUR BARU) --- */
+        .toggle-password { position: absolute; right: 12px; top: 38px; /* Presisi di tengah input */ cursor: pointer; color: #aaa; /* Warna abu biar ga norak */ font-size: 18px; z-index: 10; display: none; /* Sembunyi dulu */ transition: 0.2s; }
+        .toggle-password:hover { color: #333; }
+        /* Tampilkan mata hanya di input password */
+        #pass-wd + .toggle-password { display: block; }
+
+        /* GARIS PEMBATAS */
+        .separator { border-top: 1px dashed #444; margin: 15px 0; }
+
+        /* DETAIL BANK */
+        .bank-info-section { font-size: 13px; color: #eee; margin-bottom: 20px; }
+        .bank-detail-row { display: grid; grid-template-columns: 120px 10px auto; margin-bottom: 6px; align-items: center; }
+        .bank-detail-row span:first-child { color: #ccc; }
+        .bank-detail-row span:last-child { font-weight: bold; color: #fff; }
+
+        /* TOMBOL - BRANDING AMAN */
+        .btn-submit-wd { width: 100%; background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); border: 1px solid #fff; color: #fff; padding: 15px; border-radius: 5px; font-weight: 900; font-size: 16px; cursor: pointer; text-transform: uppercase; border-radius: 7px; transition: 0.3s; box-shadow: 0 4px 6px rgba(255,0,0,0.2); }
+        .btn-submit-wd:active { transform: scale(0.98); box-shadow: 0 2px 4px rgba(255,0,0,0.2); }
+        
+        /* NAV - BRANDING AMAN */
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(3, 1fr); padding: 10px 0; z-index: 1000; }
-        .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; }
+        .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; text-transform: uppercase; }
         .nav-item i { display: block; font-size: 20px; color: var(--primary-red); margin-bottom: 3px; }
+
+        /* LOADER */
+        .loading-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
     </style>
 </head>
 <body>
     <div id="loader" class="loading-overlay"><i class="fas fa-spinner fa-spin fa-3x" style="color: var(--primary-red);"></i></div>
-    <div class="header-top"><a href="lobby.html" class="back-btn"><i class="fas fa-arrow-left"></i></a><h1 class="header-title">WITHDRAW</h1></div>
+
+    <div class="header-top">
+        <a href="lobby.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <h1 class="header-title">WITHDRAW</h1>
+    </div>
+
     <div class="container">
-        <div class="info-box"><div class="info-row"><span>User ID</span> <span id="wd-user">...</span></div><div class="info-row"><span>Saldo Aktif</span> <span id="wd-balance">IDR 0</span></div></div>
+        <div class="info-box">
+            <div class="info-row"><span>User ID</span> <span id="wd-user">LOADING...</span></div>
+            <div class="info-row"><span>Saldo Aktif</span> <span id="wd-balance">IDR 0</span></div>
+        </div>
+
         <div class="wd-form">
-            <div class="input-group"><label>Jumlah Penarikan</label><input type="text" id="amount-wd" placeholder="Masukan jumlah..."></div>
-            <div class="input-group"><label>Password Akun</label><input type="password" id="pass-wd" placeholder="Masukan password anda..."></div>
-            <div class="bank-info-section">
-                <div class="bank-detail-row"><span>Nama Bank</span> <span id="p-bank">: ...</span></div>
-                <div class="bank-detail-row"><span>Nama Rekening</span> <span id="p-nama-rek">: ...</span></div>
-                <div class="bank-detail-row"><span>No Rekening</span> <span id="p-no-rek">: ...</span></div>
+            <div class="input-group">
+                <label>Jumlah Penarikan</label>
+                <input type="text" id="amount-wd" placeholder="Masukan jumlah..." inputmode="numeric">
             </div>
+            <div class="input-group">
+                <label>Password Akun</label>
+                <input type="password" id="pass-wd" placeholder="Masukan password anda...">
+                <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="bank-info-section">
+                <div class="bank-detail-row"><span>Nama Bank</span><span>:</span><span id="p-bank">...</span></div>
+                <div class="bank-detail-row"><span>Nama Rekening</span><span>:</span><span id="p-nama-rek">...</span></div>
+                <div class="bank-detail-row"><span>No Rekening</span><span>:</span><span id="p-no-rek">...</span></div>
+            </div>
+
             <button class="btn-submit-wd" onclick="prosesWD()">KIRIM PERMINTAAN</button>
         </div>
     </div>
-    <div class="bottom-nav"><a href="#" class="nav-item"><i class="fas fa-comments"></i>LIVE CHAT</a><a href="lobby.html" class="nav-item"><i class="fas fa-home"></i>LOBBY</a><a href="#" onclick="logout()" class="nav-item"><i class="fas fa-sign-out-alt"></i>EXIT</a></div>
+
+    <div class="bottom-nav">
+        <a href="https://wa.me/628123456789" class="nav-item"><i class="fas fa-comments"></i>LIVE CHAT</a>
+        <a href="lobby.html" class="nav-item"><i class="fas fa-home"></i>LOBBY</a>
+        <a href="#" onclick="logout()" class="nav-item"><i class="fas fa-sign-out-alt"></i>EXIT</a>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        const _sb = supabase.createClient('https://sbtrcroononwihparzfk.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNidHJjcm9vbm9ud2locGFyemZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyNDU5NjQsImV4cCI6MjA5MDgyMTk2NH0.eReJz0D_qHIrCwj0lgjRpdaUHoNd8keVorJIGztRNuU');
+        // SINKRONISASI DATABASE (Pastikan Key Anon Benar)
+        const _URL = "https://sbtrcroononwihparzfk.supabase.co";
+        const _KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNidHJjcm9vbm9ud2locGFyemZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyNDU5NjQsImV4cCI6MjA5MDgyMTk2NH0.eReJz0D_qHIrCwj0lgjRpdaUHoNd8keVorJIGztRNuU";
+        const _sb = supabase.createClient(_URL, _KEY);
+
         let session = JSON.parse(localStorage.getItem('userSession'));
         if (!session) { window.location.href = "index.html"; }
 
+        // Tampilkan User & Saldo Bertitik
         document.getElementById('wd-user').innerText = session.username.toUpperCase();
         document.getElementById('wd-balance').innerText = "IDR " + new Intl.NumberFormat('id-ID').format(session.balance);
 
+        // --- LOGIKA IKON MATA (FITUR BARU) ---
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('pass-wd');
+
+        togglePassword.addEventListener('click', function () {
+            // Cek tipe input saat ini
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Ganti ikon mata (buka/tutup)
+            this.classList.toggle('fa-eye-slash');
+            this.classList.toggle('fa-eye');
+        });
+        // -------------------------------------
+
+        // Input Format Titik Otomatis
         const inWd = document.getElementById('amount-wd');
         inWd.addEventListener('input', function() {
             let val = this.value.replace(/[^0-9]/g, '');
             this.value = val ? new Intl.NumberFormat('id-ID').format(val) : '';
         });
 
+        // Ambil Data Bank Member (Branding Aman)
         async function getBank() {
-            const { data } = await _sb.from('members').select('*').eq('username', session.username).single();
-            if (data) {
-                document.getElementById('p-bank').innerText = ": " + data.bank_name;
-                document.getElementById('p-nama-rek').innerText = ": " + data.acc_name;
-                document.getElementById('p-no-rek').innerText = ": " + data.acc_number;
-            }
+            try {
+                const { data, error } = await _sb.from('members').select('*').eq('username', session.username).single();
+                if (data) {
+                    document.getElementById('p-bank').innerText = data.bank_name;
+                    document.getElementById('p-nama-rek').innerText = data.acc_name;
+                    document.getElementById('p-no-rek').innerText = data.acc_number;
+                }
+            } catch(e) { console.log(e) }
         }
         getBank();
 
         async function prosesWD() {
-            const nominalTitik = document.getElementById('amount-wd').value;
-            const amt = parseInt(nominalTitik.replace(/\./g, ''));
-            const pass = document.getElementById('pass-wd').value;
+            const raw = document.getElementById('amount-wd').value;
+            const amt = parseInt(raw.replace(/\./g, ''));
+            const pass = passwordInput.value; // Pakai referensi yang sama
             const loader = document.getElementById('loader');
 
             if(!amt || !pass) return alert("Isi semua kolom!");
@@ -85,25 +166,41 @@
 
             loader.style.display = 'flex';
             try {
-                const { data: user } = await _sb.from('members').select('*').eq('username', session.username).single();
-                if(user.password === pass) {
+                // Ambil data member terbaru
+                const { data: user, error } = await _sb.from('members').select('*').eq('username', session.username).single();
+                
+                if(user && user.password === pass) {
                     const newBal = user.balance - amt;
+                    
+                    // 1. Update Saldo (Members)
                     await _sb.from('members').update({ balance: newBal }).eq('username', session.username);
+                    
+                    // 2. Insert Transaksi (Sinkron dengan amount_text Bapak)
                     await _sb.from('transactions').insert([{
                         username: session.username,
                         type: 'WITHDRAW',
                         amount: amt,
-                        amount_text: nominalTitik, // MENGISI KOLOM BARU BAPAK
+                        amount_text: raw, // Format titik masuk Supabase
                         bank_target: user.bank_name + " (" + user.acc_number + ")",
                         status: 'PENDING'
                     }]);
+
+                    // 3. Update Session lokal
                     session.balance = newBal;
                     localStorage.setItem('userSession', JSON.stringify(session));
-                    alert("Withdraw Berhasil!");
+                    
+                    alert("Withdraw Berhasil Sent! Saldo otomatis terpotong.");
                     window.location.href = "lobby.html";
-                } else { alert("Password Salah!"); }
-            } catch (e) { alert("Error!"); } finally { loader.style.display = 'none'; }
+                } else {
+                    alert("Password Akun Salah!");
+                }
+            } catch (e) {
+                alert("Gangguan sistem koneksi!");
+            } finally {
+                loader.style.display = 'none';
+            }
         }
+
         function logout() { localStorage.clear(); window.location.href = "index.html"; }
     </script>
 </body>
