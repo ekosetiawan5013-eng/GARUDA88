@@ -31,7 +31,6 @@
         .bank-title { color: var(--gold); font-size: 14px; margin-bottom: 10px; font-weight: bold; }
         .bank-detail-row { display: grid; grid-template-columns: 120px auto; font-size: 13px; margin-bottom: 8px; color: #eee; }
         
-        /* Tombol diperbarui: KIRIM PERMINTAAN */
         .btn-submit-wd { width: 100%; background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); border: 1px solid #fff; color: #fff; padding: 15px; border-radius: 5px; font-weight: 900; font-size: 16px; cursor: pointer; text-transform: uppercase; margin-top: 20px; }
         
         .loading-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
@@ -95,20 +94,17 @@
 
         async function fetchMemberBankData() {
             try {
-                // Pastikan kolom ini sama dengan yang ada di Supabase Bapak
+                // Sekarang mengambil kolom spesifik: bank_name, acc_name, acc_number
                 const { data, error } = await supabaseClient
                     .from('members')
-                    .select('*') 
+                    .select('bank_name, acc_name, acc_number') 
                     .eq('username', session.username)
                     .single();
 
                 if (data) {
-                    // Jika kolom di DB Bapak namanya berbeda, silakan sesuaikan bagian 'data.xxx' dibawah ini:
-                    document.getElementById('p-bank').innerText = ": " + (data.bank_name || data.bank || "-").toUpperCase();
-                    document.getElementById('p-nama-rek').innerText = ": " + (data.account_name || data.nama_rekening || "-").toUpperCase();
-                    document.getElementById('p-no-rek').innerText = ": " + (data.account_number || data.nomor_rekening || "-");
-                } else {
-                    console.log("Data tidak ditemukan:", error);
+                    document.getElementById('p-bank').innerText = ": " + (data.bank_name || "-").toUpperCase();
+                    document.getElementById('p-nama-rek').innerText = ": " + (data.acc_name || "-").toUpperCase();
+                    document.getElementById('p-no-rek').innerText = ": " + (data.acc_number || "-");
                 }
             } catch (e) {
                 console.log("Error fetching:", e);
@@ -138,11 +134,11 @@
                     alert("Permintaan Withdraw Berhasil Dikirim!");
                     window.location.href = "lobby.html";
                 } else {
-                    alert("PASSWORD SALAH!");
+                    alert("PASSWORD SALAH! Silakan periksa kembali.");
                     document.getElementById('pass-wd').value = "";
                 }
             } catch (err) {
-                alert("Gangguan koneksi.");
+                alert("Gangguan koneksi sistem.");
             } finally {
                 loader.style.display = 'none';
             }
