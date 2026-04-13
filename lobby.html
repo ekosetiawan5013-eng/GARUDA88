@@ -43,7 +43,9 @@
         .status-item { display: flex; align-items: center; gap: 6px; font-size: 10px; color: #ccc; font-weight: 600; }
         .dot { height: 7px; width: 7px; border-radius: 50%; background: var(--neon-green); animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; z-index: 1000; }
+        
+        /* BOTTOM NAV - DIUBAH MENJADI 3 KOLOM */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(3, 1fr); padding: 10px 0; z-index: 1000; }
         .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; }
         .nav-item i { display: block; font-size: 20px; color: var(--primary-red); margin-bottom: 3px; }
     </style>
@@ -104,8 +106,7 @@
     </div>
 
     <div class="bottom-nav">
-        <a href="lobby.html" class="nav-item"><i class="fas fa-home"></i>HOME</a>
-        <a href="deposit.html" class="nav-item"><i class="fas fa-wallet"></i>DEPO</a>
+        <a href="https://wa.me/628123456789" class="nav-item"><i class="fas fa-comments"></i>LIVE CHAT</a>
         <a href="withdraw.html" class="nav-item"><i class="fas fa-money-check-alt"></i>WD</a>
         <a href="#" onclick="logout()" class="nav-item"><i class="fas fa-sign-out-alt"></i>EXIT</a>
     </div>
@@ -121,7 +122,7 @@
         } else {
             document.getElementById('user-id').innerText = session.username.toUpperCase();
             document.getElementById('user-saldo').innerText = new Intl.NumberFormat('id-ID').format(session.balance || 0);
-            loadSaldoFromDB(session.username); // Ambil data segar dari Supabase saat masuk
+            loadSaldoFromDB(session.username); 
         }
 
         async function loadSaldoFromDB(username) {
@@ -147,7 +148,7 @@
             const currentSession = JSON.parse(localStorage.getItem('userSession'));
             if (currentSession) {
                 const icon = document.querySelector('.refresh-btn i');
-                icon.classList.add('fa-spin'); // Kasih efek putar pas di klik
+                icon.classList.add('fa-spin'); 
                 loadSaldoFromDB(currentSession.username).then(() => {
                     setTimeout(() => icon.classList.remove('fa-spin'), 800);
                 });
@@ -159,7 +160,6 @@
             window.location.href = "index.html"; 
         }
 
-        // --- SISTEM RADAR OTOMATIS (Cek tiap 5 detik) ---
         setInterval(() => {
             const currentSession = JSON.parse(localStorage.getItem('userSession'));
             if (currentSession) {
