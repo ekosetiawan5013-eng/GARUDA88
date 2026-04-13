@@ -25,8 +25,7 @@
         .wd-form { background: #0f0f0f; border: 1px solid #333; border-radius: 10px; padding: 20px; }
         .input-group { margin-bottom: 15px; }
         .input-group label { display: block; font-size: 13px; color: #ccc; margin-bottom: 8px; }
-        /* Menggunakan font-weight bold agar angka terlihat jelas */
-        .input-group input { width: 100%; background: #fff; border: none; color: #000; padding: 12px; border-radius: 5px; font-weight: bold; outline: none; }
+        .input-group input { width: 100%; background: #fff; border: none; color: #000; padding: 12px; border-radius: 5px; font-weight: bold; outline: none; font-size: 16px; }
 
         .bank-info-section { margin-top: 20px; padding-top: 15px; border-top: 1px dashed #444; }
         .bank-title { color: var(--gold); font-size: 14px; margin-bottom: 10px; font-weight: bold; }
@@ -93,41 +92,40 @@
         document.getElementById('wd-user').innerText = session.username.toUpperCase();
         document.getElementById('wd-balance').innerText = "IDR " + new Intl.NumberFormat('id-ID').format(session.balance);
 
-        // LOGIKA FORMAT TITIK OTOMATIS
+        // FUNGSI FORMAT TITIK OTOMATIS
         const inputWD = document.getElementById('amount-wd');
-        inputWD.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/[^0-9]/g, '');
-            if (value) {
-                e.target.value = new Intl.NumberFormat('id-ID').format(value);
-            } else {
-                e.target.value = '';
-            }
+        inputWD.addEventListener('keyup', function(e) {
+            this.value = formatRupiah(this.value);
         });
+
+        function formatRupiah(angka) {
+            let number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+            if (ribuan) {
+                let separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+            return rupiah;
+        }
 
         async function fetchMemberBankData() {
             try {
-                const { data, error } = await supabaseClient
-                    .from('members')
-                    .select('bank_name, acc_name, acc_number') 
-                    .eq('username', session.username)
-                    .single();
-
+                const { data } = await supabaseClient.from('members').select('bank_name, acc_name, acc_number').eq('username', session.username).single();
                 if (data) {
                     document.getElementById('p-bank').innerText = ": " + (data.bank_name || "-").toUpperCase();
                     document.getElementById('p-nama-rek').innerText = ": " + (data.acc_name || "-").toUpperCase();
                     document.getElementById('p-no-rek').innerText = ": " + (data.acc_number || "-");
                 }
-            } catch (e) {
-                console.log("Error fetching:", e);
-            }
+            } catch (e) {}
         }
         fetchMemberBankData();
 
         async function prosesWD() {
-            // Membersihkan tanda titik sebelum melakukan validasi angka
-            const rawAmount = document.getElementById('amount-wd').value;
-            const amount = rawAmount.replace(/\./g, ''); 
-            
+            const rawValue = document.getElementById('amount-wd').value;
+            const amount = rawValue.replace(/\./g, ''); 
             const inputPass = document.getElementById('pass-wd').value;
             const loader = document.getElementById('loader');
 
@@ -136,32 +134,23 @@
             if (parseInt(amount) > session.balance) { alert("Saldo tidak mencukupi!"); return; }
 
             loader.style.display = 'flex';
-
             try {
-                const { data } = await supabaseClient
-                    .from('members')
-                    .select('password')
-                    .eq('username', session.username)
-                    .single();
-
+                const { data } = await supabaseClient.from('members').select('password').eq('username', session.username).single();
                 if (data && data.password === inputPass) {
                     alert("Permintaan Withdraw Berhasil Dikirim!");
                     window.location.href = "lobby.html";
                 } else {
-                    alert("PASSWORD SALAH! Silakan periksa kembali.");
+                    alert("PASSWORD SALAH!");
                     document.getElementById('pass-wd').value = "";
                 }
             } catch (err) {
-                alert("Gangguan koneksi sistem.");
+                alert("Gangguan sistem.");
             } finally {
                 loader.style.display = 'none';
             }
         }
 
-        function logout() { 
-            localStorage.removeItem('userSession'); 
-            window.location.href = "index.html"; 
-        }
+        function logout() { localStorage.removeItem('userSession'); window.location.href = "index.html"; }
     </script>
 </body>
 </html>
