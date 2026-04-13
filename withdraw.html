@@ -11,30 +11,22 @@
         :root { --primary-red: #ff0000; --gold: #ffd700; }
         * { box-sizing: border-box; }
         body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
-        
         .header-top { background: linear-gradient(180deg, #4b0000 0%, #000 100%); padding: 12px 15px; display: flex; align-items: center; border-bottom: 2px solid var(--primary-red); }
         .back-btn { color: #fff; font-size: 20px; margin-right: 15px; text-decoration: none; }
         .header-title { font-family: 'Orbitron', sans-serif; color: var(--primary-red); font-size: 18px; margin: 0; }
-
         .container { padding: 15px; padding-bottom: 100px; }
-        
         .info-box { background: #111; border: 1px solid #333; border-radius: 8px; padding: 15px; margin-bottom: 20px; }
         .info-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; }
         .info-row span:last-child { color: var(--gold); font-weight: bold; }
-
         .wd-form { background: #0f0f0f; border: 1px solid #333; border-radius: 10px; padding: 20px; }
         .input-group { margin-bottom: 15px; }
         .input-group label { display: block; font-size: 13px; color: #ccc; margin-bottom: 8px; }
         .input-group input { width: 100%; background: #fff; border: none; color: #000; padding: 12px; border-radius: 5px; font-weight: bold; outline: none; font-size: 16px; }
-
         .bank-info-section { margin-top: 20px; padding-top: 15px; border-top: 1px dashed #444; }
         .bank-title { color: var(--gold); font-size: 14px; margin-bottom: 10px; font-weight: bold; }
         .bank-detail-row { display: grid; grid-template-columns: 120px auto; font-size: 13px; margin-bottom: 8px; color: #eee; }
-        
         .btn-submit-wd { width: 100%; background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); border: 1px solid #fff; color: #fff; padding: 15px; border-radius: 5px; font-weight: 900; font-size: 16px; cursor: pointer; text-transform: uppercase; margin-top: 20px; }
-        
         .loading-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
-
         .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #000; border-top: 2px solid var(--primary-red); display: grid; grid-template-columns: repeat(3, 1fr); padding: 10px 0; z-index: 1000; }
         .nav-item { text-align: center; color: #fff; text-decoration: none; font-size: 10px; font-weight: bold; }
         .nav-item i { display: block; font-size: 20px; color: var(--primary-red); margin-bottom: 3px; }
@@ -86,62 +78,79 @@
         const _SB_KEY = "sb_publishable_ebxfpUwby3RO6LqhyFkU-Q_3AMzoYyn";
         const supabaseClient = supabase.createClient(_SB_URL, _SB_KEY);
 
-        const session = JSON.parse(localStorage.getItem('userSession'));
+        let session = JSON.parse(localStorage.getItem('userSession'));
         if (!session) { window.location.href = "index.html"; }
 
-        document.getElementById('wd-user').innerText = session.username.toUpperCase();
-        document.getElementById('wd-balance').innerText = "IDR " + new Intl.NumberFormat('id-ID').format(session.balance);
+        function refreshTampilanSaldo() {
+            document.getElementById('wd-user').innerText = session.username.toUpperCase();
+            document.getElementById('wd-balance').innerText = "IDR " + new Intl.NumberFormat('id-ID').format(session.balance);
+        }
+        refreshTampilanSaldo();
 
-        // FUNGSI FORMAT TITIK OTOMATIS
+        // FORMAT TITIK OTOMATIS
         const inputWD = document.getElementById('amount-wd');
-        inputWD.addEventListener('keyup', function(e) {
-            this.value = formatRupiah(this.value);
-        });
+        inputWD.addEventListener('keyup', function(e) { this.value = formatRupiah(this.value); });
 
         function formatRupiah(angka) {
             let number_string = angka.replace(/[^,\d]/g, '').toString(),
-                split = number_string.split(','),
-                sisa = split[0].length % 3,
+                split = number_string.split(','), sisa = split[0].length % 3,
                 rupiah = split[0].substr(0, sisa),
                 ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-            if (ribuan) {
-                let separator = sisa ? '.' : '';
-                rupiah += separator + ribuan.join('.');
-            }
+            if (ribuan) { let separator = sisa ? '.' : ''; rupiah += separator + ribuan.join('.'); }
             return rupiah;
         }
 
         async function fetchMemberBankData() {
-            try {
-                const { data } = await supabaseClient.from('members').select('bank_name, acc_name, acc_number').eq('username', session.username).single();
-                if (data) {
-                    document.getElementById('p-bank').innerText = ": " + (data.bank_name || "-").toUpperCase();
-                    document.getElementById('p-nama-rek').innerText = ": " + (data.acc_name || "-").toUpperCase();
-                    document.getElementById('p-no-rek').innerText = ": " + (data.acc_number || "-");
-                }
-            } catch (e) {}
+            const { data } = await supabaseClient.from('members').select('bank_name, acc_name, acc_number').eq('username', session.username).single();
+            if (data) {
+                document.getElementById('p-bank').innerText = ": " + (data.bank_name || "-").toUpperCase();
+                document.getElementById('p-nama-rek').innerText = ": " + (data.acc_name || "-").toUpperCase();
+                document.getElementById('p-no-rek').innerText = ": " + (data.acc_number || "-");
+            }
         }
         fetchMemberBankData();
 
         async function prosesWD() {
             const rawValue = document.getElementById('amount-wd').value;
-            const amount = rawValue.replace(/\./g, ''); 
+            const amount = parseInt(rawValue.replace(/\./g, '')); 
             const inputPass = document.getElementById('pass-wd').value;
             const loader = document.getElementById('loader');
 
-            if (!amount || !inputPass) { alert("Harap isi semua kolom!"); return; }
-            if (parseInt(amount) < 50000) { alert("Minimal WD adalah 50.000!"); return; }
-            if (parseInt(amount) > session.balance) { alert("Saldo tidak mencukupi!"); return; }
+            if (!amount || !inputPass) return alert("Harap isi semua kolom!");
+            if (amount < 50000) return alert("Minimal WD adalah 50.000!");
+            if (amount > session.balance) return alert("Saldo tidak mencukupi!");
 
             loader.style.display = 'flex';
+
             try {
-                const { data } = await supabaseClient.from('members').select('password').eq('username', session.username).single();
-                if (data && data.password === inputPass) {
-                    alert("Permintaan Withdraw Berhasil Dikirim!");
+                // 1. Cek Password & Ambil Data Bank Sekaligus
+                const { data: member } = await supabaseClient.from('members')
+                    .select('password, balance, bank_name, acc_number')
+                    .eq('username', session.username).single();
+
+                if (member && member.password === inputPass) {
+                    const saldoBaru = member.balance - amount;
+
+                    // 2. Potong Saldo di Tabel Members
+                    await supabaseClient.from('members').update({ balance: saldoBaru }).eq('username', session.username);
+
+                    // 3. Catat Transaksi di Tabel Transactions (Supaya muncul notif ke Admin)
+                    await supabaseClient.from('transactions').insert([{
+                        username: session.username,
+                        type: 'WITHDRAW',
+                        amount: amount,
+                        bank_target: member.bank_name + " (" + member.acc_number + ")",
+                        status: 'PENDING'
+                    }]);
+
+                    // 4. Update Session Lokal agar saldo di lobby ikut berkurang
+                    session.balance = saldoBaru;
+                    localStorage.setItem('userSession', JSON.stringify(session));
+
+                    alert("Withdraw Berhasil! Saldo Anda telah dipotong.");
                     window.location.href = "lobby.html";
                 } else {
                     alert("PASSWORD SALAH!");
-                    document.getElementById('pass-wd').value = "";
                 }
             } catch (err) {
                 alert("Gangguan sistem.");
