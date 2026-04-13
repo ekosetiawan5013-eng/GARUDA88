@@ -27,17 +27,16 @@
 
         /* FORM WD */
         .wd-form { background: var(--form-bg); border: 1px solid #333; border-radius: 10px; padding: 20px; margin-bottom: 15px; }
-        .input-group { margin-bottom: 15px; position: relative; } /* Tambah relative buat ikon */
+        .input-group { margin-bottom: 15px; position: relative; } 
         .input-group label { display: block; font-size: 13px; color: #ccc; margin-bottom: 8px; font-weight: bold; }
         
         /* INPUT DASAR - BRANDING AMAN */
-        .input-group input { width: 100%; background: var(--input-bg); border: 2px solid #fff; color: #000; padding: 12px; padding-right: 40px; /* Kasih ruang buat mata */ border-radius: 5px; font-weight: bold; outline: none; font-size: 16px; transition: 0.3s; }
+        .input-group input { width: 100%; background: var(--input-bg); border: 2px solid #fff; color: #000; padding: 12px; padding-right: 40px; border-radius: 5px; font-weight: bold; outline: none; font-size: 16px; transition: 0.3s; }
         .input-group input:focus { border-color: var(--primary-red); }
 
-        /* --- STYLING IKON MATA (FITUR BARU) --- */
-        .toggle-password { position: absolute; right: 12px; top: 38px; /* Presisi di tengah input */ cursor: pointer; color: #aaa; /* Warna abu biar ga norak */ font-size: 18px; z-index: 10; display: none; /* Sembunyi dulu */ transition: 0.2s; }
+        /* --- STYLING IKON MATA --- */
+        .toggle-password { position: absolute; right: 12px; top: 38px; cursor: pointer; color: #aaa; font-size: 18px; z-index: 10; display: none; transition: 0.2s; }
         .toggle-password:hover { color: #333; }
-        /* Tampilkan mata hanya di input password */
         #pass-wd + .toggle-password { display: block; }
 
         /* GARIS PEMBATAS */
@@ -100,14 +99,15 @@
     </div>
 
     <div class="bottom-nav">
-        <a href="https://wa.me/628123456789" class="nav-item"><i class="fas fa-comments"></i>LIVE CHAT</a>
+        <a href="https://direct.lc.chat/19643283/" class="nav-item" target="_blank">
+            <i class="fas fa-comments"></i>LIVE CHAT
+        </a>
         <a href="lobby.html" class="nav-item"><i class="fas fa-home"></i>LOBBY</a>
         <a href="#" onclick="logout()" class="nav-item"><i class="fas fa-sign-out-alt"></i>EXIT</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // SINKRONISASI DATABASE (Pastikan Key Anon Benar)
         const _URL = "https://sbtrcroononwihparzfk.supabase.co";
         const _KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNidHJjcm9vbm9ud2locGFyemZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyNDU5NjQsImV4cCI6MjA5MDgyMTk2NH0.eReJz0D_qHIrCwj0lgjRpdaUHoNd8keVorJIGztRNuU";
         const _sb = supabase.createClient(_URL, _KEY);
@@ -115,33 +115,25 @@
         let session = JSON.parse(localStorage.getItem('userSession'));
         if (!session) { window.location.href = "index.html"; }
 
-        // Tampilkan User & Saldo Bertitik
         document.getElementById('wd-user').innerText = session.username.toUpperCase();
         document.getElementById('wd-balance').innerText = "IDR " + new Intl.NumberFormat('id-ID').format(session.balance);
 
-        // --- LOGIKA IKON MATA (FITUR BARU) ---
         const togglePassword = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('pass-wd');
 
         togglePassword.addEventListener('click', function () {
-            // Cek tipe input saat ini
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-            
-            // Ganti ikon mata (buka/tutup)
             this.classList.toggle('fa-eye-slash');
             this.classList.toggle('fa-eye');
         });
-        // -------------------------------------
 
-        // Input Format Titik Otomatis
         const inWd = document.getElementById('amount-wd');
         inWd.addEventListener('input', function() {
             let val = this.value.replace(/[^0-9]/g, '');
             this.value = val ? new Intl.NumberFormat('id-ID').format(val) : '';
         });
 
-        // Ambil Data Bank Member (Branding Aman)
         async function getBank() {
             try {
                 const { data, error } = await _sb.from('members').select('*').eq('username', session.username).single();
@@ -157,7 +149,7 @@
         async function prosesWD() {
             const raw = document.getElementById('amount-wd').value;
             const amt = parseInt(raw.replace(/\./g, ''));
-            const pass = passwordInput.value; // Pakai referensi yang sama
+            const pass = passwordInput.value;
             const loader = document.getElementById('loader');
 
             if(!amt || !pass) return alert("Isi semua kolom!");
@@ -166,29 +158,21 @@
 
             loader.style.display = 'flex';
             try {
-                // Ambil data member terbaru
                 const { data: user, error } = await _sb.from('members').select('*').eq('username', session.username).single();
                 
                 if(user && user.password === pass) {
                     const newBal = user.balance - amt;
-                    
-                    // 1. Update Saldo (Members)
                     await _sb.from('members').update({ balance: newBal }).eq('username', session.username);
-                    
-                    // 2. Insert Transaksi (Sinkron dengan amount_text Bapak)
                     await _sb.from('transactions').insert([{
                         username: session.username,
                         type: 'WITHDRAW',
                         amount: amt,
-                        amount_text: raw, // Format titik masuk Supabase
+                        amount_text: raw,
                         bank_target: user.bank_name + " (" + user.acc_number + ")",
                         status: 'PENDING'
                     }]);
-
-                    // 3. Update Session lokal
                     session.balance = newBal;
                     localStorage.setItem('userSession', JSON.stringify(session));
-                    
                     alert("Withdraw Berhasil Diproses!.");
                     window.location.href = "lobby.html";
                 } else {
