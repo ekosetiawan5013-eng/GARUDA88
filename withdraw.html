@@ -22,7 +22,6 @@
         .input-group label { display: block; font-size: 13px; color: #ccc; margin-bottom: 8px; }
         .input-group input { width: 100%; background: #fff; border: none; color: #000; padding: 12px; border-radius: 5px; font-weight: bold; outline: none; font-size: 16px; }
         .bank-info-section { margin-top: 20px; padding-top: 15px; border-top: 1px dashed #444; }
-        .bank-title { color: var(--gold); font-size: 14px; margin-bottom: 10px; font-weight: bold; }
         .bank-detail-row { display: grid; grid-template-columns: 120px auto; font-size: 13px; margin-bottom: 8px; color: #eee; }
         .btn-submit-wd { width: 100%; background: linear-gradient(180deg, #ff4d4d 0%, var(--primary-red) 100%); border: 1px solid #fff; color: #fff; padding: 15px; border-radius: 5px; font-weight: 900; font-size: 16px; cursor: pointer; text-transform: uppercase; margin-top: 20px; }
         .loading-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
@@ -33,66 +32,37 @@
 </head>
 <body>
     <div id="loader" class="loading-overlay"><i class="fas fa-spinner fa-spin fa-3x" style="color: var(--primary-red);"></i></div>
-
-    <div class="header-top">
-        <a href="lobby.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-        <h1 class="header-title">WITHDRAW</h1>
-    </div>
-
+    <div class="header-top"><a href="lobby.html" class="back-btn"><i class="fas fa-arrow-left"></i></a><h1 class="header-title">WITHDRAW</h1></div>
     <div class="container">
-        <div class="info-box">
-            <div class="info-row"><span>User ID</span> <span id="wd-user">...</span></div>
-            <div class="info-row"><span>Saldo Aktif</span> <span id="wd-balance">IDR 0</span></div>
-        </div>
-
+        <div class="info-box"><div class="info-row"><span>User ID</span> <span id="wd-user">...</span></div><div class="info-row"><span>Saldo Aktif</span> <span id="wd-balance">IDR 0</span></div></div>
         <div class="wd-form">
-            <div class="input-group">
-                <label>Jumlah Penarikan</label>
-                <input type="text" id="amount-wd" placeholder="Masukan jumlah...">
-            </div>
-            <div class="input-group">
-                <label>Password Akun</label>
-                <input type="password" id="pass-wd" placeholder="Masukan password anda...">
-            </div>
-
+            <div class="input-group"><label>Jumlah Penarikan</label><input type="text" id="amount-wd" placeholder="Masukan jumlah..."></div>
+            <div class="input-group"><label>Password Akun</label><input type="password" id="pass-wd" placeholder="Masukan password anda..."></div>
             <div class="bank-info-section">
-                <div class="bank-title">Dana akan dikirim ke</div>
                 <div class="bank-detail-row"><span>Nama Bank</span> <span id="p-bank">: ...</span></div>
                 <div class="bank-detail-row"><span>Nama Rekening</span> <span id="p-nama-rek">: ...</span></div>
                 <div class="bank-detail-row"><span>No Rekening</span> <span id="p-no-rek">: ...</span></div>
             </div>
-
             <button class="btn-submit-wd" onclick="prosesWD()">KIRIM PERMINTAAN</button>
         </div>
     </div>
-
-    <div class="bottom-nav">
-        <a href="#" class="nav-item"><i class="fas fa-comments"></i>LIVE CHAT</a>
-        <a href="lobby.html" class="nav-item"><i class="fas fa-home"></i>LOBBY</a>
-        <a href="#" onclick="logout()" class="nav-item"><i class="fas fa-sign-out-alt"></i>EXIT</a>
-    </div>
+    <div class="bottom-nav"><a href="#" class="nav-item"><i class="fas fa-comments"></i>LIVE CHAT</a><a href="lobby.html" class="nav-item"><i class="fas fa-home"></i>LOBBY</a><a href="#" onclick="logout()" class="nav-item"><i class="fas fa-sign-out-alt"></i>EXIT</a></div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        const _URL = "https://sbtrcroononwihparzfk.supabase.co";
-        const _KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNidHJjcm9vbm9ud2locGFyemZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyNDU5NjQsImV4cCI6MjA5MDgyMTk2NH0.eReJz0D_qHIrCwj0lgjRpdaUHoNd8keVorJIGztRNuU";
-        const _sb = supabase.createClient(_URL, _KEY);
-
+        const _sb = supabase.createClient('https://sbtrcroononwihparzfk.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNidHJjcm9vbm9ud2locGFyemZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyNDU5NjQsImV4cCI6MjA5MDgyMTk2NH0.eReJz0D_qHIrCwj0lgjRpdaUHoNd8keVorJIGztRNuU');
         let session = JSON.parse(localStorage.getItem('userSession'));
         if (!session) { window.location.href = "index.html"; }
 
-        // Tampilkan User & Saldo Awal
         document.getElementById('wd-user').innerText = session.username.toUpperCase();
         document.getElementById('wd-balance').innerText = "IDR " + new Intl.NumberFormat('id-ID').format(session.balance);
 
-        // Input Format Titik
         const inWd = document.getElementById('amount-wd');
         inWd.addEventListener('input', function() {
             let val = this.value.replace(/[^0-9]/g, '');
             this.value = val ? new Intl.NumberFormat('id-ID').format(val) : '';
         });
 
-        // Ambil Data Bank Member
         async function getBank() {
             const { data } = await _sb.from('members').select('*').eq('username', session.username).single();
             if (data) {
@@ -104,8 +74,8 @@
         getBank();
 
         async function prosesWD() {
-            const raw = document.getElementById('amount-wd').value;
-            const amt = parseInt(raw.replace(/\./g, ''));
+            const nominalTitik = document.getElementById('amount-wd').value;
+            const amt = parseInt(nominalTitik.replace(/\./g, ''));
             const pass = document.getElementById('pass-wd').value;
             const loader = document.getElementById('loader');
 
@@ -116,37 +86,24 @@
             loader.style.display = 'flex';
             try {
                 const { data: user } = await _sb.from('members').select('*').eq('username', session.username).single();
-                
                 if(user.password === pass) {
                     const newBal = user.balance - amt;
-                    
-                    // 1. Update Saldo
                     await _sb.from('members').update({ balance: newBal }).eq('username', session.username);
-                    
-                    // 2. Insert Transaksi (Sesuai tabel di foto Bapak)
                     await _sb.from('transactions').insert([{
                         username: session.username,
                         type: 'WITHDRAW',
                         amount: amt,
+                        amount_text: nominalTitik, // MENGISI KOLOM BARU BAPAK
                         bank_target: user.bank_name + " (" + user.acc_number + ")",
                         status: 'PENDING'
                     }]);
-
-                    // 3. Update Session & Finish
                     session.balance = newBal;
                     localStorage.setItem('userSession', JSON.stringify(session));
                     alert("Withdraw Berhasil!");
                     window.location.href = "lobby.html";
-                } else {
-                    alert("Password Salah!");
-                }
-            } catch (e) {
-                alert("Error koneksi!");
-            } finally {
-                loader.style.display = 'none';
-            }
+                } else { alert("Password Salah!"); }
+            } catch (e) { alert("Error!"); } finally { loader.style.display = 'none'; }
         }
-
         function logout() { localStorage.clear(); window.location.href = "index.html"; }
     </script>
 </body>
