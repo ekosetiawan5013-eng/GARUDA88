@@ -71,6 +71,17 @@
         const _sb = supabase.createClient('https://sbtrcroononwihparzfk.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNidHJjcm9vbm9ud2locGFyemZrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyNDU5NjQsImV4cCI6MjA5MDgyMTk2NH0.eReJz0D_qHIrCwj0lgjRpdaUHoNd8keVorJIGztRNuU');
         const session = JSON.parse(localStorage.getItem('userSession'));
 
+        // FUNGSI COPY NOMOR REKENING
+        function copyText(txt) {
+            const el = document.createElement('textarea');
+            el.value = txt;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert("Nomor Berhasil Disalin!");
+        }
+
         const inputAmount = document.getElementById('amount');
         inputAmount.addEventListener('input', function() {
             let val = this.value.replace(/[^0-9]/g, '');
@@ -109,7 +120,7 @@
                 username: session.username, 
                 type: 'DEPOSIT', 
                 amount: amt, 
-                amount_text: nominalTitik, // MENGISI KOLOM BARU BAPAK
+                amount_text: nominalTitik,
                 bank_target: method, 
                 status: 'PENDING' 
             }]);
